@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import { Link } from 'react-router';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <Navbar/>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to nu-thread!</h1>
         </header>
+        {React.cloneElement(this.props.children, this.props)}
+        
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Affordable, high quality/durability, and carbon neutral clothes! 
         </p>
       </div>
     );
