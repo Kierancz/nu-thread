@@ -12,7 +12,7 @@ const Home = props => (
 )
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: () => push('/about-us')
+  changePage: () => push('/about')
 }, dispatch)
 
 export default connect(
