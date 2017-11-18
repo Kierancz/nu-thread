@@ -1,0 +1,22 @@
+.grid-figure {
+  flex-basis: calc(16.66% - 4rem);
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin: 0 2rem 2rem 2rem;
+  padding: 2rem;
+  border: 1px solid #d3d3d3;
+  background: #fff;
+  box-shadow: 0 0 0 5px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+.grid-photo {
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+  margin-top: -2rem;
+  max-width: none;
+}
+
+.grid-photo-wrap {
+  position: relative;
+}

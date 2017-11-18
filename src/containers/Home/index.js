@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Grid from '../../components/Grid';
+import ItemGrid from '../../components/ItemGrid';
 import data from '../../data/ebay';
 
 const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
@@ -18,7 +18,7 @@ const Home = props => (
     <p>Welcome home!</p>
     <button onClick={() => props.changePage()}>Go to about page via redux</button>
 
-    <Grid items={productItems}/>
+    <ItemGrid items={productItems}/>
   </div>
 )
 
