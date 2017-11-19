@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './photo.css';
-import { Column } from 'hedron';
+import { Row, Column } from 'hedron';
 import 
   Card, { 
   CardActions, 
@@ -15,6 +14,7 @@ import Typography from 'material-ui/Typography';
 const styles = {
   card: {
     maxWidth: 345,
+    margin: 10,
   },
   media: {
     height: 200,
@@ -26,7 +26,7 @@ class ItemCard extends Component {
     const { item, i, classes } = this.props;
 
     return (
-      <Column xs={6} sm={4} md={3} lg={2}>
+      <Column xs={6} sm={4} md={4} lg={3} fluid={true}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
@@ -34,12 +34,18 @@ class ItemCard extends Component {
             title={item.title[0]}
           />
           <CardContent>
-            <Typography component="p">
+            <Typography component="h4">
               {item.title[0]}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button dense color="primary">
+            <Typography component="h3">
+              $ {item.sellingStatus[0].convertedCurrentPrice[0].__value__}
+            </Typography>
+            <Button 
+              dense 
+              color="primary"
+              href={item.viewItemURL[0]}>
               View on Ebay
             </Button>
           </CardActions>
@@ -50,10 +56,3 @@ class ItemCard extends Component {
 }
 
 export default withStyles(styles)(ItemCard);
-
-/*
-<img 
-  src={item.galleryURL} 
-  alt={item.title[0]} 
-  className="grid-photo"/>
-  */

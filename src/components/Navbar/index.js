@@ -22,6 +22,7 @@ const styles = theme => ({
     color: 'white',
     textDecoration: 'none',
     display: 'inline-block',
+    textTransform: 'lowercase'
   },
   center: {
     display: 'block',
