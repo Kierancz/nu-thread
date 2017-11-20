@@ -1,5 +1,4 @@
 import React from 'react';
-import store from '../../modules/configureStore';
 import styled from 'styled-components';
 
 const StyledLink = styled.a`
@@ -11,21 +10,19 @@ const StyledLink = styled.a`
 const FilterLink = ({
   filter, 
   currentFilter,
-  children 
+  children,
+  onClick
 }) => {
   // when our filter link is active make it unclickable
   if(filter === currentFilter) {
     return <span>{children}</span>
   }
-  
+
   return (
     <StyledLink href='#'
       onClick={e => {
         e.preventDefault();
-        store.dispatch({
-          type: 'SET_FILTER',
-          filter
-        });
+        onClick(filter);
       }}
     >
       {children}
