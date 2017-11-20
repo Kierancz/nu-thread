@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Column } from 'hedron';
+import { Column } from 'hedron';
 import 
   Card, { 
   CardActions, 
@@ -23,7 +23,14 @@ const styles = {
 
 class ItemCard extends Component {
   render() {
-    const { item, i, classes } = this.props;
+    const { item, classes } = this.props;
+    let price = 
+      parseFloat(
+        item
+        .sellingStatus[0]
+        .convertedCurrentPrice[0]
+        .__value__)
+      .toFixed(2);
 
     return (
       <Column xs={6} sm={4} md={4} lg={3} fluid={true}>
@@ -40,7 +47,7 @@ class ItemCard extends Component {
           </CardContent>
           <CardActions>
             <Typography component="h3">
-              $ {item.sellingStatus[0].convertedCurrentPrice[0].__value__}
+              $ {price}
             </Typography>
             <Button 
               dense 

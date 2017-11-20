@@ -18,7 +18,7 @@ const Home = props => (
     <p>Home of affordable, durable, and carbon neutral used clothes!</p>
     <button onClick={() => props.changePage()}>Learn More</button>
 
-    <ItemGrid items={productItems}/>
+    <ItemGrid items={productItems} />
   </div>
 )
 
