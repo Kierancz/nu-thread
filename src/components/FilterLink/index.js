@@ -1,33 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
+//import setVisibilityFilter from '../../redux/actions/items'
+import FLink from '../FLink';
 
-const StyledLink = styled.a`
-  margin: 0.5em;
-  text-decoration: none;
-  font-weight: bold;
-`;
-
-const FilterLink = ({
-  filter, 
-  currentFilter,
-  children,
-  onClick
-}) => {
-  // when our filter link is active make it unclickable
-  if(filter === currentFilter) {
-    return <span>{children}</span>
-  }
-
-  return (
-    <StyledLink href='#'
-      onClick={e => {
-        e.preventDefault();
-        onClick(filter);
-      }}
-    >
-      {children}
-    </StyledLink>
-  );
+const mapStateToProps = (
+  state,
+  ownProps
+) => {
+  return {
+    active:
+      ownProps.filter ===
+      state.filter
+  };
 };
+
+const mapDispatchToProps = (
+  dispatch,
+  ownProps
+) => {
+  return {
+    onClick: () => {
+      dispatch({
+        type: 'SET_FILTER',
+        filter: ownProps.filter
+      });
+    }
+  };
+};
+
+const FilterLink = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FLink);
 
 export default FilterLink;

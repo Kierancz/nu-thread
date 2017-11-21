@@ -15,7 +15,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App {...store.getState()}>
+        <App>
           <div></div>
         </App>
       </ConnectedRouter>

@@ -7,31 +7,16 @@ const Wrapper = styled.section`
   display: block;
 `;
 
-const FilterBar = ({ 
-  filter,
-  onFilterClick
-}) => (
+const FilterBar = () => (
   <Wrapper>
     Show:
-    <FilterLink 
-      filter='SHOW_ALL'
-      currentFilter={filter}
-      onClick={onFilterClick}
-    >
+    <FilterLink filter='SHOW_ALL'>
       All
     </FilterLink>
-    <FilterLink 
-      filter='PRICE_ASC'
-      currentFilter={filter}
-      onClick={onFilterClick}
-    >
+    <FilterLink filter='PRICE_ASC'>
       Price &uarr;
     </FilterLink>
-    <FilterLink 
-      filter='PRICE_DESC'
-      currentFilter={filter}
-      onClick={onFilterClick}
-    >
+    <FilterLink filter='PRICE_DESC'>
       Price &darr;
     </FilterLink>
   </Wrapper>
