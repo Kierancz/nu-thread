@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledLink = styled.a`
+const Link = styled.a`
   margin: 0.5em;
   text-decoration: none;
   font-weight: bold;
+`;
+const Span = styled.span`
+  margin: 0.5em;
 `;
 
 const FLink = ({
@@ -14,18 +17,18 @@ const FLink = ({
 }) => {
   // when our filter link is active make it unclickable
   if(active) {
-    return <span>{children}</span>
+    return <Span>{children}</Span>
   }
 
   return (
-    <StyledLink href='#'
+    <Link href='#'
       onClick={e => {
         e.preventDefault();
         onClick();
       }}
     >
       {children}
-    </StyledLink>
+    </Link>
   );
 };
 

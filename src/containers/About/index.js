@@ -9,10 +9,10 @@ export default () => (
           About Us
         </h1>
         <h2>
-          Save time, save money, save the planet
+          Save time, save money, save the planet.
         </h2>
         <h3>
-          Set up a quick fit-profile and our algorithms save you time by matching you with affordable clothing of the highest quality and durability. 
+          Set up a quick fit-profile and our algorithms save you time by matching you with affordable used clothing of the highest quality and durability. 
         </h3>
         <h4>
           Our service costs absolutely nothing to you or the sellers.

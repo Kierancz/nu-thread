@@ -1,20 +1,13 @@
 import { connect } from 'react-redux';
-
 import ItemGrid from '../../components/ItemGrid';
 
-import data from '../../data/ebay';
-const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
-console.log("productItems: ", productItems);
-
-
 const getFilteredItems = (items, filter) => {
-  items = productItems;
   switch(filter) {
     case 'SHOW_ALL':
       return items;
     case 'PRICE_ASC':
-      return items.sort((a, b) => {
-        return(
+      return items.slice().sort((a, b) => {
+        return (
           parseFloat(
             a
             .sellingStatus[0]
@@ -31,8 +24,8 @@ const getFilteredItems = (items, filter) => {
         );
       });
     case 'PRICE_DESC':
-      return items.sort((a, b) => {
-        return(
+      return items.slice().sort((a, b) => {
+        return (
           parseFloat(
             b
             .sellingStatus[0]

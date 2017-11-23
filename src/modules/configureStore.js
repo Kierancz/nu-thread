@@ -3,15 +3,22 @@ import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 //import rootReducer from '../reducers';
-import rootReducer from '../reducers/index';
+import rootReducer from '../redux/reducers/index';
 import { createLogger } from 'redux-logger';
 
-export const history = createHistory()
 
-const sagaMiddleware = createSagaMiddleware()
+import data from '../data/ebay';
+const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
+console.log("productItems: ", productItems);
 
-const initialState = {}
-const enhancers = []
+export const history = createHistory();
+
+const sagaMiddleware = createSagaMiddleware();
+
+const initialState = {
+  items: productItems
+};
+const enhancers = [];
 const middleware = [
   sagaMiddleware,
   routerMiddleware(history)

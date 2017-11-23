@@ -3,10 +3,7 @@ import { Page, Row, Column } from 'hedron';
 
 import ItemCard from '../ItemCard';
 
-const ItemGrid = ({
-  items,
-  filter
-}) => {
+const ItemGrid = ({ items }) => {
   return(
     <Page>
       <Row>
