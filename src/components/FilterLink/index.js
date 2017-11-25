@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-//import setVisibilityFilter from '../../redux/actions/items'
+import setFilter from '../../redux/actions/items'
 import FLink from '../FLink';
 
 const mapStateToProps = (
@@ -19,10 +19,7 @@ const mapDispatchToProps = (
 ) => {
   return {
     onClick: () => {
-      dispatch({
-        type: 'SET_FILTER',
-        filter: ownProps.filter
-      });
+      dispatch(setFilter(ownProps.filter));
     }
   };
 };

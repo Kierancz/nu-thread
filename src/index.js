@@ -28,3 +28,10 @@ store.subscribe(render);
 render();
 
 registerServiceWorker();
+
+
+/*
+<div>
+  <Route path="/(:filter)" component={App} />
+</div>
+*/

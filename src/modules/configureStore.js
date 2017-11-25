@@ -5,11 +5,11 @@ import createSagaMiddleware from 'redux-saga';
 //import rootReducer from '../reducers';
 import rootReducer from '../redux/reducers/index';
 import { createLogger } from 'redux-logger';
+//import { loadState, saveState } from './loadState';
 
-
+// sample data
 import data from '../data/ebay';
 const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
-console.log("productItems: ", productItems);
 
 export const history = createHistory();
 
@@ -45,11 +45,18 @@ const composedEnhancers = compose(
   ...enhancers
 )
 
+//const persistedState = loadState();
 const store = createStore(
   rootReducer,
   initialState,
   composedEnhancers
-)
+);
+
+/*
+store.subscribe(() => {
+  saveState(store.getState());
+});
+*/
 
 // Extensions
 store.runSaga = sagaMiddleware.run;

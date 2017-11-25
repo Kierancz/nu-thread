@@ -1,8 +1,8 @@
-const setVisibilityFilter = (filter) => {
+const setFilter = (filter) => {
   return {
-    type: 'SET_VISIBILITY_FILTER',
+    type: 'SET_FILTER',
     filter
   };
 };
 
-export default setVisibilityFilter;
+export default setFilter;
