@@ -13,4 +13,4 @@ const app = combineReducers({
 export default app;
 
 export const getFilteredItems = (state, filter) =>
-  fromItems.getFilteredItems(state.items, filter);
+  fromItems.getFilteredItems(state, filter);

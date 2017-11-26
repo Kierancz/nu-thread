@@ -45,18 +45,11 @@ const composedEnhancers = compose(
   ...enhancers
 )
 
-//const persistedState = loadState();
 const store = createStore(
   rootReducer,
   initialState,
   composedEnhancers
 );
-
-/*
-store.subscribe(() => {
-  saveState(store.getState());
-});
-*/
 
 // Extensions
 store.runSaga = sagaMiddleware.run;

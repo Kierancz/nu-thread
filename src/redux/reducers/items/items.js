@@ -1,20 +1,25 @@
 const items = (state = [], action) => {
-  console.log('in items reducer.');
   switch(action.type) {
+    // returns new items array from old array plus new item id at end
+    case 'ADD_ITEM':
+      return [...state, action.id];
     default:
-     return state;
+      return state;
   }
-} 
+};
 
 export default items;
 
+
+// selector to return filtered items
 export const getFilteredItems = (state, filter) => {
   console.log('in getFilteredItems selector.');
+  const allItems = state.items;
   switch(filter) {
     case 'SHOW_ALL':
-      return state;
+      return allItems;
     case 'PRICE_ASC':
-      return state.slice().sort((a, b) => {
+      return allItems.slice().sort((a, b) => {
         return (
           parseFloat(
             a
@@ -32,7 +37,7 @@ export const getFilteredItems = (state, filter) => {
         );
       });
     case 'PRICE_DESC':
-      return state.slice().sort((a, b) => {
+      return allItems.slice().sort((a, b) => {
         return (
           parseFloat(
             b
@@ -50,6 +55,6 @@ export const getFilteredItems = (state, filter) => {
         );
       });
     default:
-      return state;
+      return allItems;
   }
 }
