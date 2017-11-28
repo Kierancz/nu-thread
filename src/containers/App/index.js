@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../Home';
 import About from '../About';
+import MainGrid from '../MainGrid';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
+          <Route exact path='/items' component={MainGrid} />
         </Switch>
 
         {React.cloneElement(this.props.children, this.props)}
