@@ -4,7 +4,7 @@ import FilterLink from '../FilterLink';
 
 const Wrapper = styled.section`
   padding: 1em;
-  display: block;
+  display: inline;
 `;
 
 const FilterBar = () => (

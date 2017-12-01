@@ -14,6 +14,7 @@ import {
   FormControl, 
   FormControlLabel, 
   FormHelperText } from 'material-ui/Form';
+import styled from 'styled-components';
 
 const styles = theme => ({
   root: {
@@ -64,7 +65,7 @@ class ProfileForm extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <span>
         <Button raised color="primary" onClick={this.handleClickOpen}>Create Fit Profile</Button>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>New Fit Profile</DialogTitle>
@@ -128,7 +129,7 @@ class ProfileForm extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </span>
     );
   }
 }
