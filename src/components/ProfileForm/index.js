@@ -44,7 +44,6 @@ class ProfileForm extends React.Component {
   handleClickOpen = () => {
     this.setState({ open: true });
   };
-
   handleRequestClose = () => {
     this.setState({ open: false });
   };
@@ -52,13 +51,30 @@ class ProfileForm extends React.Component {
   handleGenderChange = (event, gender) => {
     this.setState({ gender });
   };
-
   handleUpperChange = (event, upper) => {
     this.setState({ upper });
   };
-
   handleFitChange = (event, fit) => {
     this.setState({ fit });
+  };
+  /*
+    handleUpperChange = (event, upper) => {
+    this.setState(prevState => ({
+      profile: {
+        ...prevState.profile,
+        upper: upper
+      }
+    }));
+  };
+  */
+
+  handleSubmit = (event, props) => {
+    event.preventDefault();
+    this.setState({ open: false });
+    this.props.store.dispatch({
+      type: 'ADD_PROFILE',
+      profile: this.state
+    });
   };
 
   render() {
@@ -124,7 +140,7 @@ class ProfileForm extends React.Component {
             <Button onClick={this.handleRequestClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleSubmit} color="primary">
               Create Profile
             </Button>
           </DialogActions>
