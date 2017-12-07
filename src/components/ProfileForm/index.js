@@ -14,7 +14,14 @@ import {
   FormControl, 
   FormControlLabel, 
   FormHelperText } from 'material-ui/Form';
+import { Control, Form, actions } from 'react-redux-form';
 import styled from 'styled-components';
+
+const StyledControl = styled(Control)`
+  display: inline;
+  border: none;
+  margin: 1em;
+`;
 
 const styles = theme => ({
   root: {
@@ -57,28 +64,16 @@ class ProfileForm extends React.Component {
   handleFitChange = (event, fit) => {
     this.setState({ fit });
   };
-  /*
-    handleUpperChange = (event, upper) => {
-    this.setState(prevState => ({
-      profile: {
-        ...prevState.profile,
-        upper: upper
-      }
-    }));
-  };
-  */
 
-  handleSubmit = (event, props) => {
+  onSubmit = (event) => {
+    console.log('in onSubmit. Event: ', event);
     event.preventDefault();
     this.setState({ open: false });
-    this.props.store.dispatch({
-      type: 'ADD_PROFILE',
-      profile: this.state
-    });
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, onSubmit, model, dispatch } = this.props;
+    console.log("in form render. onSubmit: ", onSubmit);
 
     return (
       <span>
@@ -90,57 +85,93 @@ class ProfileForm extends React.Component {
               Add your fit profile info below to get clothes that actually fit!
             </DialogContentText>
 
-            <FormControl component="fieldset" required className={classes.formControl}>
-              <FormLabel component="legend">Gender</FormLabel>
-              <RadioGroup
-                aria-label="gender"
-                name="gender"
-                className={classes.group}
-                value={this.state.gender}
-                onChange={this.handleGenderChange}
+            <Form
+              model="profile"
+              onSubmit={(profile) => this.handleSubmit(profile)}
+            >
+              <StyledControl
+                model="profile.gender"
+                component={FormControl}
+                required
+                controlProps={{
+                  component: "fieldset",
+                  className: classes.formControl
+                }}
               >
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
-              </RadioGroup>
-            </FormControl>
+                <FormLabel component="legend">Gender</FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  name="gender"
+                  className={classes.group}
+                  value={this.state.gender}
+                  onChange={this.handleGenderChange}
+                >
+                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                  <FormControlLabel value="other" control={<Radio />} label="Other" />
+                </RadioGroup>
+              </StyledControl>
 
-            <FormControl component="fieldset" required className={classes.formControl}>
-              <FormLabel component="legend">Upper Size</FormLabel>
-              <RadioGroup
-                aria-label="upper-size"
-                name="upper-size"
-                className={classes.group}
-                value={this.state.upper}
-                onChange={this.handleUpperChange}
+              <StyledControl
+                model="profile.upper"
+                component={FormControl}
+                required
+                controlProps={{
+                  component: "fieldset",
+                  className: classes.formControl
+                }}
               >
-                <FormControlLabel value="sm" control={<Radio />} label="Small" />
-                <FormControlLabel value="md" control={<Radio />} label="Medium" />
-                <FormControlLabel value="lg" control={<Radio />} label="Large" />
-                <FormControlLabel value="xlg" control={<Radio />} label="Extra Large" />
-              </RadioGroup>
-            </FormControl>
+                <FormLabel component="legend">Upper Size</FormLabel>
+                <RadioGroup
+                  aria-label="upper-size"
+                  name="upper-size"
+                  className={classes.group}
+                  value={this.state.upper}
+                  onChange={this.handleUpperChange}
+                >
+                  <FormControlLabel value="sm" control={<Radio />} label="Small" />
+                  <FormControlLabel value="md" control={<Radio />} label="Medium" />
+                  <FormControlLabel value="lg" control={<Radio />} label="Large" />
+                  <FormControlLabel value="xlg" control={<Radio />} label="Extra Large" />
+                </RadioGroup>
+              </StyledControl>
 
-            <FormControl component="fieldset" required className={classes.formControl}>
-              <FormLabel component="legend">Fit Preference</FormLabel>
-              <RadioGroup
-                aria-label="fit"
-                name="fit"
-                className={classes.group}
-                value={this.state.fit}
-                onChange={this.handleFitChange}
+              <StyledControl
+                model="profile.fit"
+                component={FormControl}
+                required
+                controlProps={{
+                  component: "fieldset",
+                  className: classes.formControl
+                }}
               >
-                <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
-                <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
-                <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
-              </RadioGroup>
-            </FormControl>
+                <FormLabel component="legend">Fit Preference</FormLabel>
+                <RadioGroup
+                  aria-label="fit"
+                  name="fit"
+                  className={classes.group}
+                  value={this.state.fit}
+                  onChange={this.handleFitChange}
+                >
+                  <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
+                  <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
+                  <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
+                </RadioGroup>
+              </StyledControl>
+            </Form>
+
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleRequestClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleSubmit} color="primary">
+            <Button 
+              onClick={ e => {
+                e.preventDefault();
+                this.setState({ open: false });
+                onSubmit();
+              }} 
+              color="primary">
               Create Profile
             </Button>
           </DialogActions>

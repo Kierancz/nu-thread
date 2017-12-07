@@ -1,4 +1,5 @@
 const profile = (state = [], action) => {
+  console.log("in profile reducer. Action: ", action);
   switch(action.type) {
     case 'ADD_PROFILE':
       return [

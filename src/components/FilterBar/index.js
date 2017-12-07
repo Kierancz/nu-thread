@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FilterLink from '../FilterLink';
+import FilterLink from '../../containers/FilterLink';
 
 const Wrapper = styled.section`
   padding: 1em;

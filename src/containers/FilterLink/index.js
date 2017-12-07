@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import setFilter from '../../redux/actions/items'
-import FLink from '../FLink';
+import FLink from '../../components/FLink';
 
 const mapStateToProps = (
   state,
