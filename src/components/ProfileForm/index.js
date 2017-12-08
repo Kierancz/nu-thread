@@ -9,6 +9,7 @@ import Dialog, {
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
+import PersonAdd from 'material-ui-icons/PersonAdd';
 import { 
   FormLabel, 
   FormControl, 
@@ -38,6 +39,9 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit * 3,
   },
+  leftIcon: {
+    marginRight: theme.spacing.unit,
+  }
 });
 
 class ProfileForm extends React.Component {
@@ -65,19 +69,20 @@ class ProfileForm extends React.Component {
     this.setState({ fit });
   };
 
-  onSubmit = (event) => {
-    console.log('in onSubmit. Event: ', event);
-    event.preventDefault();
-    this.setState({ open: false });
-  };
-
   render() {
     const { classes, onSubmit, model, dispatch } = this.props;
     console.log("in form render. onSubmit: ", onSubmit);
 
     return (
       <span>
-        <Button raised color="primary" onClick={this.handleClickOpen}>Create Fit Profile</Button>
+        <Button 
+          raised 
+          color="primary" 
+          onClick={this.handleClickOpen}
+        >
+          <PersonAdd className={classes.leftIcon} />
+          Add Fit
+        </Button>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>New Fit Profile</DialogTitle>
           <DialogContent>

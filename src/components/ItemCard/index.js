@@ -7,18 +7,36 @@ import
   CardMedia } from 'material-ui/Card';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Icon from 'material-ui/Icon';
 import Typography from 'material-ui/Typography';
 
 //import { Link } from 'react-router-dom';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    display: 'flex',
     margin: 10,
   },
-  media: {
-    height: 200,
+  content: {
+    flex: '1 0 auto',
   },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  controls: {
+    marginLeft: 20,
+    marginBottom: 6,
+    display: 'flex',
+    alignItems: 'center',
+  },
+  media: {
+    height: 140,
+    width: 140,
+  },
+  viewButton: {
+    marginLeft: 6,
+  }
 };
 
 class ItemCard extends Component {
@@ -33,29 +51,32 @@ class ItemCard extends Component {
       .toFixed(2);
 
     return (
-      <Column xs={6} sm={4} md={4} lg={3} fluid={true}>
+      <Column xs={12} sm={12} md={6} lg={4} fluid={true}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
             image={item.galleryURL[0]} 
             title={item.title[0]}
           />
-          <CardContent>
-            <Typography component="h4">
-              {item.title[0]}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Typography component="h3">
-              $ {price}
-            </Typography>
-            <Button 
-              dense 
-              color="primary"
-              href={item.viewItemURL[0]}>
-              View on Ebay
-            </Button>
-          </CardActions>
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography component="h4">
+                {item.title[0]}
+              </Typography>
+            </CardContent>
+            <div className={classes.controls}>
+              <Typography component="h3">
+                $ {price}
+              </Typography>
+              <Button 
+                dense 
+                color="primary"
+                className={classes.viewButton}
+                href={item.viewItemURL[0]}>
+                View on Ebay
+              </Button>
+            </div>
+          </div>
         </Card>
       </Column>
     );

@@ -25,7 +25,7 @@ const PullLeft = styled.span`
 
 const ItemGrid = ({ items }) => {
   return(
-    <Page>
+    <Page fluid={true}>
       <Row>
         <Column xs={12} md={10} mdShift={1}>
           <ControlBar>
