@@ -3,6 +3,8 @@ const items = (state = [], action) => {
     // returns new items array from old array plus new item id at end
     case 'ADD_ITEM':
       return [...state, action.id];
+    case 'ITEMS_LOADED':
+      return {...state, items: action.items};
     default:
       return state;
   }

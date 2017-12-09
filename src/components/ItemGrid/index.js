@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import ItemCard from '../ItemCard';
 import FilterBar from '../FilterBar';
-import ProfileForm from '../ProfileForm';
+import Profile from '../../containers/Profile';
 
 const ControlBar = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const ItemGrid = ({ items }) => {
         <Column xs={12} md={10} mdShift={1}>
           <ControlBar>
             <PullLeft>
-              <ProfileForm />
+              <Profile />
             </PullLeft>
             <PullRight>
               <FilterBar />

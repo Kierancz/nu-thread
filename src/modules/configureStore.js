@@ -5,8 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 //import rootReducer from '../reducers';
 import rootReducer from '../redux/reducers/index';
 import { createLogger } from 'redux-logger';
-//import { createForms } from 'react-redux-form';
-//import { loadState, saveState } from './loadState';
+import { loadItems } from '../redux/sagas';
 
 // sample data
 import data from '../data/ebay';
@@ -18,7 +17,7 @@ const initialState = {
 
 
 export const history = createHistory();
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware(loadItems);
 const enhancers = [];
 const middleware = [
   sagaMiddleware,

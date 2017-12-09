@@ -14,8 +14,8 @@ import {
   FormLabel, 
   FormControl, 
   FormControlLabel, 
-  FormHelperText } from 'material-ui/Form';
-import { Control, Form, actions } from 'react-redux-form';
+} from 'material-ui/Form';
+import { Control, Form } from 'react-redux-form';
 import styled from 'styled-components';
 
 const StyledControl = styled(Control)`
@@ -70,7 +70,7 @@ class ProfileForm extends React.Component {
   };
 
   render() {
-    const { classes, onSubmit, model, dispatch } = this.props;
+    const { classes, onSubmit } = this.props;
     console.log("in form render. onSubmit: ", onSubmit);
 
     return (

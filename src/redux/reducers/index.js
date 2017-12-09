@@ -4,7 +4,7 @@ import { createForms } from 'react-redux-form';
 
 import items, * as fromItems from './items/items';
 import filter from './items/itemFilter';
-import profile from './profile';
+//import profile from './profile';
 
 const initialProfile = {
   gender: '',

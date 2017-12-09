@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { Column } from 'hedron';
 import 
   Card, { 
-  CardActions, 
   CardContent, 
   CardMedia } from 'material-ui/Card';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import Icon from 'material-ui/Icon';
 import Typography from 'material-ui/Typography';
 
 //import { Link } from 'react-router-dom';

@@ -6,3 +6,9 @@ const setFilter = (filter) => {
 };
 
 export default setFilter;
+
+export const loadItems = () => {
+  return {
+    type: LOAD_ITEMS
+  };
+};
