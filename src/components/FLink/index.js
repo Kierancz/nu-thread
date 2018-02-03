@@ -1,34 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
+import { MenuItem } from 'material-ui/Menu';
 
-const Link = styled.a`
-  margin: 0.5em;
-  text-decoration: none;
-  font-weight: bold;
-`;
 const Span = styled.span`
-  margin: 0.5em;
+  background-color: blue;
 `;
 
 const FLink = ({
   active,
   children,
-  onClick
+  onClick,
+  handleClose
 }) => {
   // when our filter link is active make it unclickable
+  /*
   if(active) {
     return <Span>{children}</Span>
   }
+  */
 
   return (
-    <Link href='#'
+    <MenuItem
       onClick={e => {
         e.preventDefault();
         onClick();
+        handleClose();
       }}
     >
       {children}
-    </Link>
+    </MenuItem>
   );
 };
 

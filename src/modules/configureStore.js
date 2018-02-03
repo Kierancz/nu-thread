@@ -54,7 +54,7 @@ const store = createStore(
 // Extensions
 store.runSaga = sagaMiddleware.run;
 store.injectedReducers = {}; // Reducer registry
-store.injectedSagas = {}; // Saga registry
+store.injectedSagas = {loadItems}; // Saga registry
 
 // Snippet to allow hot reload to work with reducers
 if(module.hot) {

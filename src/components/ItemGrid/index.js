@@ -13,8 +13,7 @@ const ControlBar = styled.div`
 
 const PullRight = styled.span`
   display: inline-block;
-  margin-top: 1em;
-  margin-right: -0.5em;
+  margin-right: 0.5em;
 `;
 
 const PullLeft = styled.span`
@@ -23,33 +22,40 @@ const PullLeft = styled.span`
   margin-left: 0.5em;
 `;
 
-const ItemGrid = ({ items }) => {
-  return(
-    <Page fluid={true}>
-      <Row>
-        <Column xs={12} md={10} mdShift={1}>
-          <ControlBar>
-            <PullLeft>
-              <Profile />
-            </PullLeft>
-            <PullRight>
-              <FilterBar />
-            </PullRight>
-          </ControlBar>
-          <Row>
-            {items.map((item, i) => 
-              <ItemCard 
-                {...item} 
-                key={i} 
-                i={i} 
-                item={item}
-              />
-            )}
-          </Row>
-        </Column>
-      </Row>
-    </Page>
-  );
-};
+export default class ItemGrid extends React.Component {
+  componentDidMount() {
+    console.log("ItemGrid mounted!");
+    const items = this.props.loadItems;
+    console.log("loaded items: ", items());
+  }
+  render() {
+    const { items } = this.props;
 
-export default ItemGrid;
+    return(
+      <Page fluid={true}>
+        <Row>
+          <Column xs={12} md={10} mdShift={1}>
+            <ControlBar>
+              <PullLeft>
+                <Profile />
+              </PullLeft>
+              <PullRight>
+                <FilterBar />
+              </PullRight>
+            </ControlBar>
+            <Row>
+              {items.map((item, i) =>
+                <ItemCard
+                  {...item}
+                  key={i}
+                  i={i}
+                  item={item}
+                />
+              )}
+            </Row>
+          </Column>
+        </Row>
+      </Page>
+    );
+  }
+}

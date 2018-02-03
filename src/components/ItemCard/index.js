@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Column } from 'hedron';
-import 
-  Card, { 
-  CardContent, 
+import
+  Card, {
+  CardContent,
   CardMedia } from 'material-ui/Card';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -29,7 +29,7 @@ const styles = {
     alignItems: 'center',
   },
   media: {
-    height: 140,
+    height: 'inherit',
     width: 140,
   },
   viewButton: {
@@ -37,10 +37,10 @@ const styles = {
   }
 };
 
-class ItemCard extends Component {
+class ItemCard extends React.Component {
   render() {
     const { item, classes } = this.props;
-    let price = 
+    let price =
       parseFloat(
         item
         .sellingStatus[0]
@@ -53,7 +53,7 @@ class ItemCard extends Component {
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
-            image={item.galleryURL[0]} 
+            image={item.galleryURL[0]}
             title={item.title[0]}
           />
           <div className={classes.details}>
@@ -66,8 +66,8 @@ class ItemCard extends Component {
               <Typography component="h3">
                 $ {price}
               </Typography>
-              <Button 
-                dense 
+              <Button
+                dense
                 color="primary"
                 className={classes.viewButton}
                 href={item.viewItemURL[0]}>

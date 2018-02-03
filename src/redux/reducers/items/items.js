@@ -4,6 +4,7 @@ const items = (state = [], action) => {
     case 'ADD_ITEM':
       return [...state, action.id];
     case 'ITEMS_LOADED':
+      console.log("in ITEMS_LOADED reducer");
       return {...state, items: action.items};
     default:
       return state;

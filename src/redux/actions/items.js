@@ -1,14 +1,12 @@
-const setFilter = (filter) => {
+export const setFilter = (filter) => {
   return {
     type: 'SET_FILTER',
     filter
   };
 };
 
-export default setFilter;
-
 export const loadItems = () => {
   return {
-    type: LOAD_ITEMS
+    type: 'LOAD_ITEMS'
   };
 };
