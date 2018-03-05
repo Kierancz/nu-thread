@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ItemCard from '../ItemCard';
 import FilterBar from '../FilterBar';
 import Profile from '../../containers/Profile';
+import Spinner from '../Spinner';
 
 const ControlBar = styled.div`
   display: flex;
@@ -44,14 +45,14 @@ export default class ItemGrid extends React.Component {
               </PullRight>
             </ControlBar>
             <Row>
-              {items.map((item, i) =>
+              {items.length? items.map((item, i) =>
                 <ItemCard
                   {...item}
                   key={i}
                   i={i}
                   item={item}
                 />
-              )}
+              ) : <Spinner message="Loading Items..."/>}
             </Row>
           </Column>
         </Row>

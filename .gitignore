@@ -22,3 +22,5 @@ yarn-error.log*
 
 data
 fire.js
+
+package-lock.json
