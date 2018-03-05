@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ItemGrid from '../../components/ItemGrid';
 import { getFilteredItems } from '../../redux/reducers';
-import { loadItems } from '../../redux/actions/items';
+import { requestItems } from '../../redux/actions/items';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,9 +14,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadItems: () => {
-      console.log("in mapDispatchToProps loadItems");
-      dispatch(loadItems());
+    requestItems: () => {
+      console.log("in mapDispatchToProps requestItems");
+      dispatch(requestItems());
     }
   }
 }

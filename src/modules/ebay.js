@@ -29,7 +29,7 @@ var URL = "https://temp-proxy.herokuapp.com/"
 export const fetchItems = () => {
   return fetch(URL).then(function (response) {
     return response.json().then(function (json) {
-      return json;
+      return json.findItemsByKeywordsResponse[0].searchResult[0].item;
     })
   })
 };

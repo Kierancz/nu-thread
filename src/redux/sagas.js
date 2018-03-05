@@ -1,19 +1,19 @@
 import { fetchItems } from '../modules/ebay';
-import { put, take } from 'redux-saga/effects';
+import { REQUEST_ITEMS, receiveItems } from './actions/items';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
-export function* loadItems() {
-  console.log("in loadItems() generator");
-  const items = yield fetchItems();
-  console.log("fetched items: ", items);
-  // put is redux-sagas version of dispatch
-  yield put({type: 'ITEMS_LOADED', items});
+export function* getItems() {
+  console.log("in getItems() generator");
+
+  try {
+    const items = yield call(fetchItems);
+    yield put(receiveItems(items));
+  } catch (e) {
+    console.log('error in getItems(): ', e);
+  }
 }
 
-export function* watchForLoadItems() {
-  console.log('in watchForLoadItems()');
-  while(true) {
-    // take listens for actions of provided type then advances
-    yield take('LOAD_ITEMS');
-    yield loadItems();
-  }
+export default function* rootSaga() {
+  console.log('in root saga');
+  yield takeLatest(REQUEST_ITEMS, getItems);
 }

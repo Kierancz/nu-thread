@@ -10,10 +10,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import PersonAdd from 'material-ui-icons/PersonAdd';
-import { 
-  FormLabel, 
-  FormControl, 
-  FormControlLabel, 
+import {
+  FormLabel,
+  FormControl,
+  FormControlLabel,
 } from 'material-ui/Form';
 import { Control, Form } from 'react-redux-form';
 import styled from 'styled-components';
@@ -71,13 +71,12 @@ class ProfileForm extends React.Component {
 
   render() {
     const { classes, onSubmit } = this.props;
-    console.log("in form render. onSubmit: ", onSubmit);
 
     return (
       <span>
-        <Button 
-          raised 
-          color="primary" 
+        <Button
+          raised
+          color="primary"
           onClick={this.handleClickOpen}
         >
           <PersonAdd className={classes.leftIcon} />
@@ -170,12 +169,12 @@ class ProfileForm extends React.Component {
             <Button onClick={this.handleRequestClose} color="primary">
               Cancel
             </Button>
-            <Button 
+            <Button
               onClick={ e => {
                 e.preventDefault();
                 this.setState({ open: false });
                 onSubmit();
-              }} 
+              }}
               color="primary">
               Create Profile
             </Button>

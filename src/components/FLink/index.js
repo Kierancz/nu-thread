@@ -1,10 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import { MenuItem } from 'material-ui/Menu';
 
+/*
 const Span = styled.span`
   background-color: blue;
 `;
+*/
 
 const FLink = ({
   active,

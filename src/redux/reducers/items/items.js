@@ -3,9 +3,19 @@ const items = (state = [], action) => {
     // returns new items array from old array plus new item id at end
     case 'ADD_ITEM':
       return [...state, action.id];
-    case 'ITEMS_LOADED':
-      console.log("in ITEMS_LOADED reducer");
-      return {...state, items: action.items};
+    case 'REQUEST_ITEMS':
+      console.log("in REQUEST_ITEMS reducer");
+      return {
+        ...state,
+        isLoading: true
+      }
+    case 'RECEIVE_ITEMS':
+      console.log("in RECEIVE_ITEMS reducer");
+      return {
+        ...state,
+        items: action.items,
+        isLoading: false
+      };
     default:
       return state;
   }

@@ -5,11 +5,12 @@ import createSagaMiddleware from 'redux-saga';
 //import rootReducer from '../reducers';
 import rootReducer from '../redux/reducers/index';
 import { createLogger } from 'redux-logger';
-import { loadItems } from '../redux/sagas';
+import rootSaga from '../redux/sagas';
 
 // sample data
 import data from '../data/ebay';
-const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
+//const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
+const productItems = data;
 
 const initialState = {
   items: productItems
@@ -17,7 +18,7 @@ const initialState = {
 
 
 export const history = createHistory();
-const sagaMiddleware = createSagaMiddleware(loadItems);
+const sagaMiddleware = createSagaMiddleware();
 const enhancers = [];
 const middleware = [
   sagaMiddleware,
@@ -52,9 +53,9 @@ const store = createStore(
 );
 
 // Extensions
-store.runSaga = sagaMiddleware.run;
+store.runSaga = sagaMiddleware.run(rootSaga);
 store.injectedReducers = {}; // Reducer registry
-store.injectedSagas = {loadItems}; // Saga registry
+store.injectedSagas = {rootSaga}; // Saga registry
 
 // Snippet to allow hot reload to work with reducers
 if(module.hot) {

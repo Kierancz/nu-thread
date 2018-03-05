@@ -26,11 +26,14 @@ const PullLeft = styled.span`
 export default class ItemGrid extends React.Component {
   componentDidMount() {
     console.log("ItemGrid mounted!");
-    const items = this.props.loadItems;
+    const items = this.props.requestItems;
     console.log("loaded items: ", items());
   }
   render() {
     const { items } = this.props;
+    const renderItems = items.items? items.items : [];
+    console.log('this.props.items: ', items);
+    console.log('render items: ', renderItems);
 
     return(
       <Page fluid={true}>
@@ -45,7 +48,7 @@ export default class ItemGrid extends React.Component {
               </PullRight>
             </ControlBar>
             <Row>
-              {items.length? items.map((item, i) =>
+              {renderItems.length? renderItems.map((item, i) =>
                 <ItemCard
                   {...item}
                   key={i}
