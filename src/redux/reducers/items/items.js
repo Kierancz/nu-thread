@@ -4,13 +4,11 @@ const items = (state = [], action) => {
     case 'ADD_ITEM':
       return [...state, action.id];
     case 'REQUEST_ITEMS':
-      console.log("in REQUEST_ITEMS reducer");
       return {
         ...state,
         isLoading: true
       }
     case 'RECEIVE_ITEMS':
-      console.log("in RECEIVE_ITEMS reducer");
       return {
         ...state,
         items: action.items,
@@ -26,8 +24,7 @@ export default items;
 
 // selector to return filtered items
 export const getFilteredItems = (state, filter) => {
-  console.log('in getFilteredItems selector.');
-  const allItems = state.items;
+  const allItems = state.items.items;
   switch(filter) {
     case 'SHOW_ALL':
       return allItems;

@@ -70,7 +70,8 @@ class ItemCard extends React.Component {
                 dense
                 color="primary"
                 className={classes.viewButton}
-                href={item.viewItemURL[0]}>
+                href={item.viewItemURL[0]}
+                target="_blank">
                 View on Ebay
               </Button>
             </div>

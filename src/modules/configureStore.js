@@ -7,15 +7,9 @@ import rootReducer from '../redux/reducers/index';
 import { createLogger } from 'redux-logger';
 import rootSaga from '../redux/sagas';
 
-// sample data
-import data from '../data/ebay';
-//const productItems = data.findItemsByKeywordsResponse[0].searchResult[0].item;
-const productItems = data;
-
 const initialState = {
-  items: productItems
+  items: []
 };
-
 
 export const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();

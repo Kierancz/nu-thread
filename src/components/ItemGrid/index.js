@@ -25,15 +25,11 @@ const PullLeft = styled.span`
 
 export default class ItemGrid extends React.Component {
   componentDidMount() {
-    console.log("ItemGrid mounted!");
-    const items = this.props.requestItems;
-    console.log("loaded items: ", items());
+    this.props.requestItems();
   }
   render() {
     const { items } = this.props;
-    const renderItems = items.items? items.items : [];
-    console.log('this.props.items: ', items);
-    console.log('render items: ', renderItems);
+    const renderItems = items? items : [];
 
     return(
       <Page fluid={true}>

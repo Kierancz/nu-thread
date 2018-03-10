@@ -15,7 +15,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     requestItems: () => {
-      console.log("in mapDispatchToProps requestItems");
       dispatch(requestItems());
     }
   }
