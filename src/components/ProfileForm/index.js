@@ -119,9 +119,9 @@ class ProfileForm extends React.Component {
                   value={this.state.gender}
                   onChange={this.handleGenderChange}
                 >
-                  <FormControlLabel value="men" control={<Radio />} label="Male" />
-                  <FormControlLabel value="woman" control={<Radio />} label="Female" />
-                  <FormControlLabel value="other" control={<Radio />} label="Other" />
+                  <FormControlLabel value="Men" control={<Radio />} label="Male" />
+                  <FormControlLabel value="Woman" control={<Radio />} label="Female" />
+                  <FormControlLabel value="Other" control={<Radio />} label="Other" />
                 </RadioGroup>
               </StyledControl>
 

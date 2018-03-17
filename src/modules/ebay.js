@@ -33,6 +33,7 @@ export const fetchItems = (keys, gender, size) => {
 
   return fetch(URL).then(function (response) {
     return response.json().then(function (json) {
+      console.log('data: ', json.findItemsByKeywordsResponse[0].searchResult[0].item);
       return json.findItemsByKeywordsResponse[0].searchResult[0].item;
     })
   })

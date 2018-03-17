@@ -20,8 +20,8 @@ export function* getItems() {
 export function* setProfile(action) {
   console.log('in setProfile generator. action: ', action);
   let keys = 'pendleton';
-  let gender = action.gender? action.gender : 'Men';
-  let size = action.size? action.size : 'M';
+  let gender = action.profile.gender;
+  let size = action.profile.upper;
 
   const items = yield call(fetchItems, keys, gender, size);
   yield put(receiveItems(items));

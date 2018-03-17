@@ -25,7 +25,7 @@ const PullLeft = styled.span`
 
 export default class ItemGrid extends React.Component {
   componentDidMount() {
-    this.props.requestItems();
+    if(!this.props.items) this.props.requestItems();
   }
   render() {
     const { items } = this.props;
