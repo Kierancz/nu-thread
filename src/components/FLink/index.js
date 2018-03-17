@@ -1,12 +1,11 @@
 import React from 'react';
-//import styled from 'styled-components';
+import styled from 'styled-components';
 import { MenuItem } from 'material-ui/Menu';
 
-/*
-const Span = styled.span`
-  background-color: blue;
-`;
-*/
+const ActiveItem = styled(MenuItem)`
+  background-color: grey;
+  color: white;
+`
 
 const FLink = ({
   active,
@@ -15,12 +14,19 @@ const FLink = ({
   handleClose
 }) => {
   // when our filter link is active make it unclickable
-  /*
-  if(active) {
-    return <Span>{children}</Span>
-  }
-  */
 
+  if(active) {
+    console.log('active filter item');
+    return (
+      <ActiveItem
+        onClick={e => {
+          e.preventDefault();
+        }}
+      >
+        {children}
+      </ActiveItem>
+    );
+  }
   return (
     <MenuItem
       onClick={e => {

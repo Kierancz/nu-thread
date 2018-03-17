@@ -48,8 +48,6 @@ class FilterBar extends React.Component {
         <Manager>
           <Target>
             <Button
-              raised
-              color="primary"
               aria-owns={open ? 'filter-menu' : null}
               aria-haspopup="true"
               onClick={this.handleClick}

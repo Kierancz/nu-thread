@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { createForms } from 'react-redux-form';
 
-import items, * as fromItems from './items/items';
-import filter from './items/itemFilter';
-//import profile from './profile';
+import items from './items/items';
+import filter, * as fromItems from './items/itemFilter';
+import profile from './profile';
 
 const initialProfile = {
   gender: '',
@@ -15,6 +15,7 @@ const initialProfile = {
 const app = combineReducers({
   items,
   filter,
+  profile,
   ...createForms({
     profile: initialProfile,
   }),
@@ -22,6 +23,5 @@ const app = combineReducers({
 });
 
 export default app;
-
 export const getFilteredItems = (state, filter) =>
   fromItems.getFilteredItems(state, filter);

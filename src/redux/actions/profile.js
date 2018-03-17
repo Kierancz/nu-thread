@@ -1,5 +1,6 @@
+export const ADD_PROFILE = "ADD_PROFILE";
+
 const addProfile = (profile) => {
-  console.log("in addProfile action. Profile: ", profile);
   return {
     type: 'ADD_PROFILE',
     profile

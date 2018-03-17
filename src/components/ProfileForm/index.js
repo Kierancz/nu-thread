@@ -51,13 +51,17 @@ class ProfileForm extends React.Component {
     upper: '',
     fit: '',
   };
-
+  handleSubmit = (profile) => {
+    this.props.onSubmit(profile);
+    this.setState({ open: false });
+  }
   handleClickOpen = () => {
     this.setState({ open: true });
   };
   handleRequestClose = () => {
     this.setState({ open: false });
   };
+
 
   handleGenderChange = (event, gender) => {
     this.setState({ gender });
@@ -70,7 +74,7 @@ class ProfileForm extends React.Component {
   };
 
   render() {
-    const { classes, onSubmit } = this.props;
+    const { classes } = this.props;
 
     return (
       <span>
@@ -82,17 +86,22 @@ class ProfileForm extends React.Component {
           <PersonAdd className={classes.leftIcon} />
           Add Fit
         </Button>
-        <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
-          <DialogTitle>New Fit Profile</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Add your fit profile info below to get clothes that actually fit!
-            </DialogContentText>
 
-            <Form
-              model="profile"
-              onSubmit={(profile) => this.handleSubmit(profile)}
-            >
+        <Dialog
+          open={this.state.open}
+          onRequestClose={this.handleRequestClose}
+        >
+          <DialogTitle>New Fit Profile</DialogTitle>
+
+          <Form
+            model="profile"
+            onSubmit={(profile) => this.handleSubmit(profile)}
+          >
+            <DialogContent>
+              <DialogContentText>
+                Add your fit profile info below to get clothes that actually fit!
+              </DialogContentText>
+
               <StyledControl
                 model="profile.gender"
                 component={FormControl}
@@ -110,8 +119,8 @@ class ProfileForm extends React.Component {
                   value={this.state.gender}
                   onChange={this.handleGenderChange}
                 >
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                  <FormControlLabel value="men" control={<Radio />} label="Male" />
+                  <FormControlLabel value="woman" control={<Radio />} label="Female" />
                   <FormControlLabel value="other" control={<Radio />} label="Other" />
                 </RadioGroup>
               </StyledControl>
@@ -133,10 +142,10 @@ class ProfileForm extends React.Component {
                   value={this.state.upper}
                   onChange={this.handleUpperChange}
                 >
-                  <FormControlLabel value="sm" control={<Radio />} label="Small" />
-                  <FormControlLabel value="md" control={<Radio />} label="Medium" />
-                  <FormControlLabel value="lg" control={<Radio />} label="Large" />
-                  <FormControlLabel value="xlg" control={<Radio />} label="Extra Large" />
+                  <FormControlLabel value="S" control={<Radio />} label="Small" />
+                  <FormControlLabel value="M" control={<Radio />} label="Medium" />
+                  <FormControlLabel value="L" control={<Radio />} label="Large" />
+                  <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
                 </RadioGroup>
               </StyledControl>
 
@@ -162,23 +171,20 @@ class ProfileForm extends React.Component {
                   <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
                 </RadioGroup>
               </StyledControl>
-            </Form>
+            </DialogContent>
 
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleRequestClose} color="primary">
-              Cancel
-            </Button>
-            <Button
-              onClick={ e => {
-                e.preventDefault();
-                this.setState({ open: false });
-                onSubmit();
-              }}
-              color="primary">
-              Create Profile
-            </Button>
-          </DialogActions>
+            <DialogActions>
+              <Button onClick={this.handleRequestClose} color="primary">
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                color="primary">
+                Create Profile
+              </Button>
+            </DialogActions>
+
+          </Form>
         </Dialog>
       </span>
     );

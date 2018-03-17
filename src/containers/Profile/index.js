@@ -7,9 +7,8 @@ const mapDispatchToProps = (
   ownProps
 ) => {
   return {
-    onSubmit: () => {
-      console.log("in mapDispatchToProps onSubmit");
-      dispatch(addProfile(ownProps));
+    onSubmit: (profile) => {
+      dispatch(addProfile(profile));
     }
   };
 };
