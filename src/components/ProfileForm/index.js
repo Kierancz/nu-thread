@@ -5,9 +5,9 @@ import Dialog, {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  withMobileDialog
 } from 'material-ui/Dialog';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import {
@@ -23,26 +23,17 @@ const StyledControl = styled(Control)`
   border: none;
   margin: 1em;
 `;
+const StyledRadioGroup = styled(RadioGroup)`
+  margin: 1em 0px;
+`;
+const StyledIcon = styled(PersonAdd)`
+  margin-right: 0.5em;
+`;
+const StyledDialogActions = styled(DialogActions)`
+  margin-right: 1em !important;
+  margin-bottom: 1em !important;
+`;
 
-const styles = theme => ({
-  root: {
-    left: '0px',
-    display: 'flex',
-  },
-  group: {
-    margin: `${theme.spacing.unit}px 0`,
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing.unit * 3,
-  },
-  leftIcon: {
-    marginRight: theme.spacing.unit,
-  }
-});
 
 class ProfileForm extends React.Component {
   state = {
@@ -62,7 +53,6 @@ class ProfileForm extends React.Component {
     this.setState({ open: false });
   };
 
-
   handleGenderChange = (event, gender) => {
     this.setState({ gender });
   };
@@ -74,7 +64,7 @@ class ProfileForm extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { fullScreen } = this.props;
 
     return (
       <span>
@@ -83,13 +73,15 @@ class ProfileForm extends React.Component {
           color="primary"
           onClick={this.handleClickOpen}
         >
-          <PersonAdd className={classes.leftIcon} />
+          <StyledIcon />
           Add Fit
         </Button>
 
         <Dialog
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
+          fullScreen={fullScreen}
+          aria-labelledby="Fit Profile Form"
         >
           <DialogTitle>New Fit Profile</DialogTitle>
 
@@ -107,22 +99,20 @@ class ProfileForm extends React.Component {
                 component={FormControl}
                 required
                 controlProps={{
-                  component: "fieldset",
-                  className: classes.formControl
+                  component: "fieldset"
                 }}
               >
                 <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup
+                <StyledRadioGroup
                   aria-label="gender"
                   name="gender"
-                  className={classes.group}
                   value={this.state.gender}
                   onChange={this.handleGenderChange}
                 >
                   <FormControlLabel value="Men" control={<Radio />} label="Male" />
                   <FormControlLabel value="Woman" control={<Radio />} label="Female" />
                   <FormControlLabel value="Other" control={<Radio />} label="Other" />
-                </RadioGroup>
+                </StyledRadioGroup>
               </StyledControl>
 
               <StyledControl
@@ -130,15 +120,13 @@ class ProfileForm extends React.Component {
                 component={FormControl}
                 required
                 controlProps={{
-                  component: "fieldset",
-                  className: classes.formControl
+                  component: "fieldset"
                 }}
               >
                 <FormLabel component="legend">Upper Size</FormLabel>
-                <RadioGroup
+                <StyledRadioGroup
                   aria-label="upper-size"
                   name="upper-size"
-                  className={classes.group}
                   value={this.state.upper}
                   onChange={this.handleUpperChange}
                 >
@@ -146,7 +134,7 @@ class ProfileForm extends React.Component {
                   <FormControlLabel value="M" control={<Radio />} label="Medium" />
                   <FormControlLabel value="L" control={<Radio />} label="Large" />
                   <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
-                </RadioGroup>
+                </StyledRadioGroup>
               </StyledControl>
 
               <StyledControl
@@ -154,35 +142,36 @@ class ProfileForm extends React.Component {
                 component={FormControl}
                 required
                 controlProps={{
-                  component: "fieldset",
-                  className: classes.formControl
+                  component: "fieldset"
                 }}
               >
                 <FormLabel component="legend">Fit Preference</FormLabel>
-                <RadioGroup
+                <StyledRadioGroup
                   aria-label="fit"
                   name="fit"
-                  className={classes.group}
                   value={this.state.fit}
                   onChange={this.handleFitChange}
                 >
                   <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
                   <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
                   <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
-                </RadioGroup>
+                </StyledRadioGroup>
               </StyledControl>
             </DialogContent>
 
-            <DialogActions>
+            <StyledDialogActions>
               <Button onClick={this.handleRequestClose} color="primary">
                 Cancel
               </Button>
               <Button
+                raised
                 type="submit"
-                color="primary">
+                color="primary"
+                autoFocus
+              >
                 Create Profile
               </Button>
-            </DialogActions>
+            </StyledDialogActions>
 
           </Form>
         </Dialog>
@@ -192,7 +181,7 @@ class ProfileForm extends React.Component {
 }
 
 ProfileForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  fullScreen: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles)(ProfileForm);
+export default withMobileDialog()(ProfileForm);
