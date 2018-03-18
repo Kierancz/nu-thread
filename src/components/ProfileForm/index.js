@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
@@ -7,7 +8,6 @@ import Dialog, {
   DialogTitle,
   withMobileDialog
 } from 'material-ui/Dialog';
-import PropTypes from 'prop-types';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import {
@@ -15,6 +15,13 @@ import {
   FormControl,
   FormControlLabel,
 } from 'material-ui/Form';
+import Input, { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import Select from 'material-ui/Select';
+import { ListItemText } from 'material-ui/List';
+import Checkbox from 'material-ui/Checkbox';
+import Chip from 'material-ui/Chip';
+
 import { Control, Form } from 'react-redux-form';
 import styled from 'styled-components';
 
@@ -22,6 +29,11 @@ const StyledControl = styled(Control)`
   display: inline;
   border: none;
   margin: 1em;
+`;
+const StyledSelectControl = styled(Control)`
+  display: block !important;
+  margin-left: 1em !important;
+  height: 60px !important;
 `;
 const StyledRadioGroup = styled(RadioGroup)`
   margin: 1em 0px;
@@ -33,6 +45,25 @@ const StyledDialogActions = styled(DialogActions)`
   margin-right: 1em !important;
   margin-bottom: 1em !important;
 `;
+const StyledSelect = styled(Select)`
+  min-width: 120px;
+  max-width: 100%;
+  height: 60px !important;
+`;
+const StyledChips = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+`;
+const StyledChip = styled(Chip)`
+  margin: 1em;
+`;
+
+const brands = [
+  'Patagonia',
+  'Pendleton',
+  'Eddie Bauer',
+];
 
 
 class ProfileForm extends React.Component {
@@ -41,6 +72,7 @@ class ProfileForm extends React.Component {
     gender: '',
     upper: '',
     fit: '',
+    brands: []
   };
   handleSubmit = (profile) => {
     this.props.onSubmit(profile);
@@ -61,6 +93,10 @@ class ProfileForm extends React.Component {
   };
   handleFitChange = (event, fit) => {
     this.setState({ fit });
+  };
+  handleBrandsChange = event => {
+    console.log('brands changed! event: ', event.target.value);
+    this.setState({ brands: event.target.value });
   };
 
   render() {
@@ -110,7 +146,7 @@ class ProfileForm extends React.Component {
                   onChange={this.handleGenderChange}
                 >
                   <FormControlLabel value="Men" control={<Radio />} label="Male" />
-                  <FormControlLabel value="Woman" control={<Radio />} label="Female" />
+                  <FormControlLabel value="Women" control={<Radio />} label="Female" />
                   <FormControlLabel value="Other" control={<Radio />} label="Other" />
                 </StyledRadioGroup>
               </StyledControl>
@@ -157,6 +193,32 @@ class ProfileForm extends React.Component {
                   <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
                 </StyledRadioGroup>
               </StyledControl>
+
+              <StyledSelectControl
+                model="profile.brands"
+                component={FormControl}
+              >
+                <InputLabel htmlFor="brands">Brands</InputLabel>
+                <StyledSelect
+                  multiple
+                  value={this.state.brands}
+                  onChange={this.handleBrandsChange}
+                  input={<Input id="brands" />}
+                  renderValue={selected => (
+                    <StyledChips>
+                      {selected.map(
+                        value => <StyledChip key={value} label={value} />
+                      )}
+                    </StyledChips>
+                  )}
+                >
+                  {brands.map(brand => (
+                    <MenuItem key={brand} value={brand}>
+                      {brand}
+                    </MenuItem>
+                  ))}
+                </StyledSelect>
+              </StyledSelectControl>
             </DialogContent>
 
             <StyledDialogActions>
