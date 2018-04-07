@@ -1,15 +1,17 @@
 import { fetchItems } from '../modules/ebay';
-import { REQUEST_ITEMS, receiveItems } from './actions/items';
+import { REQUEST_ITEMS, requestItems, receiveItems } from './actions/items';
 import { ADD_PROFILE } from './actions/profile';
-import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { getProfile } from './reducers/profile';
+import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-export function* getItems() {
+export function* getItems(action) {
   //console.log("in getItems() generator");
-  let gender = 'Men';
-  let keys = 'patagonia';
-  let size = 'M';
-
   try {
+    let profile = yield select(getProfile);
+    let gender = profile.gender? profile.gender : 'Men';
+    let size = profile.upper? profile.upper : 'M';
+    let keys = profile.brands.length? profile.brands[0] : 'patagonia';
+    console.log('profile in getItems: ', profile);
     const items = yield call(fetchItems, keys, gender, size);
     yield put(receiveItems(items));
   } catch (e) {
@@ -19,12 +21,8 @@ export function* getItems() {
 
 export function* setProfile(action) {
   console.log('in setProfile generator. action: ', action);
-  let keys = 'pendleton';
-  let gender = action.profile.gender;
-  let size = action.profile.upper;
 
-  const items = yield call(fetchItems, keys, gender, size);
-  yield put(receiveItems(items));
+  yield put(requestItems(action.profile));
 }
 
 export function* watchGetItems() {

@@ -10,7 +10,7 @@ const initialProfile = {
   gender: '',
   upper: '',
   fit: '',
-  brands: ''
+  brands: []
 };
 
 const app = combineReducers({

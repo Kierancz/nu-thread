@@ -13,3 +13,6 @@ const profile = (state = [], action) => {
 };
 
 export default profile;
+
+// profile state selector
+export const getProfile = (state) => state.profile

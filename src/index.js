@@ -4,20 +4,22 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './modules/configureStore';
 import registerServiceWorker from './modules/registerServiceWorker';
-
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import App from './containers/App';
 import './index.css';
 import 'typeface-roboto';
 
-// import components
-import App from './containers/App';
+const theme = createMuiTheme();
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App>
-          <div></div>
-        </App>
+        <MuiThemeProvider theme={theme}>
+          <App>
+            <div></div>
+          </App>
+        </MuiThemeProvider>
       </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
@@ -28,10 +30,3 @@ store.subscribe(render);
 render();
 
 registerServiceWorker();
-
-
-/*
-<div>
-  <Route path="/(:filter)" component={App} />
-</div>
-*/

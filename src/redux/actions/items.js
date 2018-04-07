@@ -10,7 +10,7 @@ export const setFilter = (filter) => {
   };
 };
 
-export const requestItems = () => {
+export const requestItems = (profile) => {
   return {
     type: 'REQUEST_ITEMS',
   };

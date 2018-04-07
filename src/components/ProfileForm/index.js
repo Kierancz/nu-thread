@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Control, Form } from 'react-redux-form';
+import styled from 'styled-components';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
@@ -8,6 +10,8 @@ import Dialog, {
   DialogTitle,
   withMobileDialog
 } from 'material-ui/Dialog';
+import { withStyles } from 'material-ui/styles';
+
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import {
@@ -18,12 +22,19 @@ import {
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
-import { ListItemText } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
 import Chip from 'material-ui/Chip';
 
-import { Control, Form } from 'react-redux-form';
-import styled from 'styled-components';
+const styles = {
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  },
+};
 
 const StyledControl = styled(Control)`
   display: inline;
@@ -32,8 +43,6 @@ const StyledControl = styled(Control)`
 `;
 const StyledSelectControl = styled(Control)`
   display: block !important;
-  margin-left: 1em !important;
-  height: 60px !important;
 `;
 const StyledRadioGroup = styled(RadioGroup)`
   margin: 1em 0px;
@@ -48,22 +57,47 @@ const StyledDialogActions = styled(DialogActions)`
 const StyledSelect = styled(Select)`
   min-width: 120px;
   max-width: 100%;
-  height: 60px !important;
 `;
 const StyledChips = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: auto;
 `;
 const StyledChip = styled(Chip)`
-  margin: 1em;
+  margin: 0 4px;
 `;
 
 const brands = [
   'Patagonia',
   'Pendleton',
   'Eddie Bauer',
+  'The North Face',
+  'L.L. Bean',
+  'Deluth Trading Compnay',
+  'Outdoor Research',
+  'Lands End',
+  'Orvis',
+  'Arcteryx',
+  'Filson'
 ];
+const ITEM_HEIGHT = 60;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      minWidth: 120,
+      width: 'fit-content'
+    },
+  },
+  style: {
+    height: 'fit-content',
+  }
+};
+const InputProps = {
+  style: {
+    height: 'fit-content',
+  }
+}
 
 
 class ProfileForm extends React.Component {
@@ -72,10 +106,13 @@ class ProfileForm extends React.Component {
     gender: '',
     upper: '',
     fit: '',
-    brands: []
+    brands: []  // ui state
   };
   handleSubmit = (profile) => {
-    this.props.onSubmit(profile);
+    let newProfile = {...profile};
+    newProfile.brands = this.state.brands;
+    console.log('handleSubmit newProfile: ', newProfile);
+    this.props.onSubmit(newProfile);
     this.setState({ open: false });
   }
   handleClickOpen = () => {
@@ -203,7 +240,7 @@ class ProfileForm extends React.Component {
                   multiple
                   value={this.state.brands}
                   onChange={this.handleBrandsChange}
-                  input={<Input id="brands" />}
+                  input={<Input id="brands" multiline="true"/>}
                   renderValue={selected => (
                     <StyledChips>
                       {selected.map(
@@ -211,9 +248,22 @@ class ProfileForm extends React.Component {
                       )}
                     </StyledChips>
                   )}
+                  inputProps={InputProps}
+                  MenuProps={MenuProps}
                 >
                   {brands.map(brand => (
-                    <MenuItem key={brand} value={brand}>
+                    <MenuItem
+                      key={brand}
+                      value={brand}
+                      style={{
+                        fontWeight:
+                          this.state.brands.indexOf(brand) === -1
+                            ? 400 : 600,
+                        backgroundColor:
+                          this.state.brands.indexOf(brand) === -1
+                            ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.12)'
+                      }}
+                    >
                       {brand}
                     </MenuItem>
                   ))}
