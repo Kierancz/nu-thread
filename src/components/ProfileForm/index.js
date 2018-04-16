@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Control, Form } from 'react-redux-form';
+//import { Control, Form } from 'react-redux-form';
 import styled from 'styled-components';
 import Button from 'material-ui/Button';
 import Dialog, {
@@ -24,6 +24,7 @@ import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import Chip from 'material-ui/Chip';
 
+/*
 const styles = {
   root: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -34,14 +35,14 @@ const styles = {
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
   },
-};
+}; */
 
-const StyledControl = styled(Control)`
+const StyledControl = styled(FormControl)`
   display: inline;
   border: none;
   margin: 1em;
 `;
-const StyledSelectControl = styled(Control)`
+const StyledSelectControl = styled(FormControl)`
   display: block !important;
 `;
 const StyledRadioGroup = styled(RadioGroup)`
@@ -106,13 +107,12 @@ class ProfileForm extends React.Component {
     gender: '',
     upper: '',
     fit: '',
-    brands: []  // ui state
+    brands: []
   };
-  handleSubmit = (profile) => {
-    let newProfile = {...profile};
-    newProfile.brands = this.state.brands;
-    console.log('handleSubmit newProfile: ', newProfile);
-    this.props.onSubmit(newProfile);
+  handleSubmit = () => {;
+    const profile = this.state;
+    delete profile.open;
+    this.props.onSubmit(profile);
     this.setState({ open: false });
   }
   handleClickOpen = () => {
@@ -132,7 +132,6 @@ class ProfileForm extends React.Component {
     this.setState({ fit });
   };
   handleBrandsChange = event => {
-    console.log('brands changed! event: ', event.target.value);
     this.setState({ brands: event.target.value });
   };
 
@@ -158,134 +157,106 @@ class ProfileForm extends React.Component {
         >
           <DialogTitle>New Fit Profile</DialogTitle>
 
-          <Form
-            model="profile"
-            onSubmit={(profile) => this.handleSubmit(profile)}
-          >
-            <DialogContent>
-              <DialogContentText>
-                Add your fit profile info below to get clothes that actually fit!
-              </DialogContentText>
+          <DialogContent>
+            <DialogContentText>
+              Add your fit profile info below to get clothes that actually fit!
+            </DialogContentText>
 
-              <StyledControl
-                model="profile.gender"
-                component={FormControl}
-                required
-                controlProps={{
-                  component: "fieldset"
-                }}
+            <StyledControl component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <StyledRadioGroup
+                aria-label="gender"
+                name="gender"
+                value={this.state.gender}
+                onChange={this.handleGenderChange}
               >
-                <FormLabel component="legend">Gender</FormLabel>
-                <StyledRadioGroup
-                  aria-label="gender"
-                  name="gender"
-                  value={this.state.gender}
-                  onChange={this.handleGenderChange}
-                >
-                  <FormControlLabel value="Men" control={<Radio />} label="Male" />
-                  <FormControlLabel value="Women" control={<Radio />} label="Female" />
-                  <FormControlLabel value="Other" control={<Radio />} label="Other" />
-                </StyledRadioGroup>
-              </StyledControl>
+                <FormControlLabel value="Men" control={<Radio />} label="Male" />
+                <FormControlLabel value="Women" control={<Radio />} label="Female" />
+                <FormControlLabel value="Other" control={<Radio />} label="Other" />
+              </StyledRadioGroup>
+            </StyledControl>
 
-              <StyledControl
-                model="profile.upper"
-                component={FormControl}
-                required
-                controlProps={{
-                  component: "fieldset"
-                }}
+            <StyledControl component="fieldset">
+              <FormLabel component="legend">Upper Size</FormLabel>
+              <StyledRadioGroup
+                aria-label="upper-size"
+                name="upper-size"
+                value={this.state.upper}
+                onChange={this.handleUpperChange}
               >
-                <FormLabel component="legend">Upper Size</FormLabel>
-                <StyledRadioGroup
-                  aria-label="upper-size"
-                  name="upper-size"
-                  value={this.state.upper}
-                  onChange={this.handleUpperChange}
-                >
-                  <FormControlLabel value="S" control={<Radio />} label="Small" />
-                  <FormControlLabel value="M" control={<Radio />} label="Medium" />
-                  <FormControlLabel value="L" control={<Radio />} label="Large" />
-                  <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
-                </StyledRadioGroup>
-              </StyledControl>
+                <FormControlLabel value="S" control={<Radio />} label="Small" />
+                <FormControlLabel value="M" control={<Radio />} label="Medium" />
+                <FormControlLabel value="L" control={<Radio />} label="Large" />
+                <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
+              </StyledRadioGroup>
+            </StyledControl>
 
-              <StyledControl
-                model="profile.fit"
-                component={FormControl}
-                required
-                controlProps={{
-                  component: "fieldset"
-                }}
+            <StyledControl component="fieldset">
+              <FormLabel component="legend">Fit Preference</FormLabel>
+              <StyledRadioGroup
+                aria-label="fit"
+                name="fit"
+                value={this.state.fit}
+                onChange={this.handleFitChange}
               >
-                <FormLabel component="legend">Fit Preference</FormLabel>
-                <StyledRadioGroup
-                  aria-label="fit"
-                  name="fit"
-                  value={this.state.fit}
-                  onChange={this.handleFitChange}
-                >
-                  <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
-                  <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
-                  <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
-                </StyledRadioGroup>
-              </StyledControl>
+                <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
+                <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
+                <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
+              </StyledRadioGroup>
+            </StyledControl>
 
-              <StyledSelectControl
-                model="profile.brands"
-                component={FormControl}
+            <StyledSelectControl>
+              <InputLabel htmlFor="brands">Brands</InputLabel>
+              <StyledSelect
+                multiple
+                value={this.state.brands}
+                onChange={this.handleBrandsChange}
+                input={<Input id="brands" multiline="true"/>}
+                renderValue={selected => (
+                  <StyledChips>
+                    {selected.map(
+                      value => <StyledChip key={value} label={value} />
+                    )}
+                  </StyledChips>
+                )}
+                inputProps={InputProps}
+                MenuProps={MenuProps}
               >
-                <InputLabel htmlFor="brands">Brands</InputLabel>
-                <StyledSelect
-                  multiple
-                  value={this.state.brands}
-                  onChange={this.handleBrandsChange}
-                  input={<Input id="brands" multiline="true"/>}
-                  renderValue={selected => (
-                    <StyledChips>
-                      {selected.map(
-                        value => <StyledChip key={value} label={value} />
-                      )}
-                    </StyledChips>
-                  )}
-                  inputProps={InputProps}
-                  MenuProps={MenuProps}
-                >
-                  {brands.map(brand => (
-                    <MenuItem
-                      key={brand}
-                      value={brand}
-                      style={{
-                        fontWeight:
-                          this.state.brands.indexOf(brand) === -1
-                            ? 400 : 600,
-                        backgroundColor:
-                          this.state.brands.indexOf(brand) === -1
-                            ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.12)'
-                      }}
-                    >
-                      {brand}
-                    </MenuItem>
-                  ))}
-                </StyledSelect>
-              </StyledSelectControl>
-            </DialogContent>
+                {brands.map(brand => (
+                  <MenuItem
+                    key={brand}
+                    value={brand}
+                    style={{
+                      fontWeight:
+                        this.state.brands.indexOf(brand) === -1
+                          ? 400 : 600,
+                      backgroundColor:
+                        this.state.brands.indexOf(brand) === -1
+                          ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.12)'
+                    }}
+                  >
+                    {brand}
+                  </MenuItem>
+                ))}
+              </StyledSelect>
+            </StyledSelectControl>
+          </DialogContent>
 
-            <StyledDialogActions>
-              <Button onClick={this.handleRequestClose} color="primary">
-                Cancel
-              </Button>
-              <Button
-                raised
-                type="submit"
-                color="primary"
-                autoFocus
-              >
-                Create Profile
-              </Button>
-            </StyledDialogActions>
+          <StyledDialogActions>
+            <Button onClick={this.handleRequestClose} color="primary">
+              Cancel
+            </Button>
+            <Button
+              raised
+              type="submit"
+              color="primary"
+              autoFocus
+              onClick={this.handleSubmit}
+            >
+              Create Profile
+            </Button>
+          </StyledDialogActions>
 
-          </Form>
         </Dialog>
       </span>
     );
