@@ -1,7 +1,18 @@
 export const fetchItems = (keys, gender, size) => {
-  //const keywords = "mens%20pendleton";
-  const keywords = encodeURIComponent(keys);
-  console.log("keywords: ", keywords);
+  console.log('fetchItems keys: ', keys);
+  let keywords = '';
+  if(Array.isArray(keys)) {
+    keywords += '(';
+    keys.forEach((key, index) => {
+      if(index == 0)  keywords += key;
+      else            keywords += ','+key;
+    });
+    keywords += ')';
+  } else {
+    keywords = keys;
+  }
+  keywords = encodeURIComponent(keywords);
+
   const itemNum = "50";
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
   console.log('genderAspect: ', genderAspect);

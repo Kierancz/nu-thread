@@ -24,23 +24,10 @@ import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import Chip from 'material-ui/Chip';
 
-/*
-const styles = {
-  root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
-  },
-}; */
-
 const StyledControl = styled(FormControl)`
   display: inline;
   border: none;
-  margin: 1em;
+  margin: 1em !important;
 `;
 const StyledSelectControl = styled(FormControl)`
   display: block !important;

@@ -7,10 +7,10 @@ import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 export function* getItems(action) {
   try {
     let profile = yield select(getProfile);
-    console.log('getItems profile:', profile);
     let gender = profile.gender? profile.gender : 'Men';
     let size = profile.upper? profile.upper : 'M';
-    let keys = profile.brands? profile.brands[0] : 'patagonia';
+    let keys = profile.brands? profile.brands : 'patagonia';
+
     console.log('profile in getItems: ', profile);
     const items = yield call(fetchItems, keys, gender, size);
     yield put(receiveItems(items));
@@ -18,15 +18,6 @@ export function* getItems(action) {
     console.log('error in getItems(): ', e);
   }
 }
-
-/*
-export function* setProfile(action) {
-  let profile = yield select(getProfile);
-  console.log('in setProfile generator. profile: ', profile);
-
-  yield put(requestItems(action.profile));
-}
-*/
 
 export function* watchGetItems() {
   yield takeEvery(REQUEST_ITEMS, getItems);
