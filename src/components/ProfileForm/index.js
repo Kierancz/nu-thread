@@ -10,7 +10,7 @@ import Dialog, {
   DialogTitle,
   withMobileDialog
 } from 'material-ui/Dialog';
-import { withStyles } from 'material-ui/styles';
+//import { withStyles } from 'material-ui/styles';
 
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import PersonAdd from 'material-ui-icons/PersonAdd';
@@ -96,6 +96,19 @@ class ProfileForm extends React.Component {
     fit: '',
     brands: []
   };
+
+  componentDidMount() {
+    const { profile } = this.props;
+    // if redux state profile is object update ui state
+    if(profile !== null && typeof profile === 'object') {
+      this.setState({
+        gender: profile.gender? profile.gender : '',
+        upper: profile.upper? profile.upper : '',
+        fit: profile.fit? profile.fit : '',
+        brands: profile.brands? profile.brands : [],
+      });
+    }
+  }
   handleSubmit = () => {;
     const profile = this.state;
     delete profile.open;

@@ -19,16 +19,20 @@ export function* getItems(action) {
   }
 }
 
-export function* watchGetItems() {
+export function* getProfileItems() {
+  yield put(requestItems());
+}
+
+export function* watchRequestItems() {
   yield takeEvery(REQUEST_ITEMS, getItems);
 }
-export function* watchSetProfile() {
-  yield takeEvery(ADD_PROFILE, getItems);
+export function* watchAddProfile() {
+  yield takeEvery(ADD_PROFILE, getProfileItems);
 }
 
 export default function* rootSaga() {
   yield all([
-    watchGetItems(),
-    watchSetProfile()
+    watchRequestItems(),
+    watchAddProfile()
   ])
 }

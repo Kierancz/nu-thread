@@ -11,12 +11,10 @@ const ControlBar = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
 const PullRight = styled.span`
   display: inline-block;
   margin-right: 0.5em;
 `;
-
 const PullLeft = styled.span`
   display: inline-block;
   margin-bottom: 0.5em;
@@ -25,10 +23,12 @@ const PullLeft = styled.span`
 
 export default class ItemGrid extends React.Component {
   componentDidMount() {
+    // if no items request items and add scroll listener for infinite scroll
     if(!this.props.items) this.props.requestItems();
   }
+
   render() {
-    const { items } = this.props;
+    const { items, isLoading } = this.props;
     const renderItems = items? items : [];
 
     return(
@@ -39,12 +39,13 @@ export default class ItemGrid extends React.Component {
               <PullLeft>
                 <Profile />
               </PullLeft>
+
               <PullRight>
                 <FilterBar />
               </PullRight>
             </ControlBar>
             <Row>
-              {renderItems.length? renderItems.map((item, i) =>
+              {!isLoading? renderItems.map((item, i) =>
                 <ItemCard
                   {...item}
                   key={i}

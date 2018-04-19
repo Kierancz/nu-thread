@@ -5,6 +5,7 @@ import { requestItems } from '../../redux/actions/items';
 
 const mapStateToProps = (state) => {
   return {
+    isLoading: state.items.isLoading,
     items: getFilteredItems(
       state,
       state.filter

@@ -16,7 +16,7 @@ const FLink = ({
   // when our filter link is active make it unclickable
 
   if(active) {
-    console.log('active filter item');
+    //console.log('active filter item');
     return (
       <ActiveItem
         onClick={e => {

@@ -2,6 +2,12 @@ import { connect } from 'react-redux';
 import addProfile from '../../redux/actions/profile'
 import ProfileForm from '../../components/ProfileForm';
 
+const mapStateToProps = (state) => {
+  return {
+    profile: state.profile
+  };
+};
+
 const mapDispatchToProps = (
   dispatch,
   ownProps
@@ -14,7 +20,7 @@ const mapDispatchToProps = (
 };
 
 const Profile = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ProfileForm);
 
