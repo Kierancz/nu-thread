@@ -1,4 +1,4 @@
-export const fetchItems = (keys, gender, size) => {
+export const fetchItems = (keys, gender, size, pageNum) => {
   //console.log('fetchItems keys: ', keys);
   let keywords = '';
   if(Array.isArray(keys)) {
@@ -13,11 +13,10 @@ export const fetchItems = (keys, gender, size) => {
   }
   keywords = encodeURIComponent(keywords);
 
-  const itemNum = "50";
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
-  //console.log('genderAspect: ', genderAspect);
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
-  //console.log('sizeAspect: ', sizeAspect);
+  const itemNum = "50";
+  const pageNumber = pageNum? "&paginationInput.pageNumber="+pageNum : '';
 
   /*
   const fit = "&aspectFilter.aspectName=Fit";
@@ -36,6 +35,7 @@ export const fetchItems = (keys, gender, size) => {
       URL += "&REST-PAYLOAD";
       URL += "&keywords="+keywords;
       URL += "&paginationInput.entriesPerPage="+itemNum;
+      URL += pageNumber;
       URL += "&itemFilter(0).name=Condition";
       URL += "&itemFilter(0).value=Used";
       URL += genderAspect+sizeAspect;

@@ -1,6 +1,8 @@
 export const SET_FILTER = "SET_FILTER";
 export const REQUEST_ITEMS = "REQUEST_ITEMS";
 export const RECEIVE_ITEMS = "RECEIVE_ITEMS";
+export const REQUEST_ITEM_PAGE = "REQUEST_ITEM_PAGE";
+export const RECEIVE_PAGE_ITEMS = "RECEIVE_PAGE_ITEMS";
 
 
 export const setFilter = (filter) => {
@@ -19,6 +21,21 @@ export const requestItems = (profile) => {
 export const receiveItems = (items) => {
   return {
     type: 'RECEIVE_ITEMS',
+    items
+  }
+}
+
+export const requestItemPage = (page) => {
+  return {
+    type: 'REQUEST_ITEM_PAGE',
+    page
+  };
+};
+
+export const receivePageItems = (page, items) => {
+  return {
+    type: 'RECEIVE_PAGE_ITEMS',
+    page,
     items
   }
 }

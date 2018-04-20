@@ -14,6 +14,22 @@ const items = (state = [], action) => {
         items: action.items,
         isLoading: false
       };
+    case 'REQUEST_ITEM_PAGE':
+      return {
+        ...state,
+        page: action.page,
+        isLoading: true
+      }
+    case 'RECEIVE_PAGE_ITEMS':
+      const items = state.items.slice();
+      // mutate items copy by merging with new items
+      Array.prototype.push.apply(items, action.items);
+      return {
+        ...state,
+        page: action.page + 1,
+        items: items,
+        isLoading: false
+      }
     default:
       return state;
   }

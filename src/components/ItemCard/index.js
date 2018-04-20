@@ -38,25 +38,30 @@ const StyledButton = styled(Button)`
 class ItemCard extends React.Component {
   render() {
     const { item } = this.props;
-    let price =
+    const price = item.sellingStatus?
       parseFloat(
         item
         .sellingStatus[0]
         .convertedCurrentPrice[0]
         .__value__)
-      .toFixed(2);
+      .toFixed(2)
+      :
+      'N/A';
+    const image = item.galleryURL? item.galleryURL[0] : 'No Img';
+    const title = item.title? item.title[0] : 'No Title';
+    const viewURL = item.viewItemURL? item.viewItemURL[0] : '#';
 
     return (
       <Column xs={12} sm={12} md={6} lg={4} fluid={true}>
         <StyledCard>
           <StyledCardMedia
-            image={item.galleryURL[0]}
-            title={item.title[0]}
+            image={image}
+            title={title}
           />
           <StyledDetails>
             <StyledCardContent>
               <Typography component="h4">
-                {item.title[0]}
+                {title}
               </Typography>
             </StyledCardContent>
             <StyledControls>
@@ -66,7 +71,7 @@ class ItemCard extends React.Component {
               <StyledButton
                 dense
                 color="primary"
-                href={item.viewItemURL[0]}
+                href={viewURL}
                 target="_blank">
                 View on Ebay
               </StyledButton>

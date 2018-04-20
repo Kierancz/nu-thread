@@ -6,6 +6,7 @@ import ItemCard from '../ItemCard';
 import FilterBar from '../FilterBar';
 import Profile from '../../containers/Profile';
 import Spinner from '../Spinner';
+import withInfiniteScroll from '../InfiniteScroll';
 
 const ControlBar = styled.div`
   display: flex;
@@ -21,9 +22,8 @@ const PullLeft = styled.span`
   margin-left: 0.5em;
 `;
 
-export default class ItemGrid extends React.Component {
+class ItemGrid extends React.Component {
   componentDidMount() {
-    // if no items request items and add scroll listener for infinite scroll
     if(!this.props.items) this.props.requestItems();
   }
 
@@ -45,7 +45,7 @@ export default class ItemGrid extends React.Component {
               </PullRight>
             </ControlBar>
             <Row>
-              {!isLoading? renderItems.map((item, i) =>
+              {(!isLoading && renderItems.length)? renderItems.map((item, i) =>
                 <ItemCard
                   {...item}
                   key={i}
@@ -60,3 +60,5 @@ export default class ItemGrid extends React.Component {
     );
   }
 }
+
+export default withInfiniteScroll(ItemGrid);

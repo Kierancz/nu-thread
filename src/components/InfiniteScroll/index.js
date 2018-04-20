@@ -1,3 +1,5 @@
+import React from 'react';
+
 const withInfiniteScroll = (Component) =>
   class WithInfiniteScroll extends React.Component {
     componentDidMount() {
@@ -12,9 +14,11 @@ const withInfiniteScroll = (Component) =>
       let height = window.innerHeight;
       let offsetHeight = document.body.offsetHeight;
       if((height + window.scrollY) >= (offsetHeight - 500)
-        && this.props.items.length) {
+        && this.props.items.length
+        && !this.props.isLoading) {
         console.log('should get next page');
-        //this.props.onPaginatedSearch();
+        console.log('infScroll props: ', this.props);
+        this.props.onPaginatedSearch(this.props.page);
       }
     }
 
