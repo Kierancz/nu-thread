@@ -12,17 +12,31 @@ import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 export function* getItems(action) {
   try {
     // select current profile from state
-    let profile = yield select(getProfile);
-    let gender = profile.gender? profile.gender : 'Men';
-    let size = profile.upper? profile.upper : 'M';
-    let keys = profile.brands? profile.brands : 'patagonia';
+    const profile = yield select(getProfile);
+    const gender = profile.gender? profile.gender : 'Men';
+    const size = profile.upper? profile.upper : 'M';
+    const keys = profile.brands? profile.brands : 'patagonia';
 
-    console.log('getItems action: ', action);
-    let pageNum = action.page? action.page : 1;
+    const pageNum = 1;
     const items = yield call(fetchItems, keys, gender, size, pageNum);
 
-    if(!action.page) yield put(receiveItems(items));
-    else yield put(receivePageItems(action.page, items));
+    yield put(receiveItems(items));
+  } catch (e) {
+    console.log('error in getItems(): ', e);
+  }
+}
+export function* getPageItems(action) {
+  try {
+    // select current profile from state
+    const profile = yield select(getProfile);
+    const gender = profile.gender? profile.gender : 'Men';
+    const size = profile.upper? profile.upper : 'M';
+    const keys = profile.brands? profile.brands : 'patagonia';
+
+    const pageNum = action.nextPage? action.nextPage : 2;
+    const items = yield call(fetchItems, keys, gender, size, pageNum);
+
+    yield put(receivePageItems(action.nextPage, items));
   } catch (e) {
     console.log('error in getItems(): ', e);
   }
@@ -39,7 +53,7 @@ export function* watchAddProfile() {
   yield takeEvery(ADD_PROFILE, getProfileItems);
 }
 export function* watchRequestItemPage() {
-  yield takeEvery(REQUEST_ITEM_PAGE, getItems);
+  yield takeEvery(REQUEST_ITEM_PAGE, getPageItems);
 }
 
 export default function* rootSaga() {

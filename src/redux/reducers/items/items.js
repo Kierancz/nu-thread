@@ -6,6 +6,8 @@ const items = (state = [], action) => {
     case 'REQUEST_ITEMS':
       return {
         ...state,
+        items: null,
+        nextPage: 2,
         isLoading: true
       }
     case 'RECEIVE_ITEMS':
@@ -13,20 +15,21 @@ const items = (state = [], action) => {
         ...state,
         items: action.items,
         isLoading: false
-      };
+      }
     case 'REQUEST_ITEM_PAGE':
       return {
         ...state,
-        page: action.page,
+        nextPage: action.nextPage,
         isLoading: true
       }
     case 'RECEIVE_PAGE_ITEMS':
+      console.log('RECEIVE_PAGE_ITEMS action: ', action);
       const items = state.items.slice();
       // mutate items copy by merging with new items
       Array.prototype.push.apply(items, action.items);
       return {
         ...state,
-        page: action.page + 1,
+        nextPage: action.nextPage + 1,
         items: items,
         isLoading: false
       }

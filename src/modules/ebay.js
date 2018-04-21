@@ -1,4 +1,7 @@
 export const fetchItems = (keys, gender, size, pageNum) => {
+  keys = keys? keys : 'patagonia';
+  gender = gender? gender : 'Men';
+  size = size? size : 'M';
   //console.log('fetchItems keys: ', keys);
   let keywords = '';
   if(Array.isArray(keys)) {
@@ -15,7 +18,7 @@ export const fetchItems = (keys, gender, size, pageNum) => {
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
-  const itemNum = "50";
+  const itemNum = "30";
   const pageNumber = pageNum? "&paginationInput.pageNumber="+pageNum : '';
 
   /*
@@ -45,7 +48,7 @@ export const fetchItems = (keys, gender, size, pageNum) => {
   return fetch(URL).then(function (response) {
     return response.json().then(function (json) {
       console.log('raw data: ', json);
-      console.log('data items: ', json.findItemsByKeywordsResponse[0].searchResult[0].item);
+      //console.log('data items: ', json.findItemsByKeywordsResponse[0].searchResult[0].item);
       return json.findItemsByKeywordsResponse[0].searchResult[0].item;
     })
   })

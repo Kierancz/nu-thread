@@ -24,7 +24,8 @@ const PullLeft = styled.span`
 
 class ItemGrid extends React.Component {
   componentDidMount() {
-    if(!this.props.items) this.props.requestItems();
+    const { items, requestItems } = this.props;
+    if(!items) requestItems();
   }
 
   render() {
@@ -45,14 +46,21 @@ class ItemGrid extends React.Component {
               </PullRight>
             </ControlBar>
             <Row>
-              {(!isLoading && renderItems.length)? renderItems.map((item, i) =>
-                <ItemCard
-                  {...item}
-                  key={i}
-                  i={i}
-                  item={item}
-                />
-              ) : <Spinner message="Loading Items..."/>}
+              {
+                items?
+                  renderItems.map((item, i) =>
+                    <ItemCard
+                      {...item}
+                      key={i}
+                      i={i}
+                      item={item}
+                    />
+                  ) : ''
+              }
+              {
+                isLoading?
+                  <Spinner message="Loading Items..."/> : ''
+              }
             </Row>
           </Column>
         </Row>

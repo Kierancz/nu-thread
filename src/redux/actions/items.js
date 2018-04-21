@@ -25,17 +25,17 @@ export const receiveItems = (items) => {
   }
 }
 
-export const requestItemPage = (page) => {
+export const requestItemPage = (nextPage) => {
   return {
     type: 'REQUEST_ITEM_PAGE',
-    page
+    nextPage
   };
 };
 
-export const receivePageItems = (page, items) => {
+export const receivePageItems = (nextPage, items) => {
   return {
     type: 'RECEIVE_PAGE_ITEMS',
-    page,
+    nextPage,
     items
   }
 }
