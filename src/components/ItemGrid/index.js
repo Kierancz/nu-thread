@@ -7,6 +7,7 @@ import FilterBar from '../FilterBar';
 import Profile from '../../containers/Profile';
 import Spinner from '../Spinner';
 import withInfiniteScroll from '../InfiniteScroll';
+import BackToTop from '../BackToTop';
 
 const ControlBar = styled.div`
   display: flex;
@@ -62,6 +63,7 @@ class ItemGrid extends React.Component {
                   <Spinner message="Loading Items..."/> : ''
               }
             </Row>
+            <BackToTop />
           </Column>
         </Row>
       </Page>
