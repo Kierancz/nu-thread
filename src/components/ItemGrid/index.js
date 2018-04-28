@@ -8,6 +8,7 @@ import Profile from '../../containers/Profile';
 import Spinner from '../Spinner';
 import withInfiniteScroll from '../InfiniteScroll';
 import BackToTop from '../BackToTop';
+import SearchBar from '../SearchBar';
 
 const ControlBar = styled.div`
   display: flex;
@@ -22,6 +23,9 @@ const PullLeft = styled.span`
   margin-bottom: 0.5em;
   margin-left: 0.5em;
 `;
+const Center = styled.span`
+  display: inline-block;
+`;
 
 class ItemGrid extends React.Component {
   componentDidMount() {
@@ -31,7 +35,6 @@ class ItemGrid extends React.Component {
 
   render() {
     const { items, isLoading } = this.props;
-    const renderItems = items? items : [];
 
     return(
       <Page fluid={true}>
@@ -41,7 +44,9 @@ class ItemGrid extends React.Component {
               <PullLeft>
                 <Profile />
               </PullLeft>
-
+              <Center>
+                <SearchBar />
+              </Center>
               <PullRight>
                 <FilterBar />
               </PullRight>
@@ -49,7 +54,7 @@ class ItemGrid extends React.Component {
             <Row>
               {
                 items?
-                  renderItems.map((item, i) =>
+                  items.map((item, i) =>
                     <ItemCard
                       {...item}
                       key={i}
