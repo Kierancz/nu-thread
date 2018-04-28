@@ -15,6 +15,7 @@ export const setFilter = (filter) => {
 export const requestItems = (profile) => {
   return {
     type: 'REQUEST_ITEMS',
+    profile
   };
 };
 

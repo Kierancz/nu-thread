@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import Downshift from 'downshift';
+import keycode from 'keycode';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
-import { MenuItem } from 'material-ui/Menu';
-import Chip from 'material-ui/Chip';
-import suggestions from './suggestions';
+import { renderSuggestion, getSuggestions } from './renderSuggestions';
 
 function renderInput(inputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
@@ -26,48 +24,6 @@ function renderInput(inputProps) {
   );
 }
 
-function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
-  const isHighlighted = highlightedIndex === index;
-  const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
-
-  return (
-    <MenuItem
-      {...itemProps}
-      key={suggestion.label}
-      selected={isHighlighted}
-      component="div"
-      style={{
-        fontWeight: isSelected ? 500 : 400,
-      }}
-    >
-      {suggestion.label}
-    </MenuItem>
-  );
-}
-renderSuggestion.propTypes = {
-  highlightedIndex: PropTypes.number,
-  index: PropTypes.number,
-  itemProps: PropTypes.object,
-  selectedItem: PropTypes.string,
-  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
-};
-
-function getSuggestions(inputValue) {
-  let count = 0;
-
-  console.log('suggestions: ', suggestions);
-  return suggestions.filter(suggestion => {
-    const keep =
-      (!inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) &&
-      count < 5;
-
-    if (keep) {
-      count += 1;
-    }
-
-    return keep;
-  });
-}
 
 const styles = theme => ({
   root: {
@@ -85,48 +41,82 @@ const styles = theme => ({
     left: 0,
     right: 0,
   },
-  chip: {
-    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
-  },
   inputRoot: {
     flexWrap: 'wrap',
   },
 });
 
-function SearchBar(props) {
-  const { classes } = props;
+class SearchBar extends React.Component {
+  state = {
+    inputValue: '',
+  };
 
-  return (
-    <div className={classes.root}>
-      <Downshift>
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
-          <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              InputProps: getInputProps({
-                placeholder: 'Search Clothing Types',
-                id: 'integration-downshift-simple',
-              }),
-            })}
-            {isOpen ? (
-              <Paper className={classes.paper} square>
-                {getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
-            ) : null}
-          </div>
-        )}
-      </Downshift>
-    </div>
-  );
+  handleInputChange = event => {
+    this.setState({ inputValue: event.target.value });
+  };
+
+  handleChange = item => {
+    this.setState({
+      inputValue: item
+    });
+  };
+
+  handleKeyDown = event => {
+    const { inputValue } = this.state;
+    if (keycode(event) === 'enter') {
+      console.log('enter input val: ', inputValue);
+    }
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { inputValue } = this.state;
+
+    return (
+      <div className={classes.root}>
+        <Downshift
+          inputValue={inputValue}
+          onChange={this.handleChange}
+        >
+          {
+            ({
+              getInputProps,
+              getItemProps,
+              isOpen,
+              inputValue,
+              selectedItem,
+              highlightedIndex
+            }) => (
+            <div className={classes.container}>
+              {renderInput({
+                fullWidth: true,
+                classes,
+                InputProps: getInputProps({
+                  placeholder: 'Search Clothing Types',
+                  id: 'clothing-search',
+                  onChange: this.handleInputChange,
+                  onKeyDown: this.handleKeyDown
+                }),
+              })}
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
+          )}
+        </Downshift>
+      </div>
+    );
+  }
 }
 
 SearchBar.propTypes = {

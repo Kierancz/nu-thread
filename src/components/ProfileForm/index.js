@@ -10,8 +10,6 @@ import Dialog, {
   DialogTitle,
   withMobileDialog
 } from 'material-ui/Dialog';
-//import { withStyles } from 'material-ui/styles';
-
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import {
@@ -23,6 +21,7 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import Chip from 'material-ui/Chip';
+import brands from './brands';
 
 const StyledControl = styled(FormControl)`
   display: inline;
@@ -53,20 +52,6 @@ const StyledChips = styled.div`
 const StyledChip = styled(Chip)`
   margin: 0 4px;
 `;
-
-const brands = [
-  'Patagonia',
-  'Pendleton',
-  'Eddie Bauer',
-  'The North Face',
-  'L.L. Bean',
-  'Deluth Trading Compnay',
-  'Outdoor Research',
-  'Lands End',
-  'Orvis',
-  'Arcteryx',
-  'Filson'
-];
 const ITEM_HEIGHT = 60;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
