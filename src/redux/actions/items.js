@@ -12,10 +12,10 @@ export const setFilter = (filter) => {
   };
 };
 
-export const requestItems = (profile) => {
+export const requestItems = (query) => {
   return {
     type: 'REQUEST_ITEMS',
-    profile
+    query
   };
 };
 

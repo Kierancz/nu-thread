@@ -1,4 +1,4 @@
-export const fetchItems = (keys, gender, size, pageNum) => {
+export const fetchItems = (keys, gender, size, pageNum, query) => {
   keys = keys? keys : 'patagonia';
   gender = gender? gender : 'Men';
   size = size? size : 'M';
@@ -14,6 +14,8 @@ export const fetchItems = (keys, gender, size, pageNum) => {
   } else {
     keywords = keys;
   }
+  if(query) keywords += ' '+query;
+  console.log('api query: ', keywords);
   keywords = encodeURIComponent(keywords);
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"

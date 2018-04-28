@@ -65,6 +65,7 @@ class SearchBar extends React.Component {
     const { inputValue } = this.state;
     if (keycode(event) === 'enter') {
       console.log('enter input val: ', inputValue);
+      this.props.onSearch(inputValue);
     }
   };
 

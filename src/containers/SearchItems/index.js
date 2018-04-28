@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import SearchBar from '../../components/SearchBar';
+import { requestItems } from '../../redux/actions/items';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearch: () => {
-      dispatch(requestItems());
+    onSearch: (query) => {
+      dispatch(requestItems(query));
     }
   }
 }

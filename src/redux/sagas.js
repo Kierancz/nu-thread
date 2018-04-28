@@ -12,13 +12,14 @@ import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 export function* getItems(action) {
   try {
     // select current profile from state
+    console.log('getItems action: ', action);
     const profile = yield select(getProfile);
     const gender = profile.gender? profile.gender : 'Men';
     const size = profile.upper? profile.upper : 'M';
     const keys = profile.brands? profile.brands : 'patagonia';
-
+    const query = action.query? action.query : '';
     const pageNum = 1;
-    const items = yield call(fetchItems, keys, gender, size, pageNum);
+    const items = yield call(fetchItems, keys, gender, size, pageNum, query);
 
     yield put(receiveItems(items));
   } catch (e) {

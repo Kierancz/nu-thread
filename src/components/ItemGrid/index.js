@@ -8,7 +8,7 @@ import Profile from '../../containers/Profile';
 import Spinner from '../Spinner';
 import withInfiniteScroll from '../InfiniteScroll';
 import BackToTop from '../BackToTop';
-import SearchBar from '../SearchBar';
+import SearchItems from '../../containers/SearchItems';
 
 const ControlBar = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ class ItemGrid extends React.Component {
                 <Profile />
               </PullLeft>
               <Center>
-                <SearchBar />
+                <SearchItems />
               </Center>
               <PullRight>
                 <FilterBar />
