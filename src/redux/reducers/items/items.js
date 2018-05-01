@@ -8,7 +8,8 @@ const items = (state = [], action) => {
         ...state,
         items: null,
         nextPage: 2,
-        isLoading: true
+        isLoading: true,
+        query: action.query? action.query : ''
       }
     case 'RECEIVE_ITEMS':
       return {
@@ -23,7 +24,6 @@ const items = (state = [], action) => {
         isLoading: true
       }
     case 'RECEIVE_PAGE_ITEMS':
-      console.log('RECEIVE_PAGE_ITEMS action: ', action);
       const items = state.items.slice();
       // mutate items copy by merging with new items
       Array.prototype.push.apply(items, action.items);
@@ -39,3 +39,6 @@ const items = (state = [], action) => {
 };
 
 export default items;
+
+// item search query state selector
+export const getQuery = (state) => state.items.query;

@@ -1,4 +1,4 @@
-const profile = (state = [], action) => {
+const profile = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_PROFILE':
       return action.profile;

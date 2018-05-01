@@ -32,6 +32,36 @@ const clothingTypes = [
   {
     label: 'coat',
   },
+  {
+    label: 'fleece',
+  },
+  {
+    label: 'fleece jacket',
+  },
+  {
+    label: 'jean jacket',
+  },
+  {
+    label: 'denim jacket',
+  },
+  {
+    label: 'military jacket',
+  },
+  {
+    label: 'vest',
+  },
+  {
+    label: 'bomber jacket',
+  },
+  {
+    label: 'leather jacket',
+  },
+  {
+    label: 'hoodie',
+  },
+  {
+    label: 'corduroy jacket',
+  },
 ];
 
 export default clothingTypes;

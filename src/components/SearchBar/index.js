@@ -1,50 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import keycode from 'keycode';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { renderSuggestion, getSuggestions } from './renderSuggestions';
-
-function renderInput(inputProps) {
-  const { InputProps, classes, ref, ...other } = inputProps;
-
-  return (
-    <TextField
-      InputProps={{
-        inputRef: ref,
-        classes: {
-          root: classes.inputRoot,
-        },
-        ...InputProps,
-      }}
-      {...other}
-    />
-  );
-}
+import styled from 'styled-components';
+import renderInput from './renderInput';
 
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: 50,
-  },
-  container: {
-    flexGrow: 1,
-    position: 'relative',
-  },
-  paper: {
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0,
-  },
-  inputRoot: {
-    flexWrap: 'wrap',
-  },
-});
+const StyledRoot = styled.div`
+  flex-grow: 1;
+  height: 50px;
+`;
+const StyledContainer = styled.div`
+  flex-grow: 1;
+  position: relative;
+`;
+const StyledPaper = styled(Paper)`
+  position: absolute;
+  z-index: 1;
+  margin-top: 0px;
+  left: 0;
+  right: 0;
+`;
+
 
 class SearchBar extends React.Component {
   state = {
@@ -56,25 +34,21 @@ class SearchBar extends React.Component {
   };
 
   handleChange = item => {
-    this.setState({
-      inputValue: item
-    });
+    this.setState({ inputValue: item });
   };
 
   handleKeyDown = event => {
     const { inputValue } = this.state;
     if (keycode(event) === 'enter') {
-      console.log('enter input val: ', inputValue);
       this.props.onSearch(inputValue);
     }
   };
 
   render() {
-    const { classes } = this.props;
     const { inputValue } = this.state;
 
     return (
-      <div className={classes.root}>
+      <StyledRoot>
         <Downshift
           inputValue={inputValue}
           onChange={this.handleChange}
@@ -88,40 +62,37 @@ class SearchBar extends React.Component {
               selectedItem,
               highlightedIndex
             }) => (
-            <div className={classes.container}>
-              {renderInput({
-                fullWidth: true,
-                classes,
-                InputProps: getInputProps({
-                  placeholder: 'Search Clothing Types',
-                  id: 'clothing-search',
-                  onChange: this.handleInputChange,
-                  onKeyDown: this.handleKeyDown
-                }),
-              })}
-              {isOpen ? (
-                <Paper className={classes.paper} square>
-                  {getSuggestions(inputValue).map((suggestion, index) =>
-                    renderSuggestion({
-                      suggestion,
-                      index,
-                      itemProps: getItemProps({ item: suggestion.label }),
-                      highlightedIndex,
-                      selectedItem,
+              <div>
+                <StyledContainer>
+                  {renderInput({
+                    fullWidth: true,
+                    InputProps: getInputProps({
+                      placeholder: 'Search',
+                      id: 'clothing-search',
+                      onChange: this.handleInputChange,
+                      onKeyDown: this.handleKeyDown
                     }),
-                  )}
-                </Paper>
-              ) : null}
-            </div>
+                  })}
+                  {isOpen ? (
+                    <StyledPaper>
+                      {getSuggestions(inputValue).map((suggestion, index) =>
+                        renderSuggestion({
+                          suggestion,
+                          index,
+                          itemProps: getItemProps({ item: suggestion.label }),
+                          highlightedIndex,
+                          selectedItem,
+                        }),
+                      )}
+                    </StyledPaper>
+                  ) : null}
+                </StyledContainer>
+              </div>
           )}
         </Downshift>
-      </div>
+      </StyledRoot>
     );
   }
 }
 
-SearchBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SearchBar);
+export default SearchBar;

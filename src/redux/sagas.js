@@ -7,19 +7,16 @@ import {
   receivePageItems } from './actions/items';
 import { ADD_PROFILE } from './actions/profile';
 import { getProfile } from './reducers/profile';
+import { getQuery } from './reducers/items/items';
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
 export function* getItems(action) {
   try {
-    // select current profile from state
-    console.log('getItems action: ', action);
+    // select query info from state
     const profile = yield select(getProfile);
-    const gender = profile.gender? profile.gender : 'Men';
-    const size = profile.upper? profile.upper : 'M';
-    const keys = profile.brands? profile.brands : 'patagonia';
-    const query = action.query? action.query : '';
+    const query = action.query? action.query : yield select(getQuery);
     const pageNum = 1;
-    const items = yield call(fetchItems, keys, gender, size, pageNum, query);
+    const items = yield call(fetchItems, profile, query, pageNum);
 
     yield put(receiveItems(items));
   } catch (e) {
@@ -28,14 +25,11 @@ export function* getItems(action) {
 }
 export function* getPageItems(action) {
   try {
-    // select current profile from state
+    // select query info from state
     const profile = yield select(getProfile);
-    const gender = profile.gender? profile.gender : 'Men';
-    const size = profile.upper? profile.upper : 'M';
-    const keys = profile.brands? profile.brands : 'patagonia';
-
+    const query = yield select(getQuery);
     const pageNum = action.nextPage? action.nextPage : 2;
-    const items = yield call(fetchItems, keys, gender, size, pageNum);
+    const items = yield call(fetchItems, profile, query, pageNum);
 
     yield put(receivePageItems(action.nextPage, items));
   } catch (e) {

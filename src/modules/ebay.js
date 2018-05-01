@@ -1,21 +1,21 @@
-export const fetchItems = (keys, gender, size, pageNum, query) => {
-  keys = keys? keys : 'patagonia';
-  gender = gender? gender : 'Men';
-  size = size? size : 'M';
-  //console.log('fetchItems keys: ', keys);
+export const fetchItems = (profile, query, pageNum) => {
+  const brands = profile.brands? profile.brands : 'patagonia';
+  const gender = profile.gender? profile.gender : 'Men';
+  const size = profile.size? profile.size : 'M';
+
   let keywords = '';
-  if(Array.isArray(keys)) {
+  if(Array.isArray(brands)) {
     keywords += '(';
-    keys.forEach((key, index) => {
-      if(index === 0)  keywords += key;
-      else            keywords += ','+key;
+    brands.forEach((brand, index) => {
+      if(index === 0)  keywords += brand;
+      else            keywords += ','+brand;
     });
     keywords += ')';
   } else {
-    keywords = keys;
+    keywords = brands;
   }
   if(query) keywords += ' '+query;
-  console.log('api query: ', keywords);
+  //console.log('api query: ', keywords);
   keywords = encodeURIComponent(keywords);
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
