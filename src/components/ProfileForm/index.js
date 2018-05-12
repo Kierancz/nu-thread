@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import { Control, Form } from 'react-redux-form';
 import styled from 'styled-components';
 import Button from 'material-ui/Button';
 import Dialog, {
@@ -21,7 +20,7 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import Chip from 'material-ui/Chip';
-import brands from './brands';
+import brands from '../../modules/data/brands';
 
 const StyledControl = styled(FormControl)`
   display: inline;

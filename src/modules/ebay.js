@@ -1,22 +1,8 @@
 export const fetchItems = (profile, query, pageNum) => {
-  const brands = profile.brands? profile.brands : 'patagonia';
-  const gender = profile.gender? profile.gender : 'Men';
-  const size = profile.size? profile.size : 'M';
-
-  let keywords = '';
-  if(Array.isArray(brands)) {
-    keywords += '(';
-    brands.forEach((brand, index) => {
-      if(index === 0)  keywords += brand;
-      else            keywords += ','+brand;
-    });
-    keywords += ')';
-  } else {
-    keywords = brands;
-  }
-  if(query) keywords += ' '+query;
-  //console.log('api query: ', keywords);
-  keywords = encodeURIComponent(keywords);
+  const brands =  profile.brands  || 'patagonia';
+  const gender =  profile.gender  || 'Men';
+  const size =    profile.upper   || 'M';
+  const keywords = getFormattedQuery(brands);
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
@@ -55,3 +41,21 @@ export const fetchItems = (profile, query, pageNum) => {
     })
   })
 };
+
+// query formatted: "(brand1, brand2, brand3, ...) + query"
+function getFormattedQuery(brands, query) {
+  let formatted = '';
+  if(Array.isArray(brands)) {
+    formatted += '(';
+    brands.forEach((brand, index) => {
+      if(index === 0)   formatted += brand;
+      else              formatted += ',' + brand;
+    });
+    formatted += ')';
+  } else {
+    formatted = brands;
+  }
+  if(query) formatted += ' ' + query;
+
+  return encodeURIComponent(formatted);
+}

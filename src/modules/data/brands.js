@@ -4,7 +4,7 @@ const brands = [
   'Eddie Bauer',
   'The North Face',
   'L.L. Bean',
-  'Deluth Trading Compnay',
+  'Deluth Trading Company',
   'Outdoor Research',
   'Lands End',
   'Orvis',
