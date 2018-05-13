@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ItemCard from '../ItemCard';
 import FilterBar from '../FilterBar';
 import Profile from '../../containers/Profile';
+import ConfigForm from '../ConfigForm';
 import Spinner from '../Spinner';
 import withInfiniteScroll from '../InfiniteScroll';
 import BackToTop from '../BackToTop';
@@ -12,19 +13,23 @@ import SearchItems from '../../containers/SearchItems';
 
 const ControlBar = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 0.5em;
 `;
-const PullRight = styled.span`
-  display: inline-block;
+const PullRight = styled.div`
   margin-right: 0.5em;
 `;
-const PullLeft = styled.span`
-  display: inline-block;
-  margin-bottom: 0.5em;
+const PullLeft = styled.div`
   margin-left: 0.5em;
 `;
-const Center = styled.span`
-  display: inline-block;
+const Center = styled.div`
+  display: flex;
+  @media only screen and (max-width: 400px) {
+    order: 1;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+  }
 `;
 
 class ItemGrid extends React.Component {
@@ -44,9 +49,12 @@ class ItemGrid extends React.Component {
               <PullLeft>
                 <Profile />
               </PullLeft>
+        
               <Center>
                 <SearchItems />
+                <ConfigForm />
               </Center>
+
               <PullRight>
                 <FilterBar />
               </PullRight>

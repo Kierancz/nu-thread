@@ -130,7 +130,7 @@ class ProfileForm extends React.Component {
           onClick={this.handleClickOpen}
         >
           <StyledIcon />
-          Add Fit
+          Fit
         </Button>
 
         <Dialog

@@ -6,14 +6,12 @@ import { renderSuggestion, getSuggestions } from './renderSuggestions';
 import styled from 'styled-components';
 import renderInput from './renderInput';
 
-
-const StyledRoot = styled.div`
-  flex-grow: 1;
-  height: 50px;
+const StyledRoot = styled.span`
+  line-height: 48px;
 `;
-const StyledContainer = styled.div`
-  flex-grow: 1;
+const StyledContainer = styled.span`
   position: relative;
+  line-height: normal;
 `;
 const StyledPaper = styled(Paper)`
   position: absolute;
@@ -22,7 +20,6 @@ const StyledPaper = styled(Paper)`
   left: 0;
   right: 0;
 `;
-
 
 class SearchBar extends React.Component {
   state = {
@@ -62,9 +59,9 @@ class SearchBar extends React.Component {
               selectedItem,
               highlightedIndex
             }) => (
-              <div>
-                <StyledContainer>
-                  {renderInput({
+              <span style={{ position:'relative', lineHeight: 'normal'}}>
+                {
+                  renderInput({
                     fullWidth: true,
                     InputProps: getInputProps({
                       placeholder: 'Search',
@@ -72,22 +69,27 @@ class SearchBar extends React.Component {
                       onChange: this.handleInputChange,
                       onKeyDown: this.handleKeyDown
                     }),
-                  })}
-                  {isOpen ? (
+                  })
+                }
+                {
+                  isOpen ? 
                     <StyledPaper>
-                      {getSuggestions(inputValue).map((suggestion, index) =>
-                        renderSuggestion({
-                          suggestion,
-                          index,
-                          itemProps: getItemProps({ item: suggestion.label }),
-                          highlightedIndex,
-                          selectedItem,
-                        }),
-                      )}
+                      {
+                        getSuggestions(inputValue).map((suggestion, index) =>
+                          renderSuggestion({
+                            suggestion,
+                            index,
+                            itemProps: getItemProps({ item: suggestion.label }),
+                            highlightedIndex,
+                            selectedItem,
+                          }),
+                        )
+                      }
                     </StyledPaper>
-                  ) : null}
-                </StyledContainer>
-              </div>
+                    : 
+                    null
+                }
+              </span>
           )}
         </Downshift>
       </StyledRoot>

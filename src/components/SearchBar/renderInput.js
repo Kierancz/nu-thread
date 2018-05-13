@@ -2,14 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import Search from 'material-ui-icons/Search';
 
-
-const StyledSearchContainer = styled.div`
+const StyledSearchContainer = styled.span`
+  display: inline-block;
   position: relative;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 2px;
+  line-height: normal;
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
 `;
 const StyledSearchIcon = styled.div`
-  width: 72px;
+  width: 60px;
   height: 100%;
   display: flex;
   position: absolute;
@@ -24,13 +28,13 @@ const StyledInputContainer = styled.span`
 const StyledInput = styled.input`
   font: inherit;
   color: inherit;
-  width: 200px;
   border: 0;
   margin: 0;
   padding: 8px 8px 8px 72px;
   display: block;
   background: none;
   white-space: normal;
+  width: 90%;
 `;
 
 const renderInput = (inputProps) => {

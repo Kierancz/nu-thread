@@ -2,7 +2,7 @@ export const fetchItems = (profile, query, pageNum) => {
   const brands =  profile.brands  || 'patagonia';
   const gender =  profile.gender  || 'Men';
   const size =    profile.upper   || 'M';
-  const keywords = getFormattedQuery(brands);
+  const keywords = getFormattedQuery(brands, query);
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
