@@ -4,7 +4,8 @@ import {
   REQUEST_ITEM_PAGE,
   requestItems,
   receiveItems,
-  receivePageItems } from './actions/items';
+  receivePageItems
+} from './actions/items';
 import { ADD_PROFILE } from './actions/profile';
 import { getProfile } from './reducers/profile';
 import { getQuery } from './reducers/items/items';
@@ -14,12 +15,15 @@ export function* getItems(action) {
   try {
     // select query info from state
     const profile = yield select(getProfile);
-    const query = action.query? action.query : yield select(getQuery);
+    const query = action.query || (yield select(getQuery));
     const pageNum = 1;
-    const items = yield call(fetchItems, profile, query, pageNum);
 
-    yield put(receiveItems(items));
-  } catch (e) {
+    const data = yield call(fetchItems, profile, query, pageNum);
+    const items = data.searchResult[0].item;
+    const lastPage = data.paginationOutput[0].totalPages[0];
+    yield put(receiveItems(items, lastPage));
+  } 
+  catch (e) {
     console.log('error in getItems(): ', e);
   }
 }
@@ -28,11 +32,14 @@ export function* getPageItems(action) {
     // select query info from state
     const profile = yield select(getProfile);
     const query = yield select(getQuery);
-    const pageNum = action.nextPage? action.nextPage : 2;
-    const items = yield call(fetchItems, profile, query, pageNum);
+    const pageNum = action.nextPage || 2;
+
+    const data = yield call(fetchItems, profile, query, pageNum);
+    const items = data.searchResult[0].item;
 
     yield put(receivePageItems(action.nextPage, items));
-  } catch (e) {
+  } 
+  catch (e) {
     console.log('error in getItems(): ', e);
   }
 }

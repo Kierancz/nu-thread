@@ -5,10 +5,11 @@ import { requestItems } from '../../redux/actions/items';
 import { requestItemPage } from '../../redux/actions/items';
 
 const mapStateToProps = (state) => {
-  let nextPage = state.items.nextPage? state.items.nextPage : 2;
+  const { nextPage, isLoading, allLoaded } = state.items;
   return {
-    nextPage: nextPage,
-    isLoading: state.items.isLoading,
+    nextPage,
+    isLoading,
+    allLoaded,
     items: getFilteredItems(
       state,
       state.filter

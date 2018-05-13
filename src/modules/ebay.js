@@ -37,7 +37,7 @@ export const fetchItems = (profile, query, pageNum) => {
     return response.json().then(function (json) {
       console.log('raw data: ', json);
       //console.log('data items: ', json.findItemsByKeywordsResponse[0].searchResult[0].item);
-      return json.findItemsByKeywordsResponse[0].searchResult[0].item;
+      return json.findItemsByKeywordsResponse[0];
     })
   })
 };

@@ -9,13 +9,15 @@ const items = (state = [], action) => {
         items: null,
         nextPage: 2,
         isLoading: true,
-        query: action.query? action.query : ''
+        allLoaded: false,
+        query: action.query || ''
       }
     case 'RECEIVE_ITEMS':
       return {
         ...state,
         items: action.items,
-        isLoading: false
+        isLoading: false,
+        lastPage: action.lastPage
       }
     case 'REQUEST_ITEM_PAGE':
       return {
@@ -24,14 +26,15 @@ const items = (state = [], action) => {
         isLoading: true
       }
     case 'RECEIVE_PAGE_ITEMS':
-      const items = state.items.slice();
+      const newItems = state.items.slice();
       // mutate items copy by merging with new items
-      Array.prototype.push.apply(items, action.items);
+      Array.prototype.push.apply(newItems, action.items);
       return {
         ...state,
+        items: newItems,
+        isLoading: false,
         nextPage: action.nextPage + 1,
-        items: items,
-        isLoading: false
+        allLoaded: action.nextPage >= state.lastPage
       }
     default:
       return state;
@@ -40,5 +43,6 @@ const items = (state = [], action) => {
 
 export default items;
 
-// item search query state selector
+// state selectors
 export const getQuery = (state) => state.items.query;
+export const getLastPage = (state) => state.items.lastPage;

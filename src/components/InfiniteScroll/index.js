@@ -11,12 +11,23 @@ const withInfiniteScroll = (Component) =>
     }
 
     onScroll = () => {
-      let height = window.innerHeight;
-      let offsetHeight = document.body.offsetHeight;
-      if((height + window.scrollY) >= (offsetHeight - 500)
-        && this.props.items
-        && !this.props.isLoading) {
-        this.props.onPaginatedSearch(this.props.nextPage);
+      const { 
+        items, 
+        isLoading, 
+        allLoaded, 
+        nextPage, 
+        onPaginatedSearch 
+      } = this.props;
+      const height = window.innerHeight;
+      const offsetHeight = document.body.offsetHeight;
+
+      if(
+        (height + window.scrollY) >= (offsetHeight - 500)
+        && items
+        && !isLoading
+        && !allLoaded) 
+      {
+        onPaginatedSearch(nextPage);
       }
     }
 

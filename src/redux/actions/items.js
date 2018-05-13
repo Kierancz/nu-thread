@@ -4,35 +4,31 @@ export const RECEIVE_ITEMS = "RECEIVE_ITEMS";
 export const REQUEST_ITEM_PAGE = "REQUEST_ITEM_PAGE";
 export const RECEIVE_PAGE_ITEMS = "RECEIVE_PAGE_ITEMS";
 
-
 export const setFilter = (filter) => {
   return {
     type: 'SET_FILTER',
     filter
   };
 };
-
 export const requestItems = (query) => {
   return {
     type: 'REQUEST_ITEMS',
     query
   };
 };
-
-export const receiveItems = (items) => {
+export const receiveItems = (items, lastPage) => {
   return {
     type: 'RECEIVE_ITEMS',
-    items
+    items,
+    lastPage
   }
 }
-
 export const requestItemPage = (nextPage) => {
   return {
     type: 'REQUEST_ITEM_PAGE',
     nextPage
   };
 };
-
 export const receivePageItems = (nextPage, items) => {
   return {
     type: 'RECEIVE_PAGE_ITEMS',
@@ -40,3 +36,4 @@ export const receivePageItems = (nextPage, items) => {
     items
   }
 }
+
