@@ -34,7 +34,9 @@ const StyledInput = styled.input`
   display: block;
   background: none;
   white-space: normal;
-  width: 90%;
+  @media only screen and (max-width: 320px) {
+    width: 140px;
+  }
 `;
 
 const renderInput = (inputProps) => {

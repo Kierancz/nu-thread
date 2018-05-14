@@ -9,10 +9,6 @@ import renderInput from './renderInput';
 const StyledRoot = styled.span`
   line-height: 48px;
 `;
-const StyledContainer = styled.span`
-  position: relative;
-  line-height: normal;
-`;
 const StyledPaper = styled(Paper)`
   position: absolute;
   z-index: 1;
@@ -29,11 +25,9 @@ class SearchBar extends React.Component {
   handleInputChange = event => {
     this.setState({ inputValue: event.target.value });
   };
-
   handleChange = item => {
     this.setState({ inputValue: item });
   };
-
   handleKeyDown = event => {
     const { inputValue } = this.state;
     if (keycode(event) === 'enter') {

@@ -1,8 +1,5 @@
 const items = (state = [], action) => {
   switch(action.type) {
-    // returns new items array from old array plus new item id at end
-    case 'ADD_ITEM':
-      return [...state, action.id];
     case 'REQUEST_ITEMS':
       return {
         ...state,
@@ -10,7 +7,6 @@ const items = (state = [], action) => {
         nextPage: 2,
         isLoading: true,
         allLoaded: false,
-        query: action.query || ''
       }
     case 'RECEIVE_ITEMS':
       return {
@@ -44,5 +40,4 @@ const items = (state = [], action) => {
 export default items;
 
 // state selectors
-export const getQuery = (state) => state.items.query;
 export const getLastPage = (state) => state.items.lastPage;

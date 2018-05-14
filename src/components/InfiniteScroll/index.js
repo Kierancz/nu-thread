@@ -5,7 +5,6 @@ const withInfiniteScroll = (Component) =>
     componentDidMount() {
       window.addEventListener('scroll', this.onScroll, false);
     }
-
     componentWillUnmount() {
       window.removeEventListener('scroll', this.onScroll, false);
     }
