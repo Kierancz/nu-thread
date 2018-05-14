@@ -1,6 +1,6 @@
 const initialState = {
   config: {
-    brands: 'patagonia'
+    brands: ["L.L. Bean", "Orvis", "Outdoor Research", "Eddie Bauer", "Patagonia"]
   }
 };
 

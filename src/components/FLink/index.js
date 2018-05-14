@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MenuItem } from 'material-ui/Menu';
+import { MenuItem } from '@material-ui/core';
 
 const ActiveItem = styled(MenuItem)`
   background-color: grey;

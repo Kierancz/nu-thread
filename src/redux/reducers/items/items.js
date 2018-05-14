@@ -22,12 +22,12 @@ const items = (state = [], action) => {
         isLoading: true
       }
     case 'RECEIVE_PAGE_ITEMS':
-      const newItems = state.items.slice();
+      const items = state.items.slice();
       // mutate items copy by merging with new items
-      Array.prototype.push.apply(newItems, action.items);
+      Array.prototype.push.apply(items, action.items);
       return {
         ...state,
-        items: newItems,
+        items,
         isLoading: false,
         nextPage: action.nextPage + 1,
         allLoaded: action.nextPage >= state.lastPage

@@ -2,36 +2,46 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import FilteredItems from '../FilteredItems';
-import Button from 'material-ui/Button';
-import InfoOutline from 'material-ui-icons/InfoOutline';
-
 import styled from 'styled-components';
 
-const StyledIcon = styled(InfoOutline)`
+import Button from '@material-ui/core/Button';
+import { InformationOutline, TshirtCrew } from 'mdi-material-ui';
+
+const StyledInfoIcon = styled(InformationOutline)`
   margin-right: 6px;
 `;
+const StyledItemsIcon = styled(TshirtCrew)`
+  margin-right: 6px;
+`;
+const StyledButton = styled(Button)`
+  margin: 1em;
+`
 
 const Home = props => (
   <div>
     <h1>Welcome to nu-thread!</h1>
-    <p>Home of affordable, durable, and carbon neutral used clothes!</p>
-    <Button 
-      raised 
+    <p>Home of affordable, durable, and carbon neutral clothes!</p>
+    <StyledButton 
+      variant="raised" 
       color="primary"
-      onClick={() => props.changePage()}
+      onClick={() => props.goToItems()}
     >
-      <StyledIcon />
+      <StyledItemsIcon />
+      See Items
+    </StyledButton>
+    <StyledButton 
+      variant="raised" 
+      onClick={() => props.goToAbout()}
+    >
+      <StyledInfoIcon />
       Learn More
-    </Button>
-
-    <FilteredItems/>
+    </StyledButton>
   </div>
 )
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: () => push('/about')
+  goToAbout: () => push('/about'),
+  goToItems: () => push('/items')
 }, dispatch)
 
 export default connect(

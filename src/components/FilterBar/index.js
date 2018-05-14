@@ -2,16 +2,15 @@ import React from 'react';
 import FilterLink from '../../containers/FilterLink';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import { MenuList } from 'material-ui/Menu';
-import Grow from 'material-ui/transitions/Grow';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+import { MenuList } from '@material-ui/core';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
 import { Manager, Target, Popper } from 'react-popper';
-import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
-import Sort from 'material-ui-icons/Sort';
-import ArrowUpward from 'material-ui-icons/ArrowUpward';
-import ArrowDownward from 'material-ui-icons/ArrowDownward';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
+import { Sort, SortAscending, SortDescending } from 'mdi-material-ui'
 
 const styles = theme => ({
   root: {
@@ -74,13 +73,13 @@ class FilterBar extends React.Component {
                       filter='PRICE_ASC'
                       handleClose={this.handleClose}>
                       Price
-                      <ArrowUpward className={classes.rightIcon}/>
+                      <SortAscending className={classes.rightIcon}/>
                     </FilterLink>
                     <FilterLink
                       filter='PRICE_DESC'
                       handleClose={this.handleClose}>
                       Price
-                      <ArrowDownward className={classes.rightIcon}/>
+                      <SortDescending className={classes.rightIcon}/>
                     </FilterLink>
                   </MenuList>
                 </Paper>

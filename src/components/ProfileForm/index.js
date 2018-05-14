@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from 'material-ui/Button';
-import Dialog, {
+import Button from '@material-ui/core/Button';
+import {
+  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   withMobileDialog
-} from 'material-ui/Dialog';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import PersonAdd from 'material-ui-icons/PersonAdd';
+} from '@material-ui/core';
+import { Radio, RadioGroup } from '@material-ui/core';
+import { AccountPlus } from 'mdi-material-ui'
 import {
   FormLabel,
   FormControl,
   FormControlLabel,
-} from 'material-ui/Form';
+} from '@material-ui/core';
 
 const StyledControl = styled(FormControl)`
   display: inline;
@@ -25,7 +26,7 @@ const StyledControl = styled(FormControl)`
 const StyledRadioGroup = styled(RadioGroup)`
   margin: 1em 0px;
 `;
-const StyledIcon = styled(PersonAdd)`
+const StyledIcon = styled(AccountPlus)`
   margin-right: 0.5em;
 `;
 const StyledDialogActions = styled(DialogActions)`
@@ -43,7 +44,7 @@ class ProfileForm extends React.Component {
 
   componentDidMount() {
     const { profile } = this.props;
-    // if redux state profile is object update ui state
+    // if redux state has a profile, update ui state
     if(profile !== null && typeof profile === 'object') {
       this.setState({
         gender: profile.gender  || '',
@@ -81,7 +82,7 @@ class ProfileForm extends React.Component {
     return (
       <span>
         <Button
-          raised
+          variant="raised"
           color="primary"
           onClick={this.handleClickOpen}
         >
@@ -91,7 +92,7 @@ class ProfileForm extends React.Component {
 
         <Dialog
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
           fullScreen={fullScreen}
           aria-labelledby="Fit Profile Form"
         >
@@ -99,7 +100,7 @@ class ProfileForm extends React.Component {
 
           <DialogContent>
             <DialogContentText>
-              Add your fit profile info below to get clothes that actually fit!
+              Add your fit info below to find clothes that fit!
             </DialogContentText>
 
             <StyledControl component="fieldset">
@@ -151,13 +152,13 @@ class ProfileForm extends React.Component {
               Cancel
             </Button>
             <Button
-              raised
+              variant="raised"
               type="submit"
               color="primary"
               autoFocus
               onClick={this.handleSubmit}
             >
-              Create Profile
+              Save Profile
             </Button>
           </StyledDialogActions>
 

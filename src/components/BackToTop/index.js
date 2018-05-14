@@ -1,11 +1,12 @@
 import React from "react";
 import ScrollToTop from "react-scroll-up";
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import Tooltip from 'material-ui/Tooltip';
-import IconButton from 'material-ui/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 
-const StyledArrowUp = styled(ArrowUpwardIcon)`
+import { ArrowUp } from 'mdi-material-ui';
+
+const StyledArrowUp = styled(ArrowUp)`
   && {
     width: 2em;
     height: 2em;

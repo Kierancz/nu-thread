@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './modules/configureStore';
 import registerServiceWorker from './modules/registerServiceWorker';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import App from './containers/App';
 import './index.css';
 import 'typeface-roboto';

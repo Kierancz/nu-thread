@@ -1,10 +1,10 @@
 export const fetchItems = (params) => {
   const { profile, query, config, pageNum } = params;
   console.log('search params: ', params);
-  const gender  = profile.gender  || 'Men';
-  const size    = profile.upper   || 'M';
-  const brands  = config.brands   || 'patagonia';
-  const keywords = getFormattedQuery(brands, query);
+  const gender    = profile.gender  || 'Men';
+  const size      = profile.upper   || 'M';
+  const brands    = config.brands   || 'patagonia';
+  const keywords  = getFormattedQuery(brands, query);
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
@@ -17,7 +17,7 @@ export const fetchItems = (params) => {
   const topRated = "&itemFilter(0).name=topRatedListing&itemFilter(0).value=true";
   */
 
-  var URL = "https://temp-proxy.herokuapp.com/"
+  let URL = "https://temp-proxy.herokuapp.com/"
       URL += "http://svcs.ebay.com/services/search/FindingService/v1";
       URL += "?OPERATION-NAME=findItemsByKeywords";
       URL += "&SERVICE-VERSION=1.0.0";
@@ -31,6 +31,10 @@ export const fetchItems = (params) => {
       URL += pageNumber;
       URL += "&itemFilter(0).name=Condition";
       URL += "&itemFilter(0).value=Used";
+      URL += "&itemFilter(1).name=HideDuplicateItems";
+      URL += "&itemFilter(1).value=true";
+      URL += "&itemFilter(2).name=TopRatedSellerOnly";
+      URL += "&itemFilter(2).value=true";
       URL += genderAspect+sizeAspect;
       URL += "&outputSelector=AspectHistogram";
   //console.log("URL: ", URL);

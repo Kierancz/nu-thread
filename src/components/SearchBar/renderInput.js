@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from 'material-ui-icons/Search';
+import { Magnify } from 'mdi-material-ui';
 
 const StyledSearchContainer = styled.span`
   display: inline-block;
@@ -45,7 +45,7 @@ const renderInput = (inputProps) => {
   return (
     <StyledSearchContainer>
       <StyledSearchIcon>
-        <Search />
+        <Magnify />
       </StyledSearchIcon>
       <StyledInputContainer>
         <StyledInput

@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
-import Tooltip from 'material-ui/Tooltip';
-import Dialog, {
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  withMobileDialog
-} from 'material-ui/Dialog';
-import Settings from 'material-ui-icons/Settings';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
+import { Input, InputLabel } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
 import brands from '../../modules/data/brands';
 import {
   StyledSelectControl,
@@ -21,6 +19,7 @@ import {
   StyledChip,
   MenuProps
 } from './styles';
+import { Settings } from 'mdi-material-ui';
 
 class SearchConfigForm extends React.Component {
   state = {
@@ -74,7 +73,7 @@ class SearchConfigForm extends React.Component {
 
         <Dialog
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
           fullScreen={fullScreen}
           aria-labelledby="Configuration Form"
         >
@@ -91,7 +90,7 @@ class SearchConfigForm extends React.Component {
                 multiple
                 value={this.state.brands}
                 onChange={this.handleBrandsChange}
-                input={<Input id="brands" multiline="true"/>}
+                input={<Input id="brands"/>}
                 renderValue={selected => (
                   <StyledChips>
                     {selected.map(
@@ -128,7 +127,7 @@ class SearchConfigForm extends React.Component {
               Cancel
             </Button>
             <Button
-              raised
+              variant="raised"
               type="submit"
               color="primary"
               autoFocus

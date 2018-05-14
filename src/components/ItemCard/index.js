@@ -1,11 +1,11 @@
 import React from 'react';
 import { Column } from 'hedron';
-import
-  Card, {
+import {
+  Card,
   CardContent,
-  CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+  CardMedia } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 
 //import { Link } from 'react-router-dom';
@@ -69,7 +69,6 @@ class ItemCard extends React.Component {
                 $ {price}
               </Typography>
               <StyledButton
-                dense
                 color="primary"
                 href={viewURL}
                 target="_blank">

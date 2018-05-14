@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import IconButton from 'material-ui/IconButton';
-import { DialogActions } from 'material-ui/Dialog';
-import { FormControl } from 'material-ui/Form';
-import Select from 'material-ui/Select';
-import Chip from 'material-ui/Chip';
+import IconButton from '@material-ui/core/IconButton';
+import { DialogActions } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
 
 export const StyledSelectControl = styled(FormControl)`
   display: block !important;
