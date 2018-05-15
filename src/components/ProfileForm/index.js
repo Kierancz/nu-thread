@@ -1,38 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import {
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog
 } from '@material-ui/core';
-import { Radio, RadioGroup } from '@material-ui/core';
-import { AccountPlus } from 'mdi-material-ui'
+import { Radio } from '@material-ui/core';
+import { FormLabel, FormControlLabel } from '@material-ui/core';
 import {
-  FormLabel,
-  FormControl,
-  FormControlLabel,
-} from '@material-ui/core';
-
-const StyledControl = styled(FormControl)`
-  display: inline;
-  border: none;
-  margin: 1em !important;
-`;
-const StyledRadioGroup = styled(RadioGroup)`
-  margin: 1em 0px;
-`;
-const StyledIcon = styled(AccountPlus)`
-  margin-right: 0.5em;
-`;
-const StyledDialogActions = styled(DialogActions)`
-  margin-right: 1em !important;
-  margin-bottom: 1em !important;
-`;
+  StyledControlWrapper, 
+  StyledDialogContentText, 
+  StyledControl, 
+  StyledRadioGroup, 
+  StyledIcon, 
+  StyledDialogActions
+} from './styles';
 
 class ProfileForm extends React.Component {
   state = {
@@ -45,7 +29,7 @@ class ProfileForm extends React.Component {
   componentDidMount() {
     const { profile } = this.props;
     // if redux state has a profile, update ui state
-    if(profile !== null && typeof profile === 'object') {
+    if(profile) {
       this.setState({
         gender: profile.gender  || '',
         upper:  profile.upper   || '',
@@ -99,52 +83,54 @@ class ProfileForm extends React.Component {
           <DialogTitle>New Fit Profile</DialogTitle>
 
           <DialogContent>
-            <DialogContentText>
+            <StyledDialogContentText>
               Add your fit info below to find clothes that fit!
-            </DialogContentText>
+            </StyledDialogContentText>
 
-            <StyledControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
-              <StyledRadioGroup
-                aria-label="gender"
-                name="gender"
-                value={this.state.gender}
-                onChange={this.handleGenderChange}
-              >
-                <FormControlLabel value="Men" control={<Radio />} label="Male" />
-                <FormControlLabel value="Women" control={<Radio />} label="Female" />
-                <FormControlLabel value="Other" control={<Radio />} label="Other" />
-              </StyledRadioGroup>
-            </StyledControl>
+            <StyledControlWrapper>
+              <StyledControl component="fieldset">
+                <FormLabel component="legend">Gender</FormLabel>
+                <StyledRadioGroup
+                  aria-label="gender"
+                  name="gender"
+                  value={this.state.gender}
+                  onChange={this.handleGenderChange}
+                >
+                  <FormControlLabel value="Men" control={<Radio />} label="Male" />
+                  <FormControlLabel value="Women" control={<Radio />} label="Female" />
+                  <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                </StyledRadioGroup>
+              </StyledControl>
 
-            <StyledControl component="fieldset">
-              <FormLabel component="legend">Upper Size</FormLabel>
-              <StyledRadioGroup
-                aria-label="upper-size"
-                name="upper-size"
-                value={this.state.upper}
-                onChange={this.handleUpperChange}
-              >
-                <FormControlLabel value="S" control={<Radio />} label="Small" />
-                <FormControlLabel value="M" control={<Radio />} label="Medium" />
-                <FormControlLabel value="L" control={<Radio />} label="Large" />
-                <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
-              </StyledRadioGroup>
-            </StyledControl>
+              <StyledControl component="fieldset">
+                <FormLabel component="legend">Upper Size</FormLabel>
+                <StyledRadioGroup
+                  aria-label="upper size"
+                  name="upper-size"
+                  value={this.state.upper}
+                  onChange={this.handleUpperChange}
+                >
+                  <FormControlLabel value="S" control={<Radio />} label="Small" />
+                  <FormControlLabel value="M" control={<Radio />} label="Medium" />
+                  <FormControlLabel value="L" control={<Radio />} label="Large" />
+                  <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
+                </StyledRadioGroup>
+              </StyledControl>
 
-            <StyledControl component="fieldset">
-              <FormLabel component="legend">Fit Preference</FormLabel>
-              <StyledRadioGroup
-                aria-label="fit"
-                name="fit"
-                value={this.state.fit}
-                onChange={this.handleFitChange}
-              >
-                <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
-                <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
-                <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
-              </StyledRadioGroup>
-            </StyledControl>
+              <StyledControl component="fieldset">
+                <FormLabel component="legend">Fit Preference</FormLabel>
+                <StyledRadioGroup
+                  aria-label="general fit"
+                  name="fit"
+                  value={this.state.fit}
+                  onChange={this.handleFitChange}
+                >
+                  <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
+                  <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
+                  <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
+                </StyledRadioGroup>
+              </StyledControl>
+            </StyledControlWrapper>
           </DialogContent>
 
           <StyledDialogActions>

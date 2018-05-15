@@ -4,7 +4,7 @@ import { addConfig } from '../../redux/actions/search';
 
 const mapStateToProps = (state) => {
   return {
-    config: state.config
+    config: state.search.config
   };
 };
 

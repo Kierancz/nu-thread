@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setFilter } from '../../redux/actions/items'
+import { addSortType } from '../../redux/actions/search';
 import FLink from '../../components/FLink';
 
 const mapStateToProps = (
@@ -8,8 +8,7 @@ const mapStateToProps = (
 ) => {
   return {
     active:
-      ownProps.filter ===
-      state.filter
+      ownProps.sortType === state.search.sortType
   };
 };
 
@@ -19,7 +18,7 @@ const mapDispatchToProps = (
 ) => {
   return {
     onClick: () => {
-      dispatch(setFilter(ownProps.filter));
+      dispatch(addSortType(ownProps.sortType));
     }
   };
 };

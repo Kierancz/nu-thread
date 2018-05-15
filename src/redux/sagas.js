@@ -7,7 +7,12 @@ import {
   receivePageItems
 } from './actions/items';
 import { ADD_PROFILE } from './actions/profile';
-import { ADD_QUERY, ADD_CONFIG } from './actions/search';
+import { 
+  ADD_QUERY, 
+  ADD_CONFIG, 
+  ADD_SORT_TYPE 
+} from './actions/search';
+import { getSortType } from './reducers/search';
 import { getProfile } from './reducers/profile';
 import { getQuery, getConfig } from './reducers/search';
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
@@ -18,12 +23,14 @@ export function* getItems(action) {
     const profile = yield select(getProfile);
     const query = yield select(getQuery);
     const config = yield select(getConfig);
+    const sortType = yield select(getSortType);
     const pageNum = 1;
     const params = {
       profile,
       query,
       config,
-      pageNum
+      pageNum,
+      sortType
     };
 
     const data = yield call(fetchItems, params);
@@ -41,12 +48,14 @@ export function* getPageItems(action) {
     const profile = yield select(getProfile);
     const query = yield select(getQuery);
     const config = yield select(getConfig);
+    const sortType = yield select(getSortType);
     const pageNum = action.nextPage || 2;
     const params = {
       profile,
       query,
       config,
-      pageNum
+      pageNum,
+      sortType
     };
 
     const data = yield call(fetchItems, params);
@@ -78,6 +87,9 @@ export function* watchAddQuery() {
 export function* watchAddConfig() {
   yield takeEvery(ADD_CONFIG, getSpecificItems);
 }
+export function* watchAddSortType() {
+  yield takeEvery(ADD_SORT_TYPE, getSpecificItems);
+}
 
 export default function* rootSaga() {
   yield all([
@@ -85,6 +97,7 @@ export default function* rootSaga() {
     watchRequestItemPage(),
     watchAddProfile(),
     watchAddQuery(),
-    watchAddConfig()
+    watchAddConfig(),
+    watchAddSortType()
   ]);
 }

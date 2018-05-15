@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MenuItem } from '@material-ui/core/Menu';
+import { MenuItem } from '@material-ui/core';
 import suggestions from './suggestions';
 
 export const renderSuggestion = (

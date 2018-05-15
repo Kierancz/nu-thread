@@ -1,11 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MenuItem } from '@material-ui/core';
-
-const ActiveItem = styled(MenuItem)`
-  background-color: grey;
-  color: white;
-`
 
 const FLink = ({
   active,
@@ -13,27 +7,20 @@ const FLink = ({
   onClick,
   handleClose
 }) => {
-  // when our filter link is active make it unclickable
+  const addSort = active?
+    null
+    : (e) => {
+      e.preventDefault();
+      onClick();
+      handleClose();
+    };
 
-  if(active) {
-    //console.log('active filter item');
-    return (
-      <ActiveItem
-        onClick={e => {
-          e.preventDefault();
-        }}
-      >
-        {children}
-      </ActiveItem>
-    );
-  }
   return (
     <MenuItem
-      onClick={e => {
-        e.preventDefault();
-        onClick();
-        handleClose();
+      style={{
+        backgroundColor: active? 'rgba(0,0,0,.2)' : ''
       }}
+      onClick={addSort}
     >
       {children}
     </MenuItem>
