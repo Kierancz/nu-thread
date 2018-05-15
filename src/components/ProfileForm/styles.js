@@ -9,6 +9,8 @@ import { FormControl } from '@material-ui/core';
 
 export const StyledControlWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
 `;
 export const StyledDialogContentText = styled(DialogContentText)` 
   && {
@@ -17,7 +19,7 @@ export const StyledDialogContentText = styled(DialogContentText)`
 `;
 export const StyledControl = styled(FormControl)` 
   && {
-    margin: 1.5em;
+    margin: 1em;
   }
 `;
 export const StyledRadioGroup = styled(RadioGroup)`

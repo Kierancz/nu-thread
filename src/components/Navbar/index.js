@@ -1,60 +1,54 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-  },
-  bar: {
-    background: '#000',
-  },
-  link: {
-    color: 'white',
-    textDecoration: 'none',
-    display: 'inline-block',
-    textTransform: 'lowercase',
-    marginLeft: '1em'
-  },
-  center: {
-    display: 'block',
-    margin: '0 auto',
-  }
-});
+const StyledRoot = styled.div`
+  width: 100%;
+`;
+const StyledAppBar = styled(AppBar)` && {
+  background: #000;
+}`;
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: lowercase;
+  margin-left: 1em;
+`;
+const Center = styled.div`
+  display: block;
+  margin: 0 auto;
+`;
+const StyledLogoText = styled.span`
+  font-size: 24px;
+  font-weight: 700;
+`;
 
-function Navbar(props) {
-  const { classes } = props;
+const Navbar = (props) => {
   return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.bar}>
+    <StyledRoot>
+      <StyledAppBar position="static">
         <Toolbar>
-          <div className={classes.center}>
-            <Link to="/" className={classes.link}>
-              <Typography type="title" color="inherit" className={classes.flex}>
+          <Center>
+            <StyledLink to="/">
+              <StyledLogoText>
                 nu-thread
-              </Typography>
-            </Link>
-            <Link to="/about" className={classes.link}>
+              </StyledLogoText>
+            </StyledLink>
+            <StyledLink to="/about">
               About
-            </Link>
-            <Link to="/items" className={classes.link}>
+            </StyledLink>
+            <StyledLink to="/items">
               Items
-            </Link>
-          </div>
+            </StyledLink>
+          </Center>
         </Toolbar>
-      </AppBar>
-    </div>
+      </StyledAppBar>
+    </StyledRoot>
   );
-}
-
-Navbar.propTypes = {
-  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Navbar);
+export default Navbar;

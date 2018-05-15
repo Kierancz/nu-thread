@@ -65,7 +65,19 @@ class FilterBar extends React.Component {
                       sortType='SHOW_ALL'
                       handleClose={this.handleClose}
                     >
-                      Default
+                      None
+                    </FilterLink>
+                    <FilterLink
+                      sortType='BEST_MATCH'
+                      handleClose={this.handleClose}
+                    >
+                      Best Match
+                    </FilterLink>
+                    <FilterLink
+                      sortType='END_SOON'
+                      handleClose={this.handleClose}
+                    >
+                      Ending Soon
                     </FilterLink>
                     <FilterLink
                       sortType='PRICE_ASC'

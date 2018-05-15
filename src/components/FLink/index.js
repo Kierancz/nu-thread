@@ -7,20 +7,16 @@ const FLink = ({
   onClick,
   handleClose
 }) => {
-  const addSort = active?
-    null
-    : (e) => {
-      e.preventDefault();
-      onClick();
-      handleClose();
-    };
-
   return (
     <MenuItem
       style={{
         backgroundColor: active? 'rgba(0,0,0,.2)' : ''
       }}
-      onClick={addSort}
+      onClick={ (e) => {
+        e.preventDefault();
+        if(!active) onClick();
+        handleClose();
+      }}
     >
       {children}
     </MenuItem>

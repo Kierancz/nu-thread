@@ -13,9 +13,9 @@ const StyledInfoIcon = styled(InformationOutline)`
 const StyledItemsIcon = styled(TshirtCrew)`
   margin-right: 6px;
 `;
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)` && {
   margin: 1em;
-`
+}`;
 
 const Home = props => (
   <div>

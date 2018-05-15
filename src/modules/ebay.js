@@ -10,9 +10,7 @@ export const fetchItems = (params) => {
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
   const itemNum = "30";
   const pageNumber = pageNum? "&paginationInput.pageNumber="+pageNum : '';
-
   const sortOrder = getSortOrder(sortType);
-  console.log('sort Order: ', sortOrder);
   
   /*
   const fit = "&aspectFilter.aspectName=Fit";
@@ -40,7 +38,7 @@ export const fetchItems = (params) => {
       URL += "&itemFilter(2).value=true";
       URL += sortOrder+genderAspect+sizeAspect;
       URL += "&outputSelector=AspectHistogram";
-  console.log("URL: ", URL);
+  // console.log("URL: ", URL);
 
   return fetch(URL).then(function (response) {
     return response.json().then(function (json) {
@@ -50,20 +48,6 @@ export const fetchItems = (params) => {
     })
   })
 };
-
-function getSortOrder(sortType) {
-  let order = "&sortOrder=";
-  switch(sortType) {
-    case 'SHOW_ALL':
-      return '';
-    case 'PRICE_ASC':
-      return order + 'PricePlusShippingLowest';
-    case 'PRICE_DESC':
-      return order + 'PricePlusShippingHighest';
-    default: 
-      return '';
-  }
-}
 
 // query formatted: "(brand1, brand2, brand3, ...) + query"
 function getFormattedQuery(brands, query) {
@@ -81,4 +65,20 @@ function getFormattedQuery(brands, query) {
   if(query) formatted += ' ' + query;
 
   return encodeURIComponent(formatted);
+}
+
+function getSortOrder(sortType) {
+  let order = "&sortOrder=";
+  switch(sortType) {
+    case 'BEST_MATCH':
+      return order + 'BestMatch';
+    case 'PRICE_ASC':
+      return order + 'PricePlusShippingLowest';
+    case 'PRICE_DESC':
+      return order + 'PricePlusShippingHighest';
+    case 'END_SOON':
+      return order + 'EndTimeSoonest';
+    default: 
+      return '';
+  }
 }

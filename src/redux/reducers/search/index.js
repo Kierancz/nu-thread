@@ -2,7 +2,7 @@ const initialState = {
   config: {
     brands: ["L.L. Bean", "Orvis", "Outdoor Research", "Eddie Bauer", "Patagonia"]
   },
-  sortType: "SHOW_ALL"
+  sortType: "BEST_MATCH"
 };
 
 const search = (state = initialState, action) => {
@@ -30,7 +30,7 @@ const search = (state = initialState, action) => {
 export default search;
 
 // state selectors
-export const getQuery = (state) => state.search.query;
-export const getConfig = (state) => state.search.config;
-export const getSortType = (state) => state.search.sortType;
+export const getQuery = state => state.search.query;
+export const getConfig = state => state.search.config;
+export const getSortType = state => state.search.sortType;
 

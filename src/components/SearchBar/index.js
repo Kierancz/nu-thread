@@ -1,5 +1,7 @@
 import React from 'react';
 import Downshift from 'downshift';
+import keycode from 'keycode';
+
 import Paper from '@material-ui/core/Paper';
 import { renderSuggestion, getSuggestions } from './renderSuggestions';
 import styled from 'styled-components';
@@ -11,14 +13,14 @@ const StyledRoot = styled.span`
 const StyledPaper = styled(Paper)`
   position: absolute;
   z-index: 1;
-  margin-top: 0px;
+  margin-top: 0;
   left: 0;
   right: 0;
 `;
 
 class SearchBar extends React.Component {
   state = {
-    inputValue: '',
+    inputValue: ''
   };
 
   handleInputChange = event => {
@@ -27,6 +29,12 @@ class SearchBar extends React.Component {
   handleChange = item => {
     this.setState({ inputValue: item });
     this.props.onSearch(item);
+  };
+  handleKeyDown = event => {
+    const { inputValue } = this.state;
+    if(keycode(event) === 'enter') {
+      this.props.onSearch(inputValue);
+    }
   };
 
   render() {
@@ -37,6 +45,7 @@ class SearchBar extends React.Component {
         <Downshift
           inputValue={inputValue}
           onChange={this.handleChange}
+          on
         >
           {
             ({
@@ -55,6 +64,7 @@ class SearchBar extends React.Component {
                       placeholder: 'Search',
                       id: 'clothing-search',
                       onChange: this.handleInputChange,
+                      onKeyDown: this.handleKeyDown
                     }),
                   })
                 }
