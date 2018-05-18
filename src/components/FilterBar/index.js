@@ -8,7 +8,8 @@ import { Manager, Target, Popper } from 'react-popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import styled from 'styled-components';
 
-import { Sort, SortAscending, SortDescending } from 'mdi-material-ui'
+import StyledIcon from '../Styled/icon';
+import { Sort, SortAscending, SortDescending, Poll, Clock } from 'mdi-material-ui'
 
 const StyledRoot = styled.span`
   display: flex;
@@ -16,23 +17,21 @@ const StyledRoot = styled.span`
 const StyledPopper = styled(Popper)`
   pointer-events: 'none';
 `;
-const StyledSort = styled(Sort)`
-  margin-right: 0.5em;
-`;
-const StyledSortDesc = styled(SortDescending)`
-  margin-left: 0.5em;
-`;
-const StyledSortAsc = styled(SortAscending)`
-  margin-left: 0.5em;
-`;
+const StyledSort = StyledIcon(Sort);
+const StyledBestMatch = StyledIcon(Poll);
+const StyledEndSoon = StyledIcon(Clock);
+const StyledSortDesc = StyledIcon(SortDescending);
+const StyledSortAsc = StyledIcon(SortAscending);
 
 class FilterBar extends React.Component {
   state = {
-    open: false,
+    open: false
   };
+
   handleClick = () => {
     this.setState({ open: true });
   };
+
   handleClose = () => {
     this.setState({ open: false });
   };
@@ -49,7 +48,7 @@ class FilterBar extends React.Component {
               aria-haspopup="true"
               onClick={this.handleClick}
             >
-              <StyledSort />
+              <StyledSort pos="left" />
               Sort
             </Button>
           </Target>
@@ -71,27 +70,29 @@ class FilterBar extends React.Component {
                       sortType='BEST_MATCH'
                       handleClose={this.handleClose}
                     >
+                      <StyledBestMatch pos="left" />
                       Best Match
                     </FilterLink>
                     <FilterLink
                       sortType='END_SOON'
                       handleClose={this.handleClose}
                     >
-                      Ending Soon
+                      <StyledEndSoon pos="left" />
+                      End Soon
                     </FilterLink>
                     <FilterLink
                       sortType='PRICE_ASC'
                       handleClose={this.handleClose}
                     >
-                      Price
-                      <StyledSortAsc />
+                      <StyledSortAsc pos="left" />
+                      Price Ascd.
                     </FilterLink>
                     <FilterLink
                       sortType='PRICE_DESC'
                       handleClose={this.handleClose}
                     >
-                      Price
-                      <StyledSortDesc />
+                      <StyledSortDesc pos="left" />
+                      Price Dscd.
                     </FilterLink>
                   </MenuList>
                 </Paper>

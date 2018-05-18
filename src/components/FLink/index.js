@@ -12,7 +12,7 @@ const FLink = ({
       style={{
         backgroundColor: active? 'rgba(0,0,0,.2)' : ''
       }}
-      onClick={ (e) => {
+      onClick={(e) => {
         e.preventDefault();
         if(!active) onClick();
         handleClose();

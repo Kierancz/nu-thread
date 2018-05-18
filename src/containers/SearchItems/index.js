@@ -2,16 +2,21 @@ import { connect } from 'react-redux';
 import SearchBar from '../../components/SearchBar';
 import { addQuery } from '../../redux/actions/search';
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = state => {
   return {
-    onSearch: (query) => {
+    query: state.search.query
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    onSearch: query => {
       dispatch(addQuery(query));
     }
   }
 }
 
 const SearchItems = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SearchBar);
 

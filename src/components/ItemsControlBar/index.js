@@ -11,6 +11,9 @@ const ControlBar = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 0.5em;
+  @media only screen and (max-width: 550px) {
+    justify-content: start;
+  }
 `;
 const PullRight = styled.div`
   margin-right: 0.5em;

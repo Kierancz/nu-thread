@@ -14,7 +14,7 @@ import {
   StyledDialogContentText, 
   StyledControl, 
   StyledRadioGroup, 
-  StyledIcon, 
+  StyledAccount, 
   StyledDialogActions
 } from './styles';
 
@@ -70,7 +70,7 @@ class ProfileForm extends React.Component {
           color="primary"
           onClick={this.handleClickOpen}
         >
-          <StyledIcon />
+          <StyledAccount pos="left" />
           Fit
         </Button>
 
@@ -110,10 +110,10 @@ class ProfileForm extends React.Component {
                   value={this.state.upper}
                   onChange={this.handleUpperChange}
                 >
-                  <FormControlLabel value="S" control={<Radio />} label="Small" />
-                  <FormControlLabel value="M" control={<Radio />} label="Medium" />
-                  <FormControlLabel value="L" control={<Radio />} label="Large" />
-                  <FormControlLabel value="XL" control={<Radio />} label="Extra Large" />
+                  <FormControlLabel value="S" control={<Radio />} label="Sm" />
+                  <FormControlLabel value="M" control={<Radio />} label="Md" />
+                  <FormControlLabel value="L" control={<Radio />} label="Lg" />
+                  <FormControlLabel value="XL" control={<Radio />} label="XL" />
                 </StyledRadioGroup>
               </StyledControl>
 
@@ -125,8 +125,8 @@ class ProfileForm extends React.Component {
                   value={this.state.fit}
                   onChange={this.handleFitChange}
                 >
-                  <FormControlLabel value="slim" control={<Radio />} label="Slim Fit" />
-                  <FormControlLabel value="athletic" control={<Radio />} label="Athletic Fit" />
+                  <FormControlLabel value="slim" control={<Radio />} label="Slim" />
+                  <FormControlLabel value="athletic" control={<Radio />} label="Athletic" />
                   <FormControlLabel value="bigTall" control={<Radio />} label="Big & Tall" />
                 </StyledRadioGroup>
               </StyledControl>

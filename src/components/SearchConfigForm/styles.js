@@ -18,8 +18,10 @@ export const StyledIconButton = styled(IconButton)`
   }
 `;
 export const StyledDialogActions = styled(DialogActions)`
-  margin-right: 1em !important;
-  margin-bottom: 1em !important;
+  && {
+    margin-right: 1em;
+    margin-bottom: 1em;
+  }
 `;
 export const StyledSelect = styled(Select)`
   min-width: 120px;

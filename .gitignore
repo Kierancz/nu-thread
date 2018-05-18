@@ -21,10 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /.vscode
-fire.js
 data
-.firebaserc
-database.rules.json
-firebase.json
+fire.js
 package-lock.json
 

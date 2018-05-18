@@ -8,31 +8,42 @@ import {
   StyledDetails,
   StyledControls,
   StyledCardMedia,
-  StyledButton
+  StyledPrice,
+  StyledLink
  } from './styles';
 
 class ItemCard extends React.Component {
   render() {
     const { item } = this.props;
-    const price = item.sellingStatus?
+    const { sellingStatus, galleryURL, title, viewItemURL, listingInfo } = item;
+    const price = sellingStatus?
       parseFloat(
-        item
-        .sellingStatus[0]
+        sellingStatus[0]
         .convertedCurrentPrice[0]
         .__value__)
       .toFixed(2)
       :
       'N/A';
-    const image   = item.galleryURL?    item.galleryURL[0]  : 'No Image';
-    const title   = item.title?         item.title[0]       : 'No Title';
-    const viewURL = item.viewItemURL?   item.viewItemURL[0] : '#';
+    const image   = galleryURL?    galleryURL[0]  : 'No Image';
+    const name    = title?         title[0]       : 'No Title';
+    const viewURL = viewItemURL?   viewItemURL[0] : '#';
+    // const isBuyNow  = listingInfo[0].buyItNowAvailable[0] === 'true';
+    const isObo     = listingInfo[0].bestOfferEnabled[0]  === 'true';
+    const isAuction = listingInfo[0].listingType[0]       === 'Auction';
 
+    const itemType = !isAuction? 
+      <StyledLink href={viewURL} target="_blank">Buy Now</StyledLink> : 
+      <StyledLink href={viewURL} target="_blank">Bid</StyledLink>;
+    const obo = isObo? 
+      <StyledLink href={viewURL} target="_blank">Make Offer</StyledLink> 
+      : '';
+    
     return (
       <Column xs={12} sm={12} md={6} lg={4} fluid={true}>
         <StyledCard>
           <StyledCardMedia
             image={image}
-            title={title}
+            title={name}
           />
           <StyledDetails>
             <StyledCardContent>
@@ -41,16 +52,11 @@ class ItemCard extends React.Component {
               </Typography>
             </StyledCardContent>
             <StyledControls>
-              <Typography component="h3">
+              <StyledPrice>
                 $ {price}
-              </Typography>
-              <StyledButton
-                color="primary"
-                href={viewURL}
-                target="_blank"
-              >
-                View on Ebay
-              </StyledButton>
+              </StyledPrice>
+              {obo}
+              {itemType}
             </StyledControls>
           </StyledDetails>
         </StyledCard>
