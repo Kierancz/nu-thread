@@ -8,7 +8,7 @@ export const fetchItems = (params) => {
 
   const genderAspect = "&aspectFilter.aspectName=Size+%28"+gender+"%27s%29"
   const sizeAspect = "&aspectFilter.aspectValueName="+size;
-  const itemNum = "30";
+  const itemNum = "24";
   const pageNumber = pageNum? "&paginationInput.pageNumber="+pageNum : '';
   const sortOrder = getSortOrder(sortType);
   

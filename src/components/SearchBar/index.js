@@ -35,16 +35,14 @@ const StyledClearIcon = styled.a`
   top: 0;
   right: 0;
   align-items: center;
-  /* pointer-events: none; */
   justify-content: center;
   > svg {
-    fill: grey;
+    fill: black;
     &:hover {
       fill: black;
     }
   }
 `;
-
 
 const StyledRoot = styled.span`
   line-height: 48px;

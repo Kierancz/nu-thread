@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column } from 'hedron';
+// import { Column } from 'hedron';
 //import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import {
@@ -39,28 +39,26 @@ class ItemCard extends React.Component {
       : '';
     
     return (
-      <Column xs={12} sm={12} md={6} lg={4} fluid={true}>
-        <StyledCard>
-          <StyledCardMedia
-            image={image}
-            title={name}
-          />
-          <StyledDetails>
-            <StyledCardContent>
-              <Typography component="h4">
-                {title}
-              </Typography>
-            </StyledCardContent>
-            <StyledControls>
-              <StyledPrice>
-                $ {price}
-              </StyledPrice>
-              {obo}
-              {itemType}
-            </StyledControls>
-          </StyledDetails>
-        </StyledCard>
-      </Column>
+      <StyledCard>
+        <StyledCardMedia
+          image={image}
+          title={name}
+        />
+        <StyledDetails>
+          <StyledCardContent>
+            <Typography component="h4">
+              {title}
+            </Typography>
+          </StyledCardContent>
+          <StyledControls>
+            <StyledPrice>
+              $ {price}
+            </StyledPrice>
+            {obo}
+            {itemType}
+          </StyledControls>
+        </StyledDetails>
+      </StyledCard>
     );
   }
 }

@@ -103,7 +103,7 @@ class ProfileForm extends React.Component {
               </StyledControl>
 
               <StyledControl component="fieldset">
-                <FormLabel component="legend">Upper Size</FormLabel>
+                <FormLabel component="legend">Size</FormLabel>
                 <StyledRadioGroup
                   aria-label="upper size"
                   name="upper-size"
@@ -118,7 +118,7 @@ class ProfileForm extends React.Component {
               </StyledControl>
 
               <StyledControl component="fieldset">
-                <FormLabel component="legend">Fit Preference</FormLabel>
+                <FormLabel component="legend">Fit</FormLabel>
                 <StyledRadioGroup
                   aria-label="general fit"
                   name="fit"

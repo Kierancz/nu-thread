@@ -11,11 +11,11 @@ import StyledIcon from '../Styled/icon';
 export const StyledControlWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0.5em;
 `;
 export const StyledDialogContentText = styled(DialogContentText)` 
   && {
-    margin-left: 1.5em;
+    padding: 0;
+    margin: 1em;
   }
 `;
 export const StyledControl = styled(FormControl)` 
@@ -24,7 +24,7 @@ export const StyledControl = styled(FormControl)`
   }
 `;
 export const StyledRadioGroup = styled(RadioGroup)`
-  margin: 1em 0px;
+  margin: 1em 0;
 `;
 export const StyledAccount = StyledIcon(AccountPlus);
 export const StyledDialogActions = styled(DialogActions)`

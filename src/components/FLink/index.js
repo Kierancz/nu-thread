@@ -10,7 +10,8 @@ const FLink = ({
   return (
     <MenuItem
       style={{
-        backgroundColor: active? 'rgba(0,0,0,.2)' : ''
+        backgroundColor: active? '#3f51b5' : '',
+        color: active? 'white' : 'black'
       }}
       onClick={(e) => {
         e.preventDefault();

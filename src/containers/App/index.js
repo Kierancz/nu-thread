@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../Home';
 import About from '../About';
 import Items from '../Items';
+//import StyledBackground from '../../components/Styled/background';
 
 class App extends Component {
   render() {
