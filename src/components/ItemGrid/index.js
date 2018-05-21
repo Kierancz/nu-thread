@@ -27,6 +27,9 @@ class ItemGrid extends React.Component {
       <MotionGrid
         columns={4}
         responsive={{lg: 3, md: 4, sm: 6, xs: 12}}
+        springOptions={{
+          precision: 0.1
+        }}
       >
         { renderItems }
       </MotionGrid>) : null;

@@ -7,6 +7,8 @@ export default class FadeInAnimation {
   }
 
   getWrapper(children, { opacity, translateY }) {
+    // opacity += 0.1;
+    // translateY += 4;
     return (
       <div style={{
         opacity: opacity,
@@ -37,14 +39,20 @@ export default class FadeInAnimation {
           translateY: spring(0, springOptions),
         };
       }
-      else if(prevFrameStyles[index - 1].opacity < 0.4)
+      else if(prevFrameStyles[index - 1].opacity < 0.1)
       {
         return prevFrameStyles[index];
       }
       else {
+        const percentChange = 0.8;
+        const translateChange = parseFloat(40 * percentChange);
+        const opacityChange = parseFloat(1 * percentChange);
+        const prevStyles = prevFrameStyles[index - 1];
+        const prevOpac = (prevStyles.opacity >= opacityChange)? 1 : prevStyles.opacity + opacityChange;
+        const prevTransY = (prevStyles.translateY <= translateChange)? 0 : prevStyles.translateY - translateChange;
         return {
-          opacity: spring(prevFrameStyles[index - 1].opacity, springOptions),
-          translateY: spring(prevFrameStyles[index - 1].translateY, springOptions),
+          opacity: spring(prevOpac, springOptions),
+          translateY: spring(prevTransY, springOptions),
         };
       }
     });

@@ -39,6 +39,7 @@ export default class MotionGrid extends React.Component {
     springOptions: PropTypes.shape({
       stiffness: PropTypes.number,
       damping: PropTypes.number,
+      precision: PropTypes.number
     }),
     // Whether or not to enable placeholders.
     enablePlaceholders: PropTypes.bool,
@@ -160,7 +161,7 @@ export default class MotionGrid extends React.Component {
         <div key={i} style={{ overflow: 'hidden' }}>
           <Row>
             {columns.map((column, j) => {
-              const columnStyle = styles[k++] || {};
+              const columnStyle = styles[k++ + 1] || {};
 
               const width = ((column.width * 100) / 12).toString()+'%';
 
@@ -279,7 +280,7 @@ export default class MotionGrid extends React.Component {
     if(width >= 992 && width < 1200)
       columns = md;
     else if(width >= 768 && width < 992)
-    columns = md;
+      columns = sm;
     else if(width < 768) {
       columns = xs;
     }
@@ -308,10 +309,6 @@ export default class MotionGrid extends React.Component {
     if(responsive) columns = this.getResponsiveColumns(responsive, width);
 
     const isDataLoaded = children.length > 0;
-
-    // let renderColumns = columns;
-    // console.log('get res cols: ', this.getResponsiveColumns(responsive, width));
-    // //if(responsive) renderColumns = this.getResponsiveColumns(responsive, width);
 
     if(enablePlaceholders && (!isDataLoaded || forceShowPlaceholders)) {
       return this.renderPlaceholders({ columns, placeholderItem, placeholderRows });
