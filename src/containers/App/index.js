@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path='/items' component={Items} />
         </Switch>
 
-        {React.cloneElement(this.props.children, this.props)}
+        {/* {React.cloneElement(this.props.children, this.props)} */}
       </div>
     );
   }

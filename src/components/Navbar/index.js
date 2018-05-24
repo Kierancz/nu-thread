@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Router,Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
@@ -52,3 +52,21 @@ const Navbar = (props) => {
 };
 
 export default Navbar;
+
+      // <BrowserRouter>
+      //   <StyledLink to="/">
+      //     <StyledLogoText>
+      //       nu-thread
+      //     </StyledLogoText>
+      //   </StyledLink>
+      //   <StyledLink to="/about">
+      //     About
+      //   </StyledLink>
+      //   <StyledLink to="/items">
+      //     Items
+      //   </StyledLink>
+
+      //   <Route exact path="/" component={Home} />
+      //   <Route path="/about" component={About} />
+      //   <Route path="/items" component={Items} />
+      // </BrowserRouter>

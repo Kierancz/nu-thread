@@ -7,8 +7,6 @@ export default class FadeInAnimation {
   }
 
   getWrapper(children, { opacity, translateY }) {
-    // opacity += 0.1;
-    // translateY += 4;
     return (
       <div style={{
         opacity: opacity,
@@ -27,7 +25,7 @@ export default class FadeInAnimation {
     }));
   }
 
-  calculateNextFrame = ({ startAnimate, springOptions, prevFrameStyles }) => {
+  calculateNextFrame = ({ startAnimate, springOptions, prevFrameStyles, percentChange }) => {
     if (!startAnimate) {
       return this.getInitialStyles(prevFrameStyles);
     }
@@ -44,12 +42,15 @@ export default class FadeInAnimation {
         return prevFrameStyles[index];
       }
       else {
-        const percentChange = 0.8;
+        // const percentChange = 2;
         const translateChange = parseFloat(40 * percentChange);
         const opacityChange = parseFloat(1 * percentChange);
         const prevStyles = prevFrameStyles[index - 1];
-        const prevOpac = (prevStyles.opacity >= opacityChange)? 1 : prevStyles.opacity + opacityChange;
-        const prevTransY = (prevStyles.translateY <= translateChange)? 0 : prevStyles.translateY - translateChange;
+        const prevOpac = (prevStyles.opacity >= opacityChange)? 
+          1 : prevStyles.opacity + opacityChange;
+        const prevTransY = (prevStyles.translateY <= translateChange)? 
+          0 : prevStyles.translateY - translateChange;
+
         return {
           opacity: spring(prevOpac, springOptions),
           translateY: spring(prevTransY, springOptions),

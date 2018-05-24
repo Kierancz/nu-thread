@@ -161,7 +161,7 @@ export default class MotionGrid extends React.Component {
         <div key={i} style={{ overflow: 'hidden' }}>
           <Row>
             {columns.map((column, j) => {
-              const columnStyle = styles[k++ + 1] || {};
+              const columnStyle = styles[k++] || {};
 
               const width = ((column.width * 100) / 12).toString()+'%';
 
@@ -190,7 +190,8 @@ export default class MotionGrid extends React.Component {
     columns,
     animation,
     startAnimate,
-    springOptions
+    springOptions,
+    percentChange
   }, index) {
     const rows = this.getRows(patch, columns);
     if (rows.length === 0) {
@@ -218,6 +219,7 @@ export default class MotionGrid extends React.Component {
         styles={(prevFrameStyles) => animation.calculateNextFrame({
           startAnimate,
           prevFrameStyles,
+          percentChange
         })}>
         {styles => (
           <div>
@@ -303,6 +305,7 @@ export default class MotionGrid extends React.Component {
       minimumPlaceholdersTime,
       children,
       responsive,
+      percentChange,
       ...props,
     } = this.props;
     let { columns } = this.props;
@@ -316,7 +319,7 @@ export default class MotionGrid extends React.Component {
 
     return (
       <div {...props}>
-        {this.renderPatches({ patches, animation, columns, startAnimate, springOptions })}
+        {this.renderPatches({ patches, animation, columns, startAnimate, springOptions, percentChange })}
       </div>
     );
   }
