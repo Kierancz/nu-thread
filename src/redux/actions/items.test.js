@@ -2,7 +2,7 @@ import {
   requestItems,
   receiveItems,
   requestItemPage, 
-  receivePageItems 
+  receiveItemPage 
 } from './items';
 
 test('should setup requestItems action object', () => {
@@ -27,18 +27,11 @@ test('should setup requestItemPage action object', () => {
     nextPage: 3
   });
 });
-test('should setup receivePageItems action object', () => {
-  const action = receivePageItems(2, { name: 'item name' });
+test('should setup receiveItemPage action object', () => {
+  const action = receiveItemPage(2, { name: 'item name' });
   expect(action).toEqual({
-    type: 'RECEIVE_PAGE_ITEMS',
+    type: 'RECEIVE_ITEM_PAGE',
     nextPage: 2,
     items: { name: 'item name' }
   });
 });
-
-
-
-// import REQUEST_ITEMS
-// RECEIVE_ITEMS
-// REQUEST_ITEM_PAGE
-// RECEIVE_PAGE_ITEMS

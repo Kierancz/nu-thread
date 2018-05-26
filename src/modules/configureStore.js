@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 //import rootReducer from '../reducers';
 import rootReducer from '../redux/reducers/index';
 import { createLogger } from 'redux-logger';
-import rootSaga from '../redux/sagas';
+import rootSaga from '../redux/sagas/sagas';
 
 const initialState = {
   items: []

@@ -21,7 +21,7 @@ const items = (state = {}, action) => {
         nextPage: action.nextPage,
         isLoading: true
       }
-    case 'RECEIVE_PAGE_ITEMS':
+    case 'RECEIVE_ITEM_PAGE':
       const items = state.items.slice();
       // mutate items copy by merging with new items
       Array.prototype.push.apply(items, action.items);

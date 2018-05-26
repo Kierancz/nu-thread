@@ -1,12 +1,12 @@
-import { fetchItems } from '../modules/ebay';
+import { fetchItems } from '../../modules/ebay';
 import {
   requestItems,
   receiveItems,
-  receivePageItems
-} from './actions/items';
-import { getSortType } from './reducers/search';
-import { getProfile } from './reducers/profile';
-import { getQuery, getConfig } from './reducers/search';
+  receiveItemPage
+} from '../actions/items';
+import { getSortType } from '../reducers/search';
+import { getProfile } from '../reducers/profile';
+import { getQuery, getConfig } from '../reducers/search';
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
 export function* getItems(action) {
@@ -33,7 +33,7 @@ export function* getItems(action) {
     if(isFirstPage) {
       yield put(receiveItems(items, lastPage));
     } else {
-      yield put(receivePageItems(action.nextPage, items));
+      yield put(receiveItemPage(action.nextPage, items));
     }
   } 
   catch(e) {

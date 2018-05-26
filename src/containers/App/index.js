@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from '../../components/Navbar';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router';
 import Home from '../Home';
 import About from '../About';
 import Items from '../Items';
@@ -12,11 +12,11 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <Switch>
+        <div>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
           <Route exact path='/items' component={Items} />
-        </Switch>
+        </div>
 
         {/* {React.cloneElement(this.props.children, this.props)} */}
       </div>

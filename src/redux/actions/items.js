@@ -1,7 +1,7 @@
 export const REQUEST_ITEMS = "REQUEST_ITEMS";
 export const RECEIVE_ITEMS = "RECEIVE_ITEMS";
 export const REQUEST_ITEM_PAGE = "REQUEST_ITEM_PAGE";
-export const RECEIVE_PAGE_ITEMS = "RECEIVE_PAGE_ITEMS";
+export const RECEIVE_ITEM_PAGE = "RECEIVE_ITEM_PAGE";
 
 export const requestItems = (query) => {
   return {
@@ -22,9 +22,9 @@ export const requestItemPage = (nextPage) => {
     nextPage
   };
 };
-export const receivePageItems = (nextPage, items) => {
+export const receiveItemPage = (nextPage, items) => {
   return {
-    type: 'RECEIVE_PAGE_ITEMS',
+    type: 'RECEIVE_ITEM_PAGE',
     nextPage,
     items
   }
