@@ -8,14 +8,28 @@ const StyledInputContainer = styled.span`
 const StyledInput = styled.input`
   font: inherit;
   color: inherit;
-  border: 0;
+  border-radius: 6px;
   margin: 0;
-  padding: 8px 8px 8px 72px;
+  padding: 10px 8px 10px 40px;
   display: block;
   background: none;
   white-space: normal;
-  @media only screen and (max-width: 320px) {
-    width: 140px;
+  border: 2px solid rgba(0,0,0,.2);
+
+  width: 60px;
+  -webkit-transition: width .5s;
+	-moz-transition: width .5s;
+	transition: width .5s;
+  &:hover {
+    border: 2px solid rgba(0,0,0,.5);
+  }
+  &:focus {
+    width: 200px;
+    outline: none;
+    border: 2px solid #003EFF;
+    @media only screen and (max-width: 320px) {
+      width: 170px;
+    }
   }
 `;
 
