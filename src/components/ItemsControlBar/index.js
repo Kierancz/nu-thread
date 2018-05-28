@@ -5,46 +5,58 @@ import FilterBar from '../FilterBar';
 import Profile from '../../containers/Profile';
 import SearchItems from '../../containers/SearchItems';
 import SearchConfig from '../../containers/SearchConfig';
+import ControlBar from '../ControlBar';
 
-const ControlBar = styled.div`
+const Controls = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 0.5em;
+  z-index: 3;
 `;
-const PullRight = styled.div`
-  margin-right: 0.5em;
-`;
-const PullLeft = styled.div`
-  margin-left: 0.5em;
-`;
-const Center = styled.div`
-  display: flex;
-  margin-left: 0.5em;
-  @media only screen and (max-width: 550px) {
-    order: 1;
-    margin-top: 0.5em;
-    margin-right: 0.5em;
+
+export default class ItemsControlBar extends React.Component {
+  state = {
+    isMobile: false
+  };
+  constructor(props) {
+    super(props);
+    this.updateDimensions = this.updateDimensions.bind(this);
   }
-`;
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  };
+  componentWillMount() {
+    this.updateDimensions();
+  };
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
+  };
+  updateDimensions() {
+    let w = window,
+        d = document,
+        documentElement = d.documentElement,
+        body = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
 
-const ItemsControlBar = () => {
-  return (
-    <ControlBar>
-      <PullLeft>
-        <Profile />
-      </PullLeft>
+    this.setState({ isMobile: width < 600 });
+  };
 
-      <Center>
-        <SearchItems />
-        <SearchConfig />
-      </Center>
+  render() {
+    const { isMobile } = this.state;
+    return (
+      <ControlBar>
+        <Controls>
+          <Profile isMobile={isMobile} />
 
-      <PullRight>
-        <FilterBar />
-      </PullRight>
-    </ControlBar>
-  );
+          <div>
+            <SearchConfig />
+            <SearchItems />
+          </div>
+
+          <FilterBar isMobile={isMobile}/>
+        </Controls>
+      </ControlBar>
+    );
+  }
 };
-
-export default ItemsControlBar;

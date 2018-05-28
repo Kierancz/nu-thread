@@ -3,18 +3,21 @@ import Downshift from 'downshift';
 import keycode from 'keycode';
 
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import { renderSuggestion, getSuggestions } from './renderSuggestions';
 import styled from 'styled-components';
 import renderInput from './renderInput';
-import { Magnify, Close } from 'mdi-material-ui';
+import { Magnify, Close, ArrowRightBoldCircle } from 'mdi-material-ui';
 
 const StyledSearchContainer = styled.span`
   display: inline-block;
   position: relative;
   /* background: rgba(0, 0, 0, 0.1); */
-  border-radius: 6px;
+  border-radius: 6px 0 0 6px;
   line-height: normal;
   justify-content: center;
+  color: black;
 `;
 const StyledSearchIcon = styled.div`
   width: 50px;
@@ -41,7 +44,15 @@ const StyledClearIcon = styled.a`
     }
   }
 `;
-
+export const StyledIconButton = styled(IconButton)`
+  && {
+    margin-left: 4px;
+  }
+  &&:hover {
+    color: black;
+    background: rgba(0,0,0,0.1);
+  }
+`;
 const StyledRoot = styled.span`
   line-height: 48px;
 `;
@@ -76,7 +87,6 @@ class SearchBar extends React.Component {
     }
   };
   handleClearInput = () => {
-    console.log('handling clear...');
     this.setState({ inputValue: '' });
     this.props.onSearch('');
   };
@@ -93,7 +103,6 @@ class SearchBar extends React.Component {
         <Downshift
           inputValue={inputValue}
           onChange={this.handleChange}
-          on
         >
           {
             ({

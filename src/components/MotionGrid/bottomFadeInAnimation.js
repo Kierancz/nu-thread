@@ -42,7 +42,6 @@ export default class FadeInAnimation {
         return prevFrameStyles[index];
       }
       else {
-        // const percentChange = 2;
         const translateChange = parseFloat(40 * percentChange);
         const opacityChange = parseFloat(1 * percentChange);
         const prevStyles = prevFrameStyles[index - 1];

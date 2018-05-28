@@ -10,13 +10,16 @@ const StyledInput = styled.input`
   color: inherit;
   border-radius: 6px;
   margin: 0;
-  padding: 10px 8px 10px 40px;
+  padding: 10px 40px 10px 40px;
   display: block;
   background: none;
   white-space: normal;
   border: 2px solid rgba(0,0,0,.2);
 
-  width: 60px;
+  width: 100px;
+  @media (max-width: 400px) {
+    width: 80px;
+  }
   -webkit-transition: width .5s;
 	-moz-transition: width .5s;
 	transition: width .5s;
@@ -24,11 +27,13 @@ const StyledInput = styled.input`
     border: 2px solid rgba(0,0,0,.5);
   }
   &:focus {
-    width: 200px;
     outline: none;
     border: 2px solid #003EFF;
-    @media only screen and (max-width: 320px) {
-      width: 170px;
+    @media (min-width: 700px) {
+      width: 200px;
+    }
+    @media (max-width: 400px) {
+      width: 100px;
     }
   }
 `;

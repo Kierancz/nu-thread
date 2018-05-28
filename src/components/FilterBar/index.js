@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import FilterLink from '../../containers/FilterLink';
 import StyledIcon from '../Styled/icon';
@@ -9,6 +10,7 @@ import { Sort, SortAscending, SortDescending, Poll, Clock } from 'mdi-material-u
 
 const StyledRoot = styled.span`
   display: flex;
+  align-self: center;
 `;
 const StyledSort = StyledIcon(Sort);
 const StyledBestMatch = StyledIcon(Poll);
@@ -30,17 +32,28 @@ class FilterBar extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
+    const { isMobile } = this.props;
+    const SortButton = isMobile? 
+      (<IconButton
+        aaria-owns={anchorEl ? 'sort-menu' : null}
+        aria-haspopup="true"
+        onClick={this.handleClick}
+      >
+        <StyledSort />
+      </IconButton>) 
+      : 
+      (<Button
+        aria-owns={anchorEl ? 'sort-menu' : null}
+        aria-haspopup="true"
+        onClick={this.handleClick}
+      >
+        <StyledSort pos="left" />
+        Sort
+      </Button>);
 
     return (
       <StyledRoot>
-        <Button
-          aaria-owns={anchorEl ? 'sort-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          <StyledSort pos="left" />
-          Sort
-        </Button>
+        { SortButton }
         <Menu
           id="sort-menu"
           anchorEl={anchorEl}

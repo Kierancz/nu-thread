@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import { StaggeredMotion, presets } from 'react-motion';
-import styled from 'styled-components';
+import { presets } from 'react-motion';
 import bottomFadeIn from './bottomFadeInAnimation';
-
-const Row = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  box-sizing: content-box;
-`;
+import {
+  renderPatches, 
+  renderPlaceholders, 
+  getResponsiveColumns
+} from './render';
 
 const animation = new bottomFadeIn();
 
@@ -128,166 +126,7 @@ export default class MotionGrid extends React.Component {
     }
   }
 
-  getRows(patch, columns) {
-    let rows = [], rowLength = 0;
-    const length = columns.length || patch.length;
-
-    for (let i = 0; i < length; i++) {
-      const columnWidth = columns[i] || columns;
-      if (rowLength <= 0) {
-        rowLength = 12;
-        rows.push([]);
-      }
-
-      rows[rows.length - 1].push({
-        element: patch[i],
-        width: columnWidth,
-      });
-      rowLength = rowLength - columnWidth;
-    }
-
-    return rows;
-  }
-
-  isVisible({ opacity }) {
-    return opacity > 0.1;
-  }
-
-  renderRows({ rows, animation, styles, isPlaceholders = false }) {
-    let k = 0;
-
-    return rows.map((columns, i, rows) => {
-      return (
-        <div key={i} style={{ overflow: 'hidden' }}>
-          <Row>
-            {columns.map((column, j) => {
-              const columnStyle = styles[k++] || {};
-
-              const width = ((column.width * 100) / 12).toString()+'%';
-
-              if(column.element && (!animation || animation.isVisible(columnStyle))) {
-                return (
-                  <div
-                    style={{width: width}}
-                    key={j}
-                  >
-                    {animation ? animation.getWrapper(column.element, columnStyle) : column.element}
-                  </div>
-                );
-              }
-              return null;
-            }).filter(ele => !!ele)}
-          </Row>
-        </div>
-      )
-    });
-  }
-
-  renderPatch({
-    isFirst,
-    isLast,
-    patch,
-    columns,
-    animation,
-    startAnimate,
-    springOptions,
-    percentChange
-  }, index) {
-    const rows = this.getRows(patch, columns);
-    if (rows.length === 0) {
-      return <div></div>;
-    }
-
-    if (this.props.disableAnimation) {
-      return (
-        <div key={index}>
-          {this.renderRows({
-            rows,
-            styles: new Array(patch.length).fill({
-              opacity: 1,
-              translateX: 0,
-            }),
-          })}
-        </div>
-      );
-    }
-
-    return (
-      <StaggeredMotion
-        key={index}
-        defaultStyles={animation.getInitialStyles(patch)}
-        styles={(prevFrameStyles) => animation.calculateNextFrame({
-          startAnimate,
-          prevFrameStyles,
-          percentChange
-        })}>
-        {styles => (
-          <div>
-            {this.renderRows({
-              rows,
-              styles,
-              animation,
-            })}
-          </div>
-        )}
-      </StaggeredMotion>
-    )
-  }
-
-  renderPatches({ patches, ...args }) {
-    return patches.map((patch, index) =>
-      this.renderPatch({
-        isFirst: index === 0,
-        isLast: index === patches.length - 1,
-        patch,
-        ...args,
-      }, index));
-  }
-
-  getNumberOfShellItems({ columns, placeholderRows }) {
-    if(!isNaN(columns)) {
-      return Math.floor((12 / columns) * placeholderRows);
-    }
-
-    let addition = 0;
-    for (var i = 0; i < columns.length; i++) {
-      if(addition >= (placeholderRows * 12)) {
-        return i ;
-      } else {
-        addition = columns[i] + addition;
-      }
-    }
-  }
-
-  renderPlaceholders({ columns, placeholderItem, placeholderRows }) {
-    const noOfShellItems = this.getNumberOfShellItems({ columns, placeholderRows });
-    const patch = new Array(noOfShellItems).fill(placeholderItem);
-    const rows = this.getRows(patch, columns);
-    return (
-      <div>
-        {this.renderRows({
-          rows,
-          styles: new Array(patch.length).fill({
-            opacity: 1,
-            translateX: 0,
-          }),
-          isPlaceholders: true,
-        })}
-      </div>
-    );
-  }
-
-  getResponsiveColumns({ xs, sm, md, lg }, width) {
-    let columns = lg
-    if(width >= 992 && width < 1200)
-      columns = md;
-    else if(width >= 768 && width < 992)
-      columns = sm;
-    else if(width < 768) {
-      columns = xs;
-    }
-    return columns;
-  }
+  
 
   render() {
     const {
@@ -309,17 +148,17 @@ export default class MotionGrid extends React.Component {
       ...props,
     } = this.props;
     let { columns } = this.props;
-    if(responsive) columns = this.getResponsiveColumns(responsive, width);
+    if(responsive) columns = getResponsiveColumns(responsive, width);
 
     const isDataLoaded = children.length > 0;
 
     if(enablePlaceholders && (!isDataLoaded || forceShowPlaceholders)) {
-      return this.renderPlaceholders({ columns, placeholderItem, placeholderRows });
+      return renderPlaceholders({ columns, placeholderItem, placeholderRows });
     }
 
     return (
       <div {...props}>
-        {this.renderPatches({ patches, animation, columns, startAnimate, springOptions, percentChange })}
+        {renderPatches({ patches, animation, columns, startAnimate, springOptions, percentChange })}
       </div>
     );
   }

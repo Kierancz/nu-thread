@@ -61,7 +61,7 @@ class SearchConfigForm extends React.Component {
         <Tooltip 
           id="tooltip-icon" 
           title="Search Configuration" 
-          placement="right"
+          placement="left"
         >
           <StyledIconButton
             onClick={this.handleClickOpen}

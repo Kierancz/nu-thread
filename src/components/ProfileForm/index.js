@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import {
   Dialog,
   DialogContent,
@@ -61,18 +62,26 @@ class ProfileForm extends React.Component {
   };
 
   render() {
-    const { fullScreen } = this.props;
+    const { fullScreen, isMobile } = this.props;
+    const AddProfileButton = isMobile? 
+      (<IconButton
+        onClick={this.handleClickOpen}
+      >
+        <StyledAccount />
+      </IconButton>) 
+      :
+      (<Button
+        variant="raised"
+        color="primary"
+        onClick={this.handleClickOpen}
+      >
+        <StyledAccount pos="left" />
+        Fit
+      </Button>);
 
     return (
-      <span>
-        <Button
-          variant="raised"
-          color="primary"
-          onClick={this.handleClickOpen}
-        >
-          <StyledAccount pos="left" />
-          Fit
-        </Button>
+      <span style={{alignSelf: 'center'}}>
+        { AddProfileButton }
 
         <Dialog
           open={this.state.open}

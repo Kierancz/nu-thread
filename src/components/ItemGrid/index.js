@@ -5,6 +5,13 @@ import Spinner from '../Spinner';
 import withInfiniteScroll from '../InfiniteScroll';
 import BackToTop from '../BackToTop';
 import MotionGrid from '../MotionGrid';
+import styled from 'styled-components';
+
+const StyledRoot = styled.div`
+`;
+const ItemWrapper = styled.div`
+  margin: 1em;
+`;
 
 class ItemGrid extends React.Component {
   componentDidMount() {
@@ -32,15 +39,17 @@ class ItemGrid extends React.Component {
       </MotionGrid>) : null;
 
     return(
-      <div>
+      <StyledRoot>
         <ItemsControlBar />
-        { motionGrid }
-        {
-          isLoading?
-            <Spinner message="Loading Items..."/> : ''
-        }
-        <BackToTop />
-      </div>
+        <ItemWrapper>
+          { motionGrid }
+          {
+            isLoading?
+              <Spinner message="Loading Items..."/> : ''
+          }
+          <BackToTop />
+        </ItemWrapper>
+      </StyledRoot>
     );
   }
 }

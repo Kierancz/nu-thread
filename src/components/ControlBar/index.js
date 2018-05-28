@@ -7,9 +7,17 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const StyledRoot = styled.div`
   width: 100%;
+  height: 4em;
+`;
+const StyledContainer = styled.div`
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 const StyledAppBar = styled(AppBar)` && {
-  background: #000;
+  background: white;
 }`;
 const StyledLink = styled(Link)`
   color: white;
@@ -27,28 +35,18 @@ const StyledLogoText = styled.span`
   font-weight: 700;
 `;
 
-const Navbar = (props) => {
+const ControlBar = (props) => {
   return (
     <StyledRoot>
+    <StyledContainer>
       <StyledAppBar position="static">
         <Toolbar>
-          <Center>
-            <StyledLink to="/">
-              <StyledLogoText>
-                nu-thread
-              </StyledLogoText>
-            </StyledLink>
-            <StyledLink to="/about">
-              About
-            </StyledLink>
-            <StyledLink to="/items">
-              Items
-            </StyledLink>
-          </Center>
+          { props.children }
         </Toolbar>
       </StyledAppBar>
+    </StyledContainer>
     </StyledRoot>
   );
 };
 
-export default Navbar;
+export default ControlBar;
