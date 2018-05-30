@@ -14,7 +14,7 @@ import { Menu } from 'mdi-material-ui';
 import styled from 'styled-components';
 import ControlBar from '../../components/ControlBar';
 
-import { NavLinks } from './navLinks';
+import { NavLinks, NavLogo } from './navLinks';
 
 const StyledChildren = styled.div`
   width: 100%;
@@ -68,13 +68,15 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme, header, logo, children } = this.props;
+    const { classes, theme, bar, children } = this.props;
 
     const drawer = (
       <div>
-        { logo }
+        { NavLogo }
         <Divider />
-        { NavLinks }
+        <List>
+          { NavLinks }
+        </List>
       </div>
     );
 
@@ -108,7 +110,8 @@ class ResponsiveDrawer extends React.Component {
             { drawer }
           </Drawer>
         </Hidden>
-        <StyledChildren>
+        { bar }
+        <StyledChildren id="sidenav-content">
           { children }
         </StyledChildren>
       </div>

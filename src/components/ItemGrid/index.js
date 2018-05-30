@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemsControlBar from '../ItemsControlBar';
 import ItemCard from '../ItemCard';
 import Spinner from '../Spinner';
 import withInfiniteScroll from '../InfiniteScroll';
@@ -8,8 +7,6 @@ import MotionGrid from '../MotionGrid';
 import styled from 'styled-components';
 
 const StyledRoot = styled.div`
-`;
-const ItemWrapper = styled.div`
   margin: 1em;
 `;
 
@@ -20,7 +17,11 @@ class ItemGrid extends React.Component {
   }
 
   render() {
-    const { items, isLoading } = this.props;
+    const { 
+      items, 
+      isLoading
+    } = this.props;
+    
     const renderItems = items?
       items.map((item, i) =>
         <ItemCard
@@ -39,16 +40,13 @@ class ItemGrid extends React.Component {
       </MotionGrid>) : null;
 
     return(
-      <StyledRoot>
-        <ItemsControlBar />
-        <ItemWrapper>
-          { motionGrid }
-          {
-            isLoading?
-              <Spinner message="Loading Items..."/> : ''
-          }
-          <BackToTop />
-        </ItemWrapper>
+      <StyledRoot id="item-grid">
+        { motionGrid }
+        {
+          isLoading?
+            <Spinner message="Loading Items..."/> : ''
+        }
+        <BackToTop />
       </StyledRoot>
     );
   }

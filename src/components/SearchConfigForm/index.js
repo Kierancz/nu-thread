@@ -59,9 +59,10 @@ class SearchConfigForm extends React.Component {
     return (
       <span>
         <Tooltip 
-          id="tooltip-icon" 
+          id="advanced-search-tooltip" 
           title="Search Configuration" 
           placement="left"
+          style={{boxSizing: 'none'}}
         >
           <StyledIconButton
             onClick={this.handleClickOpen}
@@ -114,7 +115,7 @@ class SearchConfigForm extends React.Component {
                             'rgba(0,0,0,0)' : 'rgba(0,0,0,0.12)'
                       }}
                     >
-                      {brand}
+                      { brand }
                     </MenuItem>
                   ))
                 }

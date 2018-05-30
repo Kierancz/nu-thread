@@ -3,10 +3,16 @@ import React from 'react';
 const withInfiniteScroll = (Component) =>
   class WithInfiniteScroll extends React.Component {
     componentDidMount() {
-      window.addEventListener('scroll', this.onScroll, false);
+      const { container } = this.props;
+      const elem = container? 
+        document.querySelector(container) : window;
+      elem.addEventListener('scroll', this.onScroll, false);
     }
     componentWillUnmount() {
-      window.removeEventListener('scroll', this.onScroll, false);
+      const { container } = this.props;
+      const elem = container? 
+        document.querySelector(container) : window;
+        elem.removeEventListener('scroll', this.onScroll, false);
     }
 
     onScroll = () => {
@@ -15,13 +21,27 @@ const withInfiniteScroll = (Component) =>
         isLoading, 
         allLoaded, 
         nextPage, 
-        onPaginatedSearch 
+        onPaginatedSearch,
+        container,
+        content
       } = this.props;
-      const height = window.innerHeight;
-      const offsetHeight = document.body.offsetHeight;
 
+      const wrapper = container?
+        document.querySelector(container) : window;
+      const scrollDown = wrapper? 
+        wrapper.scrollTop :
+        window.innerHeight;
+
+      const elem = content? 
+        document.querySelector(content) : 
+        document.body;
+
+      const initialHeight = wrapper.offsetHeight;
+      const offsetHeight = elem.offsetHeight;
+
+      const shouldFetch = (initialHeight + scrollDown >= (offsetHeight - 500));
       if(
-        (height + window.scrollY) >= (offsetHeight - 500)
+        shouldFetch
         && items
         && !isLoading
         && !allLoaded) 

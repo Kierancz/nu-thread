@@ -1,50 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 const StyledRoot = styled.div`
   width: 100%;
-  height: 4em;
-`;
-const StyledContainer = styled.div`
-  width: 100%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  height: 2em;
 `;
 const StyledAppBar = styled(AppBar)` && {
   background: white;
+  @media (min-width: 960px) {
+    width: calc(100% - 240px);
+  }
 }`;
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: lowercase;
-  margin-left: 1em;
-`;
-const Center = styled.div`
-  display: block;
-  margin: 0 auto;
-`;
-const StyledLogoText = styled.span`
-  font-size: 24px;
-  font-weight: 700;
-`;
 
 const ControlBar = (props) => {
   return (
     <StyledRoot>
-    <StyledContainer>
-      <StyledAppBar position="static">
+      <StyledAppBar position="fixed">
         <Toolbar>
           { props.children }
         </Toolbar>
       </StyledAppBar>
-    </StyledContainer>
     </StyledRoot>
   );
 };

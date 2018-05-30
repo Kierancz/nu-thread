@@ -9,12 +9,8 @@ export const StyledSelectControl = styled(FormControl)`
   display: block !important;
 `;
 export const StyledIconButton = styled(IconButton)`
-  && {
-    margin-left: 4px;
-  }
-  &&:hover {
+  &:hover {
     color: black;
-    background: rgba(0,0,0,0.1);
   }
 `;
 export const StyledDialogActions = styled(DialogActions)`
