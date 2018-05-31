@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import Menu from '@material-ui/core/Menu';
 import FilterLink from '../../containers/FilterLink';
 import StyledIcon from '../Styled/icon';
@@ -34,13 +35,15 @@ class FilterBar extends React.Component {
     const { anchorEl } = this.state;
     const { isMobile } = this.props;
     const SortButton = isMobile? 
-      (<IconButton
-        aaria-owns={anchorEl ? 'sort-menu' : null}
-        aria-haspopup="true"
-        onClick={this.handleClick}
-      >
-        <StyledSort />
-      </IconButton>) 
+      (<Tooltip id="sort-icon" title="Sort Items">
+        <IconButton
+          aaria-owns={anchorEl ? 'sort-menu' : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          <StyledSort />
+        </IconButton>
+      </Tooltip>) 
       : 
       (<Button
         aria-owns={anchorEl ? 'sort-menu' : null}

@@ -1,72 +1,25 @@
 import React from 'react';
 import Downshift from 'downshift';
 import keycode from 'keycode';
-
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import SearchConfig from '../../containers/SearchConfig';
 import { renderSuggestion, getSuggestions } from './renderSuggestions';
-import styled from 'styled-components';
 import renderInput from './renderInput';
-import { Magnify, Close, ArrowRightBoldCircle } from 'mdi-material-ui';
-
-const StyledSearchContainer = styled.span`
-  display: inline-block;
-  position: relative;
-  /* background: rgba(0, 0, 0, 0.1); */
-  border-radius: 6px 0 0 6px;
-  line-height: normal;
-  justify-content: center;
-  color: black;
-`;
-const StyledSearchIcon = styled.div`
-  width: 50px;
-  height: 100%;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  pointer-events: none;
-  justify-content: center;
-`;
-const StyledClearIcon = styled.a`
-  width: 40px;
-  height: 100%;
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-  align-items: center;
-  justify-content: center;
-  > svg {
-    fill: black;
-    &:hover {
-      fill: black;
-    }
-  }
-`;
-export const StyledIconButton = styled(IconButton)`
-  && {
-    margin-left: 4px;
-  }
-  &&:hover {
-    color: black;
-    background: rgba(0,0,0,0.1);
-  }
-`;
-const StyledRoot = styled.span`
-  line-height: 48px;
-`;
-const StyledPaper = styled(Paper)`
-  position: absolute;
-  z-index: 1;
-  margin-top: 0;
-  left: 0;
-  right: 0;
-`;
+import { Magnify, Close } from 'mdi-material-ui';
+import {
+  StyledSearchContainer,
+  StyledSearchIcon,
+  StyledClearIcon,
+  StyledPaper } from './indexStyles';
 
 class SearchBar extends React.Component {
   state = {
-    inputValue: ''
+    inputValue: '',
+    mobileOpen: false
   };
 
   componentDidMount() {
@@ -90,17 +43,21 @@ class SearchBar extends React.Component {
     this.setState({ inputValue: '' });
     this.props.onSearch('');
   };
+  handleMobile = () => {
+    const { mobileOpen } = this.state;
+    this.setState({ mobileOpen: !mobileOpen });
+  };
 
   render() {
-    const { inputValue } = this.state;
+    const { isMobile } = this.props;
+    const { inputValue, mobileOpen } = this.state;
     const clearButton = inputValue? (
       <StyledClearIcon onClick={this.handleClearInput}>
         <Close/>
       </StyledClearIcon>) : '';
 
-    return (
-      <StyledRoot>
-        <Downshift
+    const searchBar = (
+      <Downshift
           inputValue={inputValue}
           onChange={this.handleChange}
         >
@@ -113,7 +70,8 @@ class SearchBar extends React.Component {
               selectedItem,
               highlightedIndex
             }) => (
-              <span style={{ position:'relative', lineHeight: 'normal'}}>
+              <span>
+                <SearchConfig />
                 <StyledSearchContainer>
                   <StyledSearchIcon>
                     <Magnify />
@@ -152,7 +110,30 @@ class SearchBar extends React.Component {
               </span>
           )}
         </Downshift>
-      </StyledRoot>
+    );
+
+    const persistantDisplay = isMobile?
+      (<Tooltip id="search-icon" title="Open Searchbar">
+        <IconButton onClick={this.handleMobile}>
+          <Magnify />
+        </IconButton>
+      </Tooltip>) : searchBar;
+
+    const mobileSearch = mobileOpen?
+      (<AppBar position="fixed" color="inherit">
+        <Toolbar disableGutters={true} style={{justifyContent: 'center'}}>
+          { searchBar }
+          <Button onClick={this.handleMobile}>
+            Cancel
+          </Button>
+        </Toolbar>
+      </AppBar>) : null;
+    
+    return (
+      <span>
+        { persistantDisplay }
+        { mobileSearch }
+      </span>
     );
   }
 }

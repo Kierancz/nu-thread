@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import {
   Dialog,
   DialogContent,
@@ -64,11 +65,13 @@ class ProfileForm extends React.Component {
   render() {
     const { fullScreen, isMobile } = this.props;
     const AddProfileButton = isMobile? 
-      (<IconButton
-        onClick={this.handleClickOpen}
-      >
-        <StyledAccount />
-      </IconButton>) 
+      (<Tooltip id="fit-icon" title="Add Fit">
+        <IconButton
+          onClick={this.handleClickOpen}
+        >
+          <StyledAccount />
+        </IconButton>
+      </Tooltip>) 
       :
       (<Button
         variant="raised"

@@ -58,12 +58,7 @@ class SearchConfigForm extends React.Component {
 
     return (
       <span>
-        <Tooltip 
-          id="advanced-search-tooltip" 
-          title="Search Configuration" 
-          placement="left"
-          style={{boxSizing: 'none'}}
-        >
+        <Tooltip id="advanced-search-tooltip" title="Search Configuration">
           <StyledIconButton
             onClick={this.handleClickOpen}
             aria-label="Search Configuration"
@@ -76,7 +71,7 @@ class SearchConfigForm extends React.Component {
           open={this.state.open}
           onClose={this.handleRequestClose}
           fullScreen={fullScreen}
-          aria-labelledby="Configuration Form"
+          aria-labelledby="Search Configuration Form"
         >
           <DialogTitle>Search Configuration</DialogTitle>
 

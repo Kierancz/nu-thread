@@ -11,16 +11,20 @@ import ItemsControlBar from '../../components/ItemsControlBar';
 
 class App extends Component {
   render() {
+    const bar = (
+      <div style={{width: '100%'}}>
+        {/* <Route exact path='/' component={Home} />
+        <Route exact path='/about' component={About} /> */}
+        <Route exact path='/items' component={ItemsControlBar} />
+      </div>
+    );
     return (
       <div className="App">
-        <SideNav>
+        <SideNav bar={bar}>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
-          <Route exact path='/items' component={ItemsControlBar} />
           <Route exact path='/items' component={Items} />
         </SideNav>
-
-        {/* {React.cloneElement(this.props.children, this.props)} */}
       </div>
     );
   }

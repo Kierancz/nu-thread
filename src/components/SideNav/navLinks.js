@@ -18,7 +18,7 @@ const StyledLogoText = styled.span`
 const LogoWrapper = styled.div`
   height: 4em;
   display: inline-flex;
-`
+`;
 export const NavLogo = (
   <LogoWrapper>
     <StyledLink to="/">

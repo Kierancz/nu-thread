@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { InformationOutline, TshirtCrew } from 'mdi-material-ui';
 
@@ -19,8 +19,15 @@ const StyledButton = styled(Button)` && {
 
 const Home = props => (
   <div>
-    <h1>Welcome to nu-thread!</h1>
-    <p>Home of affordable, durable, and carbon neutral clothes!</p>
+    <Typography variant="display3" gutterBottom>
+      Welcome to nu-thread!
+    </Typography>
+    <Typography variant="headline" gutterBottom>
+      Home of affordable, durable, and carbon neutral clothes!
+    </Typography>
+    <Typography variant="title" gutterBottom>
+      Under Active Construction...
+    </Typography>
     <StyledButton 
       variant="raised" 
       color="primary"

@@ -12,16 +12,16 @@ import Divider from '@material-ui/core/Divider';
 
 import { Menu } from 'mdi-material-ui';
 import styled from 'styled-components';
-import ControlBar from '../../components/ControlBar';
 
 import { NavLinks, NavLogo } from './navLinks';
 
 const StyledChildren = styled.div`
   width: 100%;
   overflow-y: scroll;
+  margin-top: 4em;
 `;
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -32,19 +32,21 @@ const styles = theme => ({
     display: 'flex',
     width: '100%',
   },
-  // appBar: {
-  //   position: 'absolute',
-  //   marginLeft: drawerWidth,
-  //   [theme.breakpoints.up('md')]: {
-  //     width: `calc(100% - ${drawerWidth}px)`,
-  //   },
-  // },
+  appBar: {
+    position: 'absolute',
+    marginLeft: drawerWidth,
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    backgroundColor: 'white'
+  },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+    color: 'black'
   },
-  // toolbar: theme.mixins.toolbar,
+  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
     [theme.breakpoints.up('md')]: {
@@ -71,7 +73,7 @@ class ResponsiveDrawer extends React.Component {
     const { classes, theme, bar, children } = this.props;
 
     const drawer = (
-      <div>
+      <div style={{textAlign: 'center'}}>
         { NavLogo }
         <Divider />
         <List>
@@ -82,7 +84,19 @@ class ResponsiveDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open sidenav"
+              onClick={this.handleDrawerToggle}
+              className={classes.navIconHide}
+            >
+              <Menu />
+            </IconButton>
+            { bar }
+          </Toolbar>
+        </AppBar>
         <Hidden mdUp>
           <Drawer
             variant="temporary"
@@ -110,7 +124,6 @@ class ResponsiveDrawer extends React.Component {
             { drawer }
           </Drawer>
         </Hidden>
-        { bar }
         <StyledChildren id="sidenav-content">
           { children }
         </StyledChildren>

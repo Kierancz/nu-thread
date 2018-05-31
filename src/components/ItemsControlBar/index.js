@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import FilterBar from '../FilterBar';
 import Profile from '../../containers/Profile';
 import SearchItems from '../../containers/SearchItems';
-import SearchConfig from '../../containers/SearchConfig';
-import ControlBar from '../ControlBar';
 
 const Controls = styled.div`
   width: 100%;
@@ -45,18 +42,11 @@ export default class ItemsControlBar extends React.Component {
   render() {
     const { isMobile } = this.state;
     return (
-      <ControlBar>
-        <Controls>
-          <Profile isMobile={isMobile} />
-
-          <div>
-            <SearchConfig />
-            <SearchItems />
-          </div>
-
-          <FilterBar isMobile={isMobile}/>
-        </Controls>
-      </ControlBar>
+      <Controls>
+        <Profile isMobile={isMobile} />
+        <SearchItems isMobile={isMobile} />
+        <FilterBar isMobile={isMobile}/>
+      </Controls>
     );
   }
 };
