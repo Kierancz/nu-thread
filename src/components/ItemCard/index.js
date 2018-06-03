@@ -31,13 +31,14 @@ class ItemCard extends React.Component {
     const isObo     = listingInfo[0].bestOfferEnabled[0]  === 'true';
     const isAuction = listingInfo[0].listingType[0]       === 'Auction';
 
-    const itemType = !isAuction? 
+    let itemType = !isAuction? 
       <StyledLink href={viewURL} target="_blank">Buy Now</StyledLink> : 
       <StyledLink href={viewURL} target="_blank">Bid</StyledLink>;
     const obo = isObo? 
       <StyledLink href={viewURL} target="_blank">Make Offer</StyledLink> 
       : '';
-    
+    if(!isAuction && isObo) itemType = obo;
+
     return (
       <StyledCard>
         <StyledCardMedia
@@ -54,7 +55,6 @@ class ItemCard extends React.Component {
             <StyledPrice>
               $ {price}
             </StyledPrice>
-            {obo}
             {itemType}
           </StyledControls>
         </StyledDetails>

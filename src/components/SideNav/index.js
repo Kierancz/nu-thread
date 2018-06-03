@@ -82,21 +82,25 @@ class ResponsiveDrawer extends React.Component {
       </div>
     );
 
+    const controlBar = (
+      <AppBar className={classes.appBar}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open sidenav"
+            onClick={this.handleDrawerToggle}
+            className={classes.navIconHide}
+          >
+            <Menu />
+          </IconButton>
+          { bar }
+        </Toolbar>
+      </AppBar>
+    );
+
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open sidenav"
-              onClick={this.handleDrawerToggle}
-              className={classes.navIconHide}
-            >
-              <Menu />
-            </IconButton>
-            { bar }
-          </Toolbar>
-        </AppBar>
+        { bar? controlBar : null }
         <Hidden mdUp>
           <Drawer
             variant="temporary"
@@ -112,6 +116,7 @@ class ResponsiveDrawer extends React.Component {
           >
             { drawer }
           </Drawer>
+          { controlBar }
         </Hidden>
         <Hidden smDown implementation="css">
           <Drawer

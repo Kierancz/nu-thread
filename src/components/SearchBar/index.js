@@ -88,25 +88,21 @@ class SearchBar extends React.Component {
                     })
                   }
                   { clearButton }
-                </StyledSearchContainer>
-                {
-                  isOpen ? 
+                  { isOpen ? 
                     <StyledPaper>
-                      {
-                        getSuggestions(inputValue).map((suggestion, index) =>
+                      { getSuggestions(inputValue).map((suggestion, index) =>
                           renderSuggestion({
                             suggestion,
                             index,
                             itemProps: getItemProps({ item: suggestion.label }),
                             highlightedIndex,
                             selectedItem,
-                          }),
-                        )
+                          })
+                        ) 
                       }
-                    </StyledPaper>
-                    : 
-                    null
-                }
+                    </StyledPaper> : null
+                  }
+                </StyledSearchContainer>
               </span>
           )}
         </Downshift>

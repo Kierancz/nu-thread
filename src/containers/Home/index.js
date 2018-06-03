@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { InformationOutline, TshirtCrew } from 'mdi-material-ui';
+import SideNav from '../../components/SideNav';
 
 const StyledInfoIcon = styled(InformationOutline)`
   margin-right: 6px;
@@ -18,7 +19,7 @@ const StyledButton = styled(Button)` && {
 }`;
 
 const Home = props => (
-  <div>
+  <SideNav>
     <Typography variant="display3" gutterBottom>
       Welcome to nu-thread!
     </Typography>
@@ -43,7 +44,7 @@ const Home = props => (
       <StyledInfoIcon />
       Learn More
     </StyledButton>
-  </div>
+  </SideNav>
 )
 
 const mapDispatchToProps = dispatch => bindActionCreators({

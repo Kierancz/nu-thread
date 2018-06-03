@@ -24,7 +24,7 @@ const StyledDiv = styled.div`
 `
 
 const StyledSpinner = styled.svg`
-  animation: rotate 2s linear infinite;
+  animation: spinner-rotate 2s linear infinite;
   margin: -25px 0 0 -25px;
   width: 50px;
   height: 50px;
@@ -33,15 +33,15 @@ const StyledSpinner = styled.svg`
   & .path {
     stroke: #003EFF;
     stroke-linecap: round;
-    animation: dash 1.5s ease-in-out infinite;
+    animation: spinner-dash 1.5s ease-in-out infinite;
   }
 
-  @keyframes rotate {
+  @keyframes spinner-rotate {
     100% {
       transform: rotate(360deg);
     }
   }
-  @keyframes dash {
+  @keyframes spinner-dash {
     0% {
       stroke-dasharray: 1, 150;
       stroke-dashoffset: 0;
