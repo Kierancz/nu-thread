@@ -12,12 +12,6 @@ export const StyledControlWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export const StyledDialogContentText = styled(DialogContentText)` 
-  && {
-    padding: 0;
-    margin: 1em;
-  }
-`;
 export const StyledControl = styled(FormControl)` 
   && {
     margin: 1em;

@@ -42,7 +42,8 @@ export const fetchItems = (params) => {
 
   return fetch(URL).then(function (response) {
     return response.json().then(function (json) {
-      console.log('raw data: ', json);
+      // console.log('raw data: ', json);
+      // console.log('raw data: ', JSON.stringify(json));
       //console.log('data items: ', json.findItemsByKeywordsResponse[0].searchResult[0].item);
       return json.findItemsByKeywordsResponse[0];
     })
@@ -68,7 +69,7 @@ function getFormattedQuery(brands, query) {
 }
 
 function getSortOrder(sortType) {
-  let order = "&sortOrder=";
+  const order = "&sortOrder=";
   switch(sortType) {
     case 'BEST_MATCH':
       return order + 'BestMatch';

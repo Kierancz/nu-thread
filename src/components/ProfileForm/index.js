@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  DialogContentText,
   withMobileDialog
 } from '@material-ui/core';
 import { Radio } from '@material-ui/core';
@@ -95,9 +96,9 @@ class ProfileForm extends React.Component {
           <DialogTitle>New Fit Profile</DialogTitle>
 
           <DialogContent>
-            <StyledDialogContentText>
+            <DialogContentText>
               Add your fit info below to find clothes that fit!
-            </StyledDialogContentText>
+            </DialogContentText>
 
             <StyledControlWrapper>
               <StyledControl component="fieldset">
