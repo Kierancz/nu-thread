@@ -2,14 +2,26 @@ const brands = [
   'Patagonia',
   'Pendleton',
   'Eddie Bauer',
-  'The North Face',
+  'North Face',
   'L.L. Bean',
   'Deluth Trading Company',
   'Outdoor Research',
   'Lands End',
   'Orvis',
   'Arcteryx',
-  'Filson'
+  'Filson',
+  'Levis',
+  'Ralph Lauren',
+  'Osprey',
+  'Mammut',
+  'Marmot',
+  'Thought',
+  'Braintree',
+  'Howies',
+  'Komodo',
+  'Nau',
+  'Topo Designs',
+  'Haspel',
 ];
 
 export default brands;

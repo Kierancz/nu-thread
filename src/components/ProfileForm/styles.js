@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  DialogActions,
-  DialogContentText,
-} from '@material-ui/core';
+import DialogActions from '@material-ui/core/DialogActions';
 import { RadioGroup } from '@material-ui/core';
 import { AccountPlus } from 'mdi-material-ui'
 import { FormControl } from '@material-ui/core';

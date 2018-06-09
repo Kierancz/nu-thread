@@ -5,7 +5,6 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
@@ -13,7 +12,10 @@ import Divider from '@material-ui/core/Divider';
 import { Menu } from 'mdi-material-ui';
 import styled from 'styled-components';
 
-import { NavLinks, NavLogo } from './navLinks';
+import { NavLinks } from './navLinks';
+import { NavLogo } from './logo';
+
+// import { NavLink } from 'react-router-dom'; 
 
 const StyledChildren = styled.div`
   width: 100%;
