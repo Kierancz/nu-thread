@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchConfig from '../../containers/SearchConfig';
-import { renderSuggestion, getSuggestions } from './renderSuggestions';
+import { renderSuggestions, getSuggestions } from './renderSuggestions';
 import renderInput from './renderInput';
 import { Magnify, Close } from 'mdi-material-ui';
 import {
@@ -91,7 +91,7 @@ class SearchBar extends React.Component {
                   { isOpen ? 
                     <StyledPaper>
                       { getSuggestions(inputValue).map((suggestion, index) =>
-                          renderSuggestion({
+                          renderSuggestions({
                             suggestion,
                             index,
                             itemProps: getItemProps({ item: suggestion.label }),

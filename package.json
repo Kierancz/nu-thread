@@ -16,6 +16,7 @@
     "mdi-material-ui": "^5.1.0",
     "raf": "^3.4.0",
     "react": "^16.4.0",
+    "react-document-title": "^2.0.3",
     "react-dom": "^16.4.0",
     "react-motion": "^0.5.2",
     "react-plx": "^1.2.0",

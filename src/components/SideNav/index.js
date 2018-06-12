@@ -62,7 +62,7 @@ const styles = theme => ({
   },
 });
 
-class ResponsiveDrawer extends React.Component {
+class SideNav extends React.Component {
   state = {
     mobileOpen: false,
   };
@@ -139,9 +139,9 @@ class ResponsiveDrawer extends React.Component {
   }
 }
 
-ResponsiveDrawer.propTypes = {
+SideNav.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(SideNav);

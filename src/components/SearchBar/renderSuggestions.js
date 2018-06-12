@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MenuItem } from '@material-ui/core';
 import suggestions from './suggestions';
 
-export const renderSuggestion = (
+export const renderSuggestions = (
   {
     suggestion,
     index,
@@ -29,7 +29,7 @@ export const renderSuggestion = (
     </MenuItem>
   );
 }
-renderSuggestion.propTypes = {
+renderSuggestions.propTypes = {
   highlightedIndex: PropTypes.number,
   index: PropTypes.number,
   itemProps: PropTypes.object,

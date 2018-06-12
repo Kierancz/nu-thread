@@ -34,8 +34,8 @@ export const fetchItems = (params) => {
       URL += "&itemFilter(0).value=Used";
       URL += "&itemFilter(1).name=HideDuplicateItems";
       URL += "&itemFilter(1).value=true";
-      URL += "&itemFilter(2).name=TopRatedSellerOnly";
-      URL += "&itemFilter(2).value=true";
+      // URL += "&itemFilter(2).name=TopRatedSellerOnly";
+      // URL += "&itemFilter(2).value=true";
       URL += sortOrder+genderAspect+sizeAspect;
       URL += "&outputSelector=AspectHistogram";
   // console.log("URL: ", URL);

@@ -15,13 +15,36 @@ const brands = [
   'Osprey',
   'Mammut',
   'Marmot',
-  'Thought',
   'Braintree',
-  'Howies',
-  'Komodo',
   'Nau',
-  'Topo Designs',
   'Haspel',
+  'Bonobos',
+  'Theory',
+  'Diesel',
+  'Hugo Boss',
+  'G Star Raw',
+  'Scotch and Soda',
+  'Mango',
+  'The Kooples',
+  'Calvin Klein',
+  'Band of Outsiders',
+  'Charles Tyrwhitt',
+  'Zara',
+  'J. Crew',
+  'Naked and Famous',
+  'Express',
+  'Steven Alan',
+  'Frank and Oak'
 ];
 
 export default brands;
+
+// SLIM
+// 'Band of Outsiders',
+// 'Charles Tyrwhitt',
+// 'Zara'
+// 'J. Crew',
+// 'Naked and Famous'
+// 'Express'
+// 'Steven Alan',
+// 'Frank and Oak'

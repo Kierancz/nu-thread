@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { InformationOutline, TshirtCrew } from 'mdi-material-ui';
 import SideNav from '../../components/SideNav';
+import DocumentTitle from 'react-document-title';
 
 const StyledInfoIcon = styled(InformationOutline)`
   margin-right: 6px;
@@ -19,32 +20,34 @@ const StyledButton = styled(Button)` && {
 }`;
 
 const Home = props => (
-  <SideNav>
-    <Typography variant="display3" gutterBottom>
-      Welcome to nu-thread!
-    </Typography>
-    <Typography variant="headline" gutterBottom>
-      Home of affordable, durable, and carbon neutral clothes!
-    </Typography>
-    <Typography variant="title" gutterBottom>
-      Under Active Construction...
-    </Typography>
-    <StyledButton 
-      variant="raised" 
-      color="primary"
-      onClick={() => props.goToItems()}
-    >
-      <StyledItemsIcon />
-      See Items
-    </StyledButton>
-    <StyledButton 
-      variant="raised" 
-      onClick={() => props.goToAbout()}
-    >
-      <StyledInfoIcon />
-      Learn More
-    </StyledButton>
-  </SideNav>
+  <DocumentTitle title='Home'>
+    <SideNav>
+      <Typography variant="display3" gutterBottom>
+        Welcome to nu-thread!
+      </Typography>
+      <Typography variant="headline" gutterBottom>
+        Home of affordable, durable, and carbon neutral clothes!
+      </Typography>
+      <Typography variant="title" gutterBottom>
+        Under Active Construction...
+      </Typography>
+      <StyledButton 
+        variant="raised" 
+        color="primary"
+        onClick={() => props.goToItems()}
+      >
+        <StyledItemsIcon />
+        See Items
+      </StyledButton>
+      <StyledButton 
+        variant="raised" 
+        onClick={() => props.goToAbout()}
+      >
+        <StyledInfoIcon />
+        Learn More
+      </StyledButton>
+    </SideNav>
+  </DocumentTitle>
 )
 
 const mapDispatchToProps = dispatch => bindActionCreators({
