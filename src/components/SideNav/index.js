@@ -40,7 +40,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
-    backgroundColor: 'white'
+    backgroundColor: '#424242'
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {

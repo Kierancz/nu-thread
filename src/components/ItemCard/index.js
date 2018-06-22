@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Column } from 'hedron';
 //import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import {
@@ -47,7 +46,7 @@ class ItemCard extends React.Component {
         />
         <StyledDetails>
           <StyledCardContent>
-            <Typography component="h4">
+            <Typography component="h3">
               {title}
             </Typography>
           </StyledCardContent>

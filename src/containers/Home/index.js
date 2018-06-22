@@ -20,7 +20,7 @@ const StyledButton = styled(Button)` && {
 }`;
 
 const Home = props => (
-  <DocumentTitle title='Home'>
+  <DocumentTitle title="Home">
     <SideNav>
       <Typography variant="display3" gutterBottom>
         Welcome to nu-thread!

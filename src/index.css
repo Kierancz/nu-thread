@@ -1,9 +1,24 @@
+/* @import url('https://fonts.googleapis.com/css?family=Exo+2'); */
+/* @import url('https://fonts.googleapis.com/css?family=Nunito'); */
+/* @import url('https://fonts.googleapis.com/css?family=Rubik'); */
+/* @import url('https://fonts.googleapis.com/css?family=Raleway|Ubuntu'); */
+/* @import url('https://fonts.googleapis.com/css?family=Concert+One|Montserrat'); */
+@import url('https://fonts.googleapis.com/css?family=Archivo|Montserrat');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  height: 100%;
-  background-color: white;
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: 'Archivo', sans-serif;  height: 100%;
+  background-color: black;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+h1, h2, h3, h4, a {
+  font-family: 'Archivo', sans-serif;  height: 100%;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
 }
