@@ -3,11 +3,11 @@ export const dark = {
     fontFamily: "Archivo",
   },
   palette: {
-    type: 'dark',
+    type: 'light',
     primary: {
       // light: will be calculated from palette.primary.main,
       //main: '#003EFF',
-      main: '#00dbde',
+      main: '#003eff',
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contast with palette.primary.main
     },

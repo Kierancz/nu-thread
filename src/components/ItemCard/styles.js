@@ -16,6 +16,7 @@ export const StyledCardMedia = styled(CardMedia)`
 // All text wrapper
 export const StyledDetails = styled.div`
   flex-direction: column;
+  width: 100%;
 `;
 // Title wrapper
 export const StyledCardContent = styled(CardContent)`
@@ -37,10 +38,9 @@ export const StyledPrice = styled.span`
 export const StyledLink = styled.a`
   display: inline-block;
   flex: 1;
-  margin-left: 0.5em;
   margin-top: 1em;
   text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
+`;
+export const StyledActionContainer = styled.span`
+  margin-left: 0.5em;
 `;

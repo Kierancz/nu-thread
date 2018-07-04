@@ -13,7 +13,7 @@ import { Menu } from 'mdi-material-ui';
 import styled from 'styled-components';
 
 import { NavLinks } from './navLinks';
-import { NavLogo } from './logo';
+import Logo from '../Logo';
 
 // import { NavLink } from 'react-router-dom'; 
 
@@ -40,7 +40,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
-    backgroundColor: '#424242'
+    backgroundColor: 'white'
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
@@ -76,7 +76,7 @@ class SideNav extends React.Component {
 
     const drawer = (
       <div style={{textAlign: 'center'}}>
-        { NavLogo }
+        { Logo }
         <Divider />
         <List>
           { NavLinks }

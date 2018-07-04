@@ -1,6 +1,7 @@
 import React from 'react';
 //import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import StyledUnderline from '../Styled/underline';
 import {
   StyledCard,
   StyledCardContent,
@@ -8,7 +9,8 @@ import {
   StyledControls,
   StyledCardMedia,
   StyledPrice,
-  StyledLink
+  StyledLink,
+  StyledActionContainer,
  } from './styles';
 
 class ItemCard extends React.Component {
@@ -30,13 +32,16 @@ class ItemCard extends React.Component {
     const isObo     = listingInfo[0].bestOfferEnabled[0]  === 'true';
     const isAuction = listingInfo[0].listingType[0]       === 'Auction';
 
-    let itemType = !isAuction? 
-      <StyledLink href={viewURL} target="_blank">Buy Now</StyledLink> : 
-      <StyledLink href={viewURL} target="_blank">Bid</StyledLink>;
-    const obo = isObo? 
-      <StyledLink href={viewURL} target="_blank">Make Offer</StyledLink> 
-      : '';
-    if(!isAuction && isObo) itemType = obo;
+    let actionText = isAuction? 'Bid' : 'Buy Now';
+    const obo = isObo? 'Make Offer' : '';
+    if(!isAuction && isObo) actionText = obo;
+
+    const action = 
+      <StyledUnderline>
+        <StyledLink href={viewURL} target="_blank">
+          {actionText}
+        </StyledLink> 
+      </StyledUnderline>;
 
     return (
       <StyledCard>
@@ -54,7 +59,9 @@ class ItemCard extends React.Component {
             <StyledPrice>
               $ {price}
             </StyledPrice>
-            {itemType}
+            <StyledActionContainer>
+              {action}
+            </StyledActionContainer>
           </StyledControls>
         </StyledDetails>
       </StyledCard>

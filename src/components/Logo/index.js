@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Link from 'react-router-dom/Link';
 
 const LogoWrapper = styled.div`
-  height: 4em;
+  height: 61px;
   display: inline-flex;
 `;
 const StyledPathDash = styled.path`
@@ -19,13 +19,14 @@ const StyledSvg = styled.svg`
   width: 40px;
   height: 40px;
   top: 14px;
+  padding: 0 4px;
   margin-left: 1em;
 `;
 const logoSvg = (
   <StyledSvg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 324 288">
     <defs>
       <linearGradient id="gradient" x1="100%" y1="33%" x2="66%" y2="100%">
-        <stop offset="0%" stopColor="#00dbde" />
+        <stop offset="0%" stopColor="#003eff" />
         <stop offset="100%" stopColor="#fc00ff" />
       </linearGradient>
       
@@ -61,7 +62,7 @@ const StyledLink = styled(Link)`
   }
 `;
 const StyledLogoText = styled.span`
-  color: #00dbde;
+  color: #003eff;
   font-size: 28px;
   line-height: 26px;
   position: absolute;
@@ -70,7 +71,7 @@ const StyledLogoText = styled.span`
   font-weight: 700;
 `;
 
-export const NavLogo = (
+const Logo = (
   <LogoWrapper>
     <StyledLink to="/">
       { logoSvg }
@@ -80,3 +81,5 @@ export const NavLogo = (
     </StyledLink>
   </LogoWrapper>
 );
+
+export default Logo;
