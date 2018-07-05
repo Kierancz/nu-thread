@@ -22,8 +22,8 @@ const StyledButton = styled(Button)` && {
 const Home = props => (
   <DocumentTitle title="Home">
     <SideNav>
-      <Typography variant="display3" gutterBottom>
-        Welcome to nu-thread!
+      <Typography variant="display4" gutterBottom>
+        nu-thread
       </Typography>
       <Typography variant="headline" gutterBottom>
         Home of affordable, durable, and carbon neutral clothes!

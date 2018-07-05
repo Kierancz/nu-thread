@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuItem } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const FLink = ({
   active,

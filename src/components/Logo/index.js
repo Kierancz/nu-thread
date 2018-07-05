@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router-dom/Link';
 
-const LogoWrapper = styled.div`
-  height: 61px;
-  display: inline-flex;
-`;
 const StyledPathDash = styled.path`
   fill:none;
   stroke-width:35;
@@ -14,15 +10,15 @@ const StyledPathDash = styled.path`
 `;
 const StyledSvg = styled.svg`
   position: absolute;
-  left: 20px;
+  left: 18px;
   display: inline-flex;
   width: 40px;
   height: 40px;
-  top: 14px;
+  top: 12px;
   padding: 0 4px;
   margin-left: 1em;
 `;
-const logoSvg = (
+const logoSvg = 
   <StyledSvg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 324 288">
     <defs>
       <linearGradient id="gradient" x1="100%" y1="33%" x2="66%" y2="100%">
@@ -44,8 +40,8 @@ const logoSvg = (
     S90,221.2,90,162c0-3,0-27,0-36c0-2.7,0.4-14.6,9.8-24.6C110.2,90.4,123.6,90,126,90c2.4,0,15.7,0.4,26.1,11.3
     C161.6,111.3,162,123.3,162,126c0,12,0,24,0,36c0,19.7,16.3,36,36,36s36-16.3,36-36c0-12,0-24,0-36c0-59.2-48.8-108-108-108
     S18,66.8,18,126c0,12,0,24,0,36c0,19.7,16.3,36,36,36s36-16.3,36-36v-36c0-19.7,16.3-36,36-36S162,106.3,162,126c0,12,0,24,0,36"/>
-  </StyledSvg>
-);
+  </StyledSvg>;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   align-self: center;
@@ -61,8 +57,10 @@ const StyledLink = styled(Link)`
     }
   }
 `;
+
 const StyledLogoText = styled.span`
-  color: #003eff;
+  /* color: #003eff; */
+  color: #000;
   font-size: 28px;
   line-height: 26px;
   position: absolute;
@@ -71,15 +69,15 @@ const StyledLogoText = styled.span`
   font-weight: 700;
 `;
 
-const Logo = (
-  <LogoWrapper>
-    <StyledLink to="/">
+const Logo = (props) => {
+  return(
+    <StyledLink to={props.link}>
       { logoSvg }
       <StyledLogoText>
-        thread
+        { props.text }
       </StyledLogoText>
     </StyledLink>
-  </LogoWrapper>
-);
+  );
+};
 
 export default Logo;

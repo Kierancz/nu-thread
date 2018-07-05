@@ -39,7 +39,7 @@ const withInfiniteScroll = (Component) =>
       const initialHeight = wrapper.offsetHeight;
       const offsetHeight = elem.offsetHeight;
 
-      const shouldFetch = (initialHeight + scrollDown >= (offsetHeight - 500));
+      const shouldFetch = initialHeight + scrollDown >= offsetHeight - 500;
       if(
         shouldFetch
         && items

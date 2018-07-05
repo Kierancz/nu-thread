@@ -7,23 +7,23 @@ export default () => (
   <DocumentTitle title='About'>
     <SideNav>
       <div>
-        <Typography variant="display3" gutterBottom>
+        <Typography variant="display4" gutterBottom>
           About
         </Typography>
         <Typography variant="title" gutterBottom>
           Under Active Construction...
         </Typography>
-        <Typography variant="body2" gutterBottom>
-          Save time, save money, save the planet.
+        <Typography variant="headline" gutterBottom>
+          Save time, save money, save the environment.
         </Typography>
-        <Typography variant="body2" gutterBottom>
-          Set up a quick fit-profile and our algorithms save you time by matching you with affordable used clothing of the highest quality and durability.
+        <Typography variant="subheading" gutterBottom>
+          nu-thread is a non-profit that matches you with affordable clothes of the highest quality and durability.
         </Typography>
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="subheading" gutterBottom>
           Our service costs absolutely nothing to you or the sellers.
         </Typography>
-        <Typography variant="body2" gutterBottom>
-          We take a cut from eBay's existing fee. We use this to plant a tree for every item purchased. Among innumerable benefits to ecosystems, a tree will remove more CO2 from the atmosphere than the item created.
+        <Typography variant="subheading" gutterBottom>
+          We use eBay's referral commision to plant trees and provide reproductive healthcare globally.
         </Typography>
       </div>
     </SideNav>

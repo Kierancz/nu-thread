@@ -15,8 +15,14 @@ import {
 
 class ItemCard extends React.Component {
   render() {
-    const { item } = this.props;
-    const { sellingStatus, galleryURL, title, viewItemURL, listingInfo } = item;
+    const { 
+      sellingStatus, 
+      galleryURL, 
+      title, 
+      viewItemURL, 
+      listingInfo
+    } = this.props.item;
+
     const price = sellingStatus?
       parseFloat(
         sellingStatus[0]
@@ -25,21 +31,21 @@ class ItemCard extends React.Component {
       .toFixed(2)
       :
       'N/A';
-    const image   = galleryURL?    galleryURL[0]  : 'No Image';
+    const image   = galleryURL?    galleryURL[0]  : '';
     const name    = title?         title[0]       : 'No Title';
     const viewURL = viewItemURL?   viewItemURL[0] : '#';
     // const isBuyNow  = listingInfo[0].buyItNowAvailable[0] === 'true';
     const isObo     = listingInfo[0].bestOfferEnabled[0]  === 'true';
     const isAuction = listingInfo[0].listingType[0]       === 'Auction';
 
-    let actionText = isAuction? 'Bid' : 'Buy Now';
-    const obo = isObo? 'Make Offer' : '';
+    let actionText  = isAuction?  'Bid'         : 'Buy Now';
+    const obo       = isObo?      'Make Offer'  : '';
     if(!isAuction && isObo) actionText = obo;
 
     const action = 
       <StyledUnderline>
         <StyledLink href={viewURL} target="_blank">
-          {actionText}
+          { actionText }
         </StyledLink> 
       </StyledUnderline>;
 
@@ -51,16 +57,16 @@ class ItemCard extends React.Component {
         />
         <StyledDetails>
           <StyledCardContent>
-            <Typography component="h3">
-              {title}
+            <Typography component="h2" variant="subheading">
+              { name }
             </Typography>
           </StyledCardContent>
           <StyledControls>
             <StyledPrice>
-              $ {price}
+              $ { price }
             </StyledPrice>
             <StyledActionContainer>
-              {action}
+              { action }
             </StyledActionContainer>
           </StyledControls>
         </StyledDetails>

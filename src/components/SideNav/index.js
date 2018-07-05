@@ -13,14 +13,21 @@ import { Menu } from 'mdi-material-ui';
 import styled from 'styled-components';
 
 import { NavLinks } from './navLinks';
-import Logo from '../Logo';
-
-// import { NavLink } from 'react-router-dom'; 
+import NavLogo from './navLogo';
 
 const StyledChildren = styled.div`
   width: 100%;
   overflow-y: scroll;
   margin-top: 4em;
+`;
+const StyledFooter = styled.footer`
+  position: absolute;
+  bottom: 0;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  color: #a0a0a0;
+  font-size: .8rem;
 `;
 
 const drawerWidth = 200;
@@ -74,17 +81,25 @@ class SideNav extends React.Component {
   render() {
     const { classes, theme, bar, children } = this.props;
 
-    const drawer = (
+    const footer = 
+      <StyledFooter>
+        <p id="copyright" property="dc:rights">&copy;
+          <span property="dc:dateCopyrighted"> 2018</span>
+          <span property="dc:publisher"> nu-thread</span>
+        </p>
+      </StyledFooter>;
+
+    const drawer = 
       <div style={{textAlign: 'center'}}>
-        { Logo }
+        { NavLogo }
         <Divider />
         <List>
           { NavLinks }
         </List>
-      </div>
-    );
+        {footer}
+      </div>;
 
-    const controlBar = (
+    const controlBar = 
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -97,8 +112,7 @@ class SideNav extends React.Component {
           </IconButton>
           { bar }
         </Toolbar>
-      </AppBar>
-    );
+      </AppBar>;
 
     return (
       <div className={classes.root}>

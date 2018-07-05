@@ -11,6 +11,10 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
   align-self: center;
 
+  > div {
+    padding-left: 22%;
+  }
+  /* Active Link */
   &.${active} > div {
     background-color: rgba(0,0,0,0.2);
   }
