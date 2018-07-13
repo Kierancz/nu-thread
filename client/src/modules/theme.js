@@ -1,6 +1,6 @@
 export const dark = {
   typography: {
-    fontFamily: "Archivo",
+    fontFamily: "Nunito",
   },
   palette: {
     type: 'light',

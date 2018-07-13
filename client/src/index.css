@@ -1,5 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css?family=Exo+2'); */
-/* @import url('https://fonts.googleapis.com/css?family=Nunito'); */
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 /* @import url('https://fonts.googleapis.com/css?family=Rubik'); */
 /* @import url('https://fonts.googleapis.com/css?family=Raleway|Ubuntu'); */
 /* @import url('https://fonts.googleapis.com/css?family=Concert+One|Montserrat'); */
@@ -16,7 +16,7 @@ body {
 }
 
 h1, h2, h3, h4, a {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 p {
