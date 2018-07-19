@@ -1,5 +1,5 @@
-import { getLastPage } from './items';
-import items from './items';
+import { getLastPage } from './index';
+import items from './index';
 
 // Selector Tests
 test('selector getLastPage should return last page number', () => {

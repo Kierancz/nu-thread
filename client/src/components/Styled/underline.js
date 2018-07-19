@@ -5,9 +5,11 @@ const StyledUnderline = styled.span`
   background-repeat: no-repeat;
   background-size: 100% 0.2em;
   background-position: 0 110%;
-  transition: background-size 0.25s ease-in;
+  border-radius: 0;
+  transition: all 0.25s ease-in;
   &:hover {
-    background-size: 100% 100%;
+    background-size: 110% 100%;
+    border-radius: 4px;
   }
 `;
 

@@ -5,6 +5,19 @@
 
 ### nu-thread is a non-profit that matches you with affordable clothes of the highest quality and durability.
 
-### Our service costs absolutely nothing to you or the sellers.
+The service costs absolutely nothing to you or the sellers.
 
-### We use eBay's referral commision to plant trees and provide reproductive healthcare globally.
+eBay's referral commision is used to plant trees and provide reproductive healthcare globally.
+
+## Built With:
+- React
+- Redux
+- Redux Saga
+- Styled Components
+- Material UI
+- Jest
+- Enzyme
+- Node
+- Express
+- Mongo
+- Firebase

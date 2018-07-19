@@ -1,21 +1,21 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'react-redux';
-import { startLogin } from '../../redux/actions/auth';
+import { login } from '../../redux/actions/auth';
 import Button from '@material-ui/core/Button';
 
-const Login = ({ startLogin }) => {
+const Login = ({ login }) => {
   return(
     <DocumentTitle title="Login">
       <div>
-        <Button onClick={startLogin}>Login</Button>
+        <Button onClick={login}>Login</Button>
       </div>
     </DocumentTitle>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  startLogin: () => dispatch(startLogin())
+  login: () => dispatch(login())
 });
 
 export default connect(null, mapDispatchToProps)(Login);
