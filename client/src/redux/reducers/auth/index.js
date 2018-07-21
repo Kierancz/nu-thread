@@ -46,3 +46,5 @@ export default function auth (state = initialState, action = {}) {
       return state
   }
 }
+
+export const getAuth = (state) => state.auth;

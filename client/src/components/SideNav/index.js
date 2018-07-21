@@ -15,6 +15,8 @@ import styled from 'styled-components';
 import { NavLinks } from './navLinks';
 import NavLogo from './navLogo';
 
+import AccountAside from '../AccountAside';
+
 const StyledChildren = styled.div`
   width: 100%;
   overflow-y: scroll;
@@ -79,7 +81,8 @@ class SideNav extends React.Component {
   };
 
   render() {
-    const { classes, theme, bar, children } = this.props;
+    const { classes, theme, bar, auth, children } = this.props;
+    console.log('auth: ', auth);
 
     const footer = 
       <StyledFooter>
@@ -95,8 +98,9 @@ class SideNav extends React.Component {
         <Divider />
         <List>
           { NavLinks }
+          <AccountAside loggedIn={auth.loggedIn} />
         </List>
-        {footer}
+        { footer }
       </div>;
 
     const controlBar = 

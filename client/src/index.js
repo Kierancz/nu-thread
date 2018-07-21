@@ -29,11 +29,3 @@ const render = () => {
 store.subscribe(render);
 render();
 registerServiceWorker();
-
-firebase.auth().onAuthStateChanged((user) => {
-  if(user) {
-    console.log('login');
-  } else {
-    console.log('logout');
-  }
-})

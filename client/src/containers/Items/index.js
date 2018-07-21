@@ -1,13 +1,13 @@
 import React from 'react';
 import FilteredItems from '../FilteredItems';
-import SideNav from '../../components/SideNav';
+import Nav from '../Nav';
 import ItemsControlBar from '../../components/ItemsControlBar';
 import DocumentTitle from 'react-document-title';
 
 export default () => (
   <DocumentTitle title='Items'>
-    <SideNav bar={<ItemsControlBar/>}>
+    <Nav bar={<ItemsControlBar/>}>
       <FilteredItems container="#sidenav-content" content="#item-grid" />
-    </SideNav>
+    </Nav>
   </DocumentTitle>
 );

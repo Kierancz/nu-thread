@@ -40,20 +40,9 @@ export function* getItems(action) {
     console.log('error in getItems(): ', e);
   }
 }
-
 export function* getSpecificItems() {
   yield put(requestItems());
 }
-
-// Action Watchers
-// export function* watchRequestItems() {
-//   const pattern = ['REQUEST_ITEMS','REQUEST_ITEM_PAGE'];
-//   yield takeEvery(pattern, getItems);
-// }
-// export function* watchRequestChange() {
-//   const pattern = ['ADD_PROFILE','ADD_QUERY','ADD_CONFIG','ADD_SORT_TYPE'];
-//   yield takeEvery(pattern, getSpecificItems);
-// }
 
 export default function * itemsRootSaga () {
   const requestItems = ['REQUEST_ITEMS','REQUEST_ITEM_PAGE'];

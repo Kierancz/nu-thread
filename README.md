@@ -15,9 +15,20 @@ eBay's referral commision is used to plant trees and provide reproductive health
 - Redux Saga
 - Styled Components
 - Material UI
+- React Router
 - Jest
 - Enzyme
 - Node
 - Express
 - Mongo
 - Firebase
+
+## Instructions
+### Client
+- run: "npm run"
+- test: "npm test"
+- build: "npm run build"
+- deploy: "npm run deploy"
+
+### Backend
+- Under Development

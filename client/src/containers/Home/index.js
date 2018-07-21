@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { InformationOutline, TshirtCrew } from 'mdi-material-ui';
-import SideNav from '../../components/SideNav';
+import Nav from '../Nav';
 import DocumentTitle from 'react-document-title';
 
 const StyledInfoIcon = styled(InformationOutline)`
@@ -21,7 +21,7 @@ const StyledButton = styled(Button)` && {
 
 const Home = props => (
   <DocumentTitle title="Home">
-    <SideNav>
+    <Nav>
       <Typography variant="display4" gutterBottom>
         nu-thread
       </Typography>
@@ -46,7 +46,7 @@ const Home = props => (
         <StyledInfoIcon />
         Learn More
       </StyledButton>
-    </SideNav>
+    </Nav>
   </DocumentTitle>
 )
 

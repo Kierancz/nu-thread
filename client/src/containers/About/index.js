@@ -1,11 +1,11 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
-import SideNav from '../../components/SideNav';
+import Nav from '../Nav';
 import DocumentTitle from 'react-document-title';
 
 export default () => (
   <DocumentTitle title='About'>
-    <SideNav>
+    <Nav>
       <div>
         <Typography variant="display4" gutterBottom>
           About
@@ -26,6 +26,6 @@ export default () => (
           We use eBay's referral commision to plant trees and provide reproductive healthcare globally.
         </Typography>
       </div>
-    </SideNav>
+    </Nav>
   </DocumentTitle>
 )
