@@ -8,13 +8,10 @@ import Button from '@material-ui/core/Button';
 import { InformationOutline, TshirtCrew } from 'mdi-material-ui';
 import Nav from '../Nav';
 import DocumentTitle from 'react-document-title';
+import StyledIcon from '../../components/Styled/icon';
 
-const StyledInfoIcon = styled(InformationOutline)`
-  margin-right: 6px;
-`;
-const StyledItemsIcon = styled(TshirtCrew)`
-  margin-right: 6px;
-`;
+const StyledInfoIcon = StyledIcon(InformationOutline);
+const StyledItemsIcon = StyledIcon(TshirtCrew);
 const StyledButton = styled(Button)` && {
   margin: 1em;
 }`;
@@ -36,14 +33,14 @@ const Home = props => (
         color="primary"
         onClick={() => props.goToItems()}
       >
-        <StyledItemsIcon />
+        <StyledItemsIcon pos="left" />
         See Items
       </StyledButton>
       <StyledButton 
         variant="raised" 
         onClick={() => props.goToAbout()}
       >
-        <StyledInfoIcon />
+        <StyledInfoIcon pos="left" />
         Learn More
       </StyledButton>
     </Nav>

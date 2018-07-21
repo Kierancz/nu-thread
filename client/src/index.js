@@ -6,7 +6,6 @@ import store, { history } from './modules/configureStore';
 import registerServiceWorker from './modules/registerServiceWorker';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import App from './containers/App';
-import { firebase } from './modules/firebase/fire';
 import './index.css';
 import 'typeface-roboto';
 import { dark } from './modules/theme';

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const StyledIcon = (Icon) => (props, children) => {
   const NewIcon = styled(Icon)`
-    margin-left: ${props => props.pos==='right'? '0.5em' : '0' };
-    margin-right: ${props => props.pos==='left'? '0.5em' : '0' };
+    margin-left: ${props => props.pos==='right'? '0.5rem' : '0' };
+    margin-right: ${props => props.pos==='left'? '0.5rem' : '0' };
   `;
 
   return (

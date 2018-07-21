@@ -58,54 +58,54 @@ class SearchBar extends React.Component {
 
     const searchBar = (
       <Downshift
-          inputValue={inputValue}
-          onChange={this.handleChange}
-        >
-          {
-            ({
-              getInputProps,
-              getItemProps,
-              isOpen,
-              inputValue,
-              selectedItem,
-              highlightedIndex
-            }) => (
-              <span>
-                <SearchConfig />
-                <StyledSearchContainer>
-                  <StyledSearchIcon>
-                    <Magnify />
-                  </StyledSearchIcon>
-                  {
-                    renderInput({
-                      fullWidth: true,
-                      InputProps: getInputProps({
-                        placeholder: 'Search',
-                        id: 'clothing-search',
-                        onChange: this.handleInputChange,
-                        onKeyDown: this.handleKeyDown
-                      }),
-                    })
-                  }
-                  { clearButton }
-                  { isOpen ? 
-                    <StyledPaper>
-                      { getSuggestions(inputValue).map((suggestion, index) =>
-                          renderSuggestions({
-                            suggestion,
-                            index,
-                            itemProps: getItemProps({ item: suggestion.label }),
-                            highlightedIndex,
-                            selectedItem,
-                          })
-                        ) 
-                      }
-                    </StyledPaper> : null
-                  }
-                </StyledSearchContainer>
-              </span>
-          )}
-        </Downshift>
+        inputValue={inputValue}
+        onChange={this.handleChange}
+      >
+        {
+          ({
+            getInputProps,
+            getItemProps,
+            isOpen,
+            inputValue,
+            selectedItem,
+            highlightedIndex
+          }) => (
+            <span>
+              <SearchConfig />
+              <StyledSearchContainer>
+                <StyledSearchIcon>
+                  <Magnify />
+                </StyledSearchIcon>
+                {
+                  renderInput({
+                    fullWidth: true,
+                    InputProps: getInputProps({
+                      placeholder: 'Search',
+                      id: 'clothing-search',
+                      onChange: this.handleInputChange,
+                      onKeyDown: this.handleKeyDown
+                    }),
+                  })
+                }
+                { clearButton }
+                { isOpen ? 
+                  <StyledPaper>
+                    { getSuggestions(inputValue).map((suggestion, index) =>
+                        renderSuggestions({
+                          suggestion,
+                          index,
+                          itemProps: getItemProps({ item: suggestion.label }),
+                          highlightedIndex,
+                          selectedItem,
+                        })
+                      ) 
+                    }
+                  </StyledPaper> : null
+                }
+              </StyledSearchContainer>
+            </span>
+        )}
+      </Downshift>
     );
 
     const persistantDisplay = isMobile?

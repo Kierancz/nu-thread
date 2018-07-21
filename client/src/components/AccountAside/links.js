@@ -2,7 +2,7 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Login, Logout, Account } from 'mdi-material-ui';
+import { Login, Logout, AccountBoxOutline } from 'mdi-material-ui';
 import styled from 'styled-components';
 import LoginLink from '../../containers/LoginLink';
 import LogoutLink from '../../containers/LogoutLink';
@@ -35,4 +35,13 @@ export const LogoutButton = (
       <ListItemText primary="Logout" />
     </StyledListItem>
   </LogoutLink>
+);
+
+export const AccountButton = (
+    <StyledListItem button>
+      <StyledListItemIcon>
+        <AccountBoxOutline />
+      </StyledListItemIcon>
+      <ListItemText primary="Account" />
+    </StyledListItem>
 );

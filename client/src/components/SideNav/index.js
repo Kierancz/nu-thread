@@ -97,8 +97,9 @@ class SideNav extends React.Component {
         { NavLogo }
         <Divider />
         <List>
-          { NavLinks }
           <AccountAside loggedIn={auth.loggedIn} />
+          <Divider />
+          { NavLinks }
         </List>
         { footer }
       </div>;
@@ -120,8 +121,8 @@ class SideNav extends React.Component {
 
     return (
       <div className={classes.root}>
-        { bar? controlBar : null }
         <Hidden mdUp>
+          { controlBar }
           <Drawer
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -136,9 +137,9 @@ class SideNav extends React.Component {
           >
             { drawer }
           </Drawer>
-          { controlBar }
         </Hidden>
         <Hidden smDown implementation="css">
+          { bar? controlBar : null }
           <Drawer
             variant="permanent"
             open

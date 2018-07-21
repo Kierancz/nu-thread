@@ -9,19 +9,26 @@ The service costs absolutely nothing to you or the sellers.
 
 eBay's referral commision is used to plant trees and provide reproductive healthcare globally.
 
-## Built With:
+## Tech Stack
+### Front End:
 - React
 - Redux
 - Redux Saga
 - Styled Components
 - Material UI
 - React Router
+
+### Testing:
 - Jest
-- Enzyme
-- Node
+- react-testing-library
+- Enzyme (removing in favor of the above)
+- Crypress
+
+### Backend:
+- Node 
 - Express
 - Mongo
-- Firebase
+- Firebase (auth, accounts, hosting)
 
 ## Instructions
 ### Client
@@ -32,3 +39,4 @@ eBay's referral commision is used to plant trees and provide reproductive health
 
 ### Backend
 - Under Development
+- Aggregating data from eBay and creating improved data API
